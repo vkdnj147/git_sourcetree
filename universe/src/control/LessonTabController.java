@@ -190,12 +190,12 @@ public class LessonTabController implements Initializable {
 		title = lDao.getLessonColumnName();
 
 		int columnCount = title.size();
-		list = IDao.getLessonTotalList();
+		list = lDao.getLessonTotalList();
 		int rowCount = list.size();
 
 		for (int index = 0; index < rowCount; index++) {
-			IVO = list.get(index);
-			lessonDataList.add(IVO);
+			lVo = list.get(index);
+			lessonDataList.add(lVo);
 		}
 
 	}

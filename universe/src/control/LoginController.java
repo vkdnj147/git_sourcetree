@@ -126,91 +126,89 @@ public class LoginController implements Initializable {
 	}
 
 //로그인 메소드
-public void login() {
-LoginDAO login = new LoginDAO();
-StudentDAO sLogin = new StudentDAO();
-boolean sucess = false;
-try {
-if ("manager".equals(loginGroup.getSelectedToggle().getUserData().toString())) {
-managerName = managerLoginName();
-sucess = login.getLogin(txtId.getText().trim(), txtPassword.getText().trim());
+	public void login() {
+		LoginDAO login = new LoginDAO();
+		StudentDAO sLogin = new StudentDAO();
+		boolean sucess = false;
+		try {
+			if ("manager".equals(loginGroup.getSelectedToggle().getUserData().toString())) {
+				managerName = managerLoginName();
+				sucess = login.getLogin(txtId.getText().trim(), txtPassword.getText().trim());
 //로그인 성공시 메인 페이지로 이동
-if (sucess) {
-try {
-FXMLLoader loader = new
-FXMLLoader(getClass().getResource("/view/mainView.fxml"));
-Parent mainView = (Parent) loader.load();
-Scene scane = new Scene(mainView);
-Stage mainMtage = new Stage();
-mainMtage.setTitle("미래 대학교 학사관리");
-mainMtage.setResizable(false);
-mainMtage.setScene(scane);
-Stage oldStage = (Stage) btnLogin.getScene().getWindow();
-oldStage.close();
-mainMtage.show();
-} catch (IOException e) {
+				if (sucess) {
+					try {
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainView.fxml"));
+						Parent mainView = (Parent) loader.load();
+						Scene scane = new Scene(mainView);
+						Stage mainMtage = new Stage();
+						mainMtage.setTitle("미래 대학교 학사관리");
+						mainMtage.setResizable(false);
+						mainMtage.setScene(scane);
+						Stage oldStage = (Stage) btnLogin.getScene().getWindow();
+						oldStage.close();
+						mainMtage.show();
+					} catch (IOException e) {
 //TODO Auto-generated catch block
-System.err.println("오류" + e);
-}
-} else {
+						System.err.println("오류" + e);
+					}
+				} else {
 //아이디패스워드 확인하라는 창
-Alert alert;
-alert = new Alert(AlertType.WARNING);
-alert.setTitle("로그인 실패");
-alert.setHeaderText("아이디와 비밀번호 불일치");
-alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
-alert.setResizable(false);
-alert.showAndWait();
-txtId.clear();
-txtPassword.clear();
-}
-}elseif("student".equals(loginGroup.getSelectedToggle().getUserData().toString())){
-sucess = sLogin.getLogin(txtId.getText().trim(), txtPassword.getText().trim());
+					Alert alert;
+					alert = new Alert(AlertType.WARNING);
+					alert.setTitle("로그인 실패");
+					alert.setHeaderText("아이디와 비밀번호 불일치");
+					alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
+					alert.setResizable(false);
+					alert.showAndWait();
+					txtId.clear();
+					txtPassword.clear();
+				}
+			} else if ("student".equals(loginGroup.getSelectedToggle().getUserData().toString())) {
+				sucess = sLogin.getLogin(txtId.getText().trim(), txtPassword.getText().trim());
 //로그인 성공시 메인 페이지로 이동
-if (sucess) {
-try {
-studentId= txtId.getText();
-FXMLLoader loader = new
-FXMLLoader(getClass().getResource("/view/trainee.fxml"));
-Parent mainView = (Parent) loader.load();
-Scene scane = new Scene(mainView);
-Stage mainMtage = new Stage();
-mainMtage.setTitle("미래 대학교 학사관리");
-mainMtage.setResizable(false);
-mainMtage.setScene(scane);
-Stage oldStage = (Stage) btnLogin.getScene().getWindow();
-oldStage.close();
-mainMtage.show();
-} catch (IOException e) {
+				if (sucess) {
+					try {
+						studentId = txtId.getText();
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/trainee.fxml"));
+						Parent mainView = (Parent) loader.load();
+						Scene scane = new Scene(mainView);
+						Stage mainMtage = new Stage();
+						mainMtage.setTitle("미래 대학교 학사관리");
+						mainMtage.setResizable(false);
+						mainMtage.setScene(scane);
+						Stage oldStage = (Stage) btnLogin.getScene().getWindow();
+						oldStage.close();
+						mainMtage.show();
+					} catch (IOException e) {
 // TODO Auto-generated catch block
-System.err.println("오류" + e);
-}
-} else {
+						System.err.println("오류" + e);
+					}
+				} else {
 // 아이디패스워드 확인하라는 창
-Alert alert;
-alert = new Alert(AlertType.WARNING);
-alert.setTitle("로그인 실패");
-alert.setHeaderText("아이디와 비밀번호 불일치");
-alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
-alert.setResizable(false);
-alert.showAndWait();
-txtId.clear();
-txtPassword.clear();
-}
-}
-} catch (Exception e1) {
-e1.printStackTrace();
-}
-if (txtId.getText().equals("") || txtPassword.getText().equals("")) {
-Alert alert;
-alert = new Alert(AlertType.WARNING);
-alert.setTitle("로그인 실패");
-alert.setHeaderText("아이디와 비밀번호 미입력");
-alert.setContentText("아이디와 비밀번호중 입력하지 않은 항목이 있습니다."+ "\n 다시 제대로 입력하시오.");
-alert.setResizable(false);
-alert.showAndWait();
-}
-}
+					Alert alert;
+					alert = new Alert(AlertType.WARNING);
+					alert.setTitle("로그인 실패");
+					alert.setHeaderText("아이디와 비밀번호 불일치");
+					alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
+					alert.setResizable(false);
+					alert.showAndWait();
+					txtId.clear();
+					txtPassword.clear();
+				}
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		if (txtId.getText().equals("") || txtPassword.getText().equals("")) {
+			Alert alert;
+			alert = new Alert(AlertType.WARNING);
+			alert.setTitle("로그인 실패");
+			alert.setHeaderText("아이디와 비밀번호 미입력");
+			alert.setContentText("아이디와 비밀번호중 입력하지 않은 항목이 있습니다." + "\n 다시 제대로 입력하시오.");
+			alert.setResizable(false);
+			alert.showAndWait();
+		}
+	}
 
 	public String managerLoginName() {
 		LoginDAO ldao = new LoginDAO();
