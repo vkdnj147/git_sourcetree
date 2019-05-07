@@ -14,7 +14,7 @@ public class Main extends Application {
 		try {
 			Parent root  = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 			Scene scene = new Scene(root);
-			primaryStage.setTitle("¹Ì·¡ ´ëÇĞ±³ ¼ö°­½ÅÃ»");
+			primaryStage.setTitle("ë¯¸ë˜ ëŒ€í•™êµ ìˆ˜ê°•ì‹ ì²­");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
