@@ -3,8 +3,8 @@ package model;
 public class LessonVO {
 
 	int no ; //일련번호
-	String l_num;
-	String l_name;
+	String l_num;//과목번호
+	String l_name;//과목명
 	
 	//디폴트 생성자
 	public LessonVO() {

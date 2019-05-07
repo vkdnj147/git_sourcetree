@@ -3,9 +3,9 @@ package model;
 public class JoinVO {
 
 	//변수선언
-	String id;
-	String password;
-	String name;
+	String id;// 아이디
+	String password;//비밀번호
+	String name;//이름
 	
 	//디폴트 생성자
 	public JoinVO() {

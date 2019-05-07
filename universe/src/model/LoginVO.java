@@ -1,7 +1,7 @@
 package model;
 
 public class LoginVO {
-	private String id;
+	private String id;//아이디
 
 	public LoginVO() {
 		super();

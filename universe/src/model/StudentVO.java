@@ -1,17 +1,17 @@
 package model;
 
 public class StudentVO {
-	int no;
-	String sd_num;
-	String sd_name;
-	String sd_id;
-	String sd_passwd;
-	String s_num;
-	String sd_birthday;
-	String sd_phone;
-	String sd_address;
-	String sd_email;
-	String sd_date;
+	int no;//일련번호
+	String sd_num;//학번
+	String sd_name;//이름
+	String sd_id;//아이디
+	String sd_passwd;//비밀번호
+	String s_num;//학과번호
+	String sd_birthday;//주민등록번호
+	String sd_phone;//핸드폰 번호
+	String sd_address;//주소
+	String sd_email;//이메일
+	String sd_date;//등록일자
 	
 	//디폴트 생성자
 	public StudentVO() {
