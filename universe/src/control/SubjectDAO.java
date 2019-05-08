@@ -161,10 +161,12 @@ public class SubjectDAO {
 		boolean subjectUpdateSucess = false;
 		try {
 			con = DBUtil.getConnection();
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, s_num);
 			pstmt.setString(2, s_name);
 			pstmt.setInt(3, no);
+			
 			int i = pstmt.executeUpdate();
 			if (i == 1) {
 				Alert alert = new Alert(AlertType.INFORMATION);
