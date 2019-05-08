@@ -247,17 +247,22 @@ public class StudentTabController implements Initializable {
 	}
 
 	// 학생 등록 탭의 학과 선택 이벤트 핸들러
+	
 	public void handlerCbx_subjectNameActoion(ActionEvent event) {
+		
 		SubjectVO svo = null;
 		StudentDAO sdao = new StudentDAO();
 		String serialNumber = "";// 일련번호
 		String sdYear = "";
+		
 		try {
 			svo = (SubjectVO) cbx_subjectName.getSelectionModel().getSelectedItem();
 			selectSubjectNum = svo.getS_num();
+			
 			// 학번은 8 자리로 구성한다. (연도 2 자리+학과 2 자리+일련번호 4 자리 - 예로 06010001)
 			SimpleDateFormat sdf = new SimpleDateFormat("yy");
 			sdYear = sdf.format(new Date());
+			
 			serialNumber = sdao.getStudentCount(selectSubjectNum);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -268,15 +273,21 @@ public class StudentTabController implements Initializable {
 
 	// 학생 전체 목록
 	public void studentTotalList() throws Exception {
+		
 		studentDataList.removeAll(studentDataList);
+		
 		StudentDAO sDao = new StudentDAO();
 		StudentVO sVo = null;
+		
 		ArrayList<String> title;
 		ArrayList<StudentVO> list;
+		
 		title = sDao.getStudnetColumnName();
 		int columnCount = title.size();
+		
 		list = sDao.getStudentTotalList();
 		int rowCount = list.size();
+		
 		for (int index = 0; index < rowCount; index++) {
 			sVo = list.get(index);
 			studentDataList.add(sVo);
@@ -287,10 +298,14 @@ public class StudentTabController implements Initializable {
 
 	// 학생 테이블 뷰 더블 클릭 이벤트 핸들러
 	public void handlerStudentTableViewActoion(MouseEvent event) {
+		
 		if (event.getClickCount() == 2) {
+		
 			try {
+			
 				selectStudent = studentTableView.getSelectionModel().getSelectedItems();
 				selectedStudentIndex = selectStudent.get(0).getNo();
+				
 				String selectedSd_num = selectStudent.get(0).getSd_num();
 				String selectedSd_name = selectStudent.get(0).getSd_name();
 				String selectedSd_id = selectStudent.get(0).getSd_id();
@@ -299,6 +314,7 @@ public class StudentTabController implements Initializable {
 				String selectedSd_phone = selectStudent.get(0).getSd_phone();
 				String selectedSd_address = selectStudent.get(0).getSd_address();
 				String selectedSd_email = selectStudent.get(0).getSd_email();
+				
 				txtsd_num.setText(selectedSd_num);
 				txtsd_name.setText(selectedSd_name);
 				txtsd_id.setText(selectedSd_id);
@@ -307,11 +323,14 @@ public class StudentTabController implements Initializable {
 				txtsd_phone.setText(selectedSd_phone);
 				txtsd_address.setText(selectedSd_address);
 				txtsd_email.setText(selectedSd_email);
+				
 				txtsd_num.setEditable(false);
 				txtsd_name.setEditable(false);
 				txtsd_id.setEditable(false);
+				
 				btnIdCheck.setDisable(true);
 				cbx_subjectName.setDisable(true);
+				
 				btnStudentUpdate.setDisable(false);
 				btnStudentInit.setDisable(false);
 				btnStudentInsert.setDisable(true);
@@ -335,8 +354,11 @@ public class StudentTabController implements Initializable {
 	// 학생 초기화
 	public void handlerBtnStudentInitAction(ActionEvent event) {
 		try {
+			
 			studentDataList.removeAll(studentDataList);
 			studentTotalList();
+			
+			//안에 있는 텍스트를 모두 비우라는 메소드
 			txtsd_num.clear();
 			txtsd_name.clear();
 			txtsd_id.clear();
@@ -345,14 +367,17 @@ public class StudentTabController implements Initializable {
 			txtsd_phone.clear();
 			txtsd_address.clear();
 			txtsd_email.clear();
+			
 			txtsd_num.setEditable(true);
 			txtsd_name.setEditable(true);
 			txtsd_id.setEditable(true);
+		
 			btnIdCheck.setDisable(false);
 			cbx_subjectName.setDisable(false);
 			btnStudentUpdate.setDisable(true);
 			btnStudentInit.setDisable(true);
 			btnStudentInsert.setDisable(true);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -361,14 +386,19 @@ public class StudentTabController implements Initializable {
 	// 학생 정보 수정
 	public void handlerBtnStudentUpdateAction(ActionEvent event) {
 		try {
+			
 			boolean sucess;
+			
+			
 			StudentDAO sdao = new StudentDAO();
 			sucess = sdao.getStudentUpdate(selectedStudentIndex, txtsd_passwd.getText().trim(),
 					txtsd_birthday.getText().trim(), txtsd_phone.getText().trim(), txtsd_address.getText().trim(),
 					txtsd_email.getText().trim());
+			
 			if (sucess) {
 				studentDataList.removeAll(studentDataList);
 				studentTotalList();
+				
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -377,9 +407,11 @@ public class StudentTabController implements Initializable {
 				txtsd_phone.clear();
 				txtsd_address.clear();
 				txtsd_email.clear();
+				
 				txtsd_num.setEditable(true);
 				txtsd_name.setEditable(true);
 				txtsd_id.setEditable(true);
+				
 				btnIdCheck.setDisable(false);
 				cbx_subjectName.setDisable(false);
 				btnStudentUpdate.setDisable(true);
