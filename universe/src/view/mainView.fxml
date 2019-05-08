@@ -53,7 +53,7 @@
 	<center>
 		<TabPane tabClosingPolicy="UNAVAILABLE" fx:id="mainPane">
 			<tabs>
-				<Tab text="학과 등록" fx:id="subject">
+				<Tab text="학과 등록" fx:id="Subject">
 					<content>
 						<fx:include fx:id="subjectTab" source="subjectTab.fxml" />
 					</content>

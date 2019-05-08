@@ -37,6 +37,8 @@ public class MainController implements Initializable {
 	@FXML
 	private LessonTabController lessonTabController;
 	@FXML
+	private Tab traineeTotal;
+	@FXML
 	private TraineeTotalTabController traineeTotalTabController;
 
 	// 메뉴
