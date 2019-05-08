@@ -222,7 +222,7 @@ public class StudentDAO {
          pstmt.setString(1,svo.getSd_num());
          pstmt.setString(2,svo.getSd_name());
          pstmt.setString(3,svo.getSd_id());
-         pstmt.setString(4,svo.getSd_password());
+         pstmt.setString(4,svo.getSd_passwd());
          pstmt.setString(5,svo.getS_num());
          pstmt.setString(6,svo.getSd_birthday());
          pstmt.setString(7,svo.getSd_phone());
