@@ -156,6 +156,10 @@ public class StudentTabController implements Initializable {
 		StudentDAO sDao = new StudentDAO();
 		ArrayList subjectNameList = new ArrayList<>();
 		subjectNameList = sDao.subjectTotalList();
+		
+		
+		System.out.println(subjectNameList.get(0));
+		
 		// 학생 등록 탭 학과 번호 콤보 값 설정
 		cbx_subjectName.setItems(FXCollections.observableArrayList(subjectNameList));
 	}

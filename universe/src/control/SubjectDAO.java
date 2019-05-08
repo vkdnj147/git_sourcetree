@@ -35,6 +35,8 @@ public class SubjectDAO {
 				sVo.setS_num(rs.getString("s_num"));
 				sVo.setS_name(rs.getString("s_name"));
 
+				System.out.println(sVo.getS_num());
+				
 				list.add(sVo);
 
 			}
