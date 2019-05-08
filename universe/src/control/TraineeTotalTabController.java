@@ -57,18 +57,22 @@ public class TraineeTotalTabController implements Initializable {
 			colSdName.setPrefWidth(150);
 			colSdName.setStyle("-fx-allignment: CENTER");
 			colSdName.setCellValueFactory(new PropertyValueFactory<>("sd_name"));
+			
 			TableColumn colLNum = new TableColumn("과목명");
 			colLNum.setPrefWidth(150);
 			colLNum.setStyle("-fx-allignment: CENTER");
 			colLNum.setCellValueFactory(new PropertyValueFactory<>("l_num"));
+			
 			TableColumn colTSection = new TableColumn("과목 구분");
 			colTSection.setPrefWidth(150);
 			colTSection.setStyle("-fx-allignment: CENTER");
 			colTSection.setCellValueFactory(new PropertyValueFactory<>("t_section"));
+			
 			TableColumn colTDate = new TableColumn("등록 날짜");
 			colTDate.setPrefWidth(250);
 			colTDate.setStyle("-fx-allignment: CENTER");
 			colTDate.setCellValueFactory(new PropertyValueFactory<>("t_date"));
+			
 			traineeTatolTableView.setItems(traineeDataList);
 			traineeTatolTableView.getColumns().addAll(colNo, colSdNum, colSdName, colLNum, colTSection, colTDate);
 
@@ -170,26 +174,25 @@ public class TraineeTotalTabController implements Initializable {
 	// 수강 전체 리스트
 	public void traineeTotalList() throws Exception {
 		traineeDataList.removeAll(traineeDataList);
-		//객체 생성
+		// 객체 생성
 		TraineeDAO tDao = new TraineeDAO();
 
-	}
+		TraineeVO tVo = null;
+		ArrayList<String> title;
+		ArrayList<TraineeVO> list;
 
-	TraineeVO tVo = null;
-	ArrayList<String> title;
-	ArrayList<TraineeVO> list
-	
-	title = tDao.getTraineeColumnName();
-	int columnCount = title.size();
-	
-	list=tDao.getTraineeTotalList();
-	
-	int rowCount = list.size();
-	lblCount.setText("총원 : "+rowCount+" 명");
-	
-	for(int index = 0;index<rowCount;index++){
-		
-		tVo = list.get(index);
-		traineeDataList.add(tVo);
+		title = tDao.getTraineeColumnName();
+		int columnCount = title.size();
+
+		list = tDao.getTraineeTotalList();
+
+		int rowCount = list.size();
+		lblCount.setText("총원 : " + rowCount + " 명");
+
+		for (int index = 0; index < rowCount; index++) {
+
+			tVo = list.get(index);
+			traineeDataList.add(tVo);
+		}
 	}
-}}
+}
