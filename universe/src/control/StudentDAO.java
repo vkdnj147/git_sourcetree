@@ -50,7 +50,7 @@ public class StudentDAO {
 
    // 학생 로그인
    public boolean getLogin(String loginId, String loginPassword) throws Exception {
-      String sql = "select * from student where sd_id = ? and sd_password = ?";
+      String sql = "select * from student where sd_id = ? and sd_passwd = ?";
       Connection con = null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
@@ -88,7 +88,7 @@ public class StudentDAO {
    public ArrayList<StudentVO> getStudentTotalList() throws Exception {
       ArrayList<StudentVO> list = new ArrayList<>();
 
-      String sql = "select st.no as no, sd_num, sd_name, sd_id, sd_password, "
+      String sql = "select st.no as no, sd_num, sd_name, sd_id, sd_passwd, "
             + "su.s_name as s_num, sd_birthday, sd_phone, sd_address, sd_email, sd_date "
             + " from STUDENT st, SUBJECT su" + " where st.s_num = su.s_num" + " order by no";
 
@@ -108,7 +108,7 @@ public class StudentDAO {
             sVo.setSd_num(rs.getString("sd_num"));
             sVo.setSd_name(rs.getString("sd_name"));
             sVo.setSd_id(rs.getString("sd_id"));
-            sVo.setSd_passwd(rs.getString("sd_password"));
+            sVo.setSd_passwd(rs.getString("sd_passwd"));
             sVo.setS_num(rs.getString("s_num"));
             sVo.setSd_birthday(rs.getString("sd_birthday"));
             sVo.setSd_phone(rs.getString("sd_phone"));
@@ -211,7 +211,7 @@ public class StudentDAO {
    // 학생 등록
    public void getStudentRegiste(StudentVO svo) throws Exception {
       String sql = "insert into student values "
-            + "(student_seq.nextval, ?,?,?,?,?,?,?,?,?,sysdate)";
+            + "(student_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?,sysdate)";
       Connection con = null;
       PreparedStatement pstmt = null;
       
@@ -303,7 +303,7 @@ public class StudentDAO {
    // 학생 정보 수정
    public boolean getStudentUpdate(int no, String sd_password, String sd_birthday, String sd_phone,
          String sd_address, String sd_email) throws Exception {
-      String sql = "update student set sd_password=?, sd_birthday=?, sd_phone=?,"
+      String sql = "update student set sd_passwd=?, sd_birthday=?, sd_phone=?,"
             + " sd_address=?, sd_email=?, where no=?";
       Connection con = null;
       PreparedStatement pstmt = null;
