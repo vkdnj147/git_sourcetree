@@ -238,6 +238,7 @@ public class StudentDAO {
             alert.setHeaderText(svo.getSd_name() + " 학생 등록 완료.");
             alert.setContentText("학생 등록 성공!!");
             alert.showAndWait();
+            
          }else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("학생 등록");
@@ -245,6 +246,7 @@ public class StudentDAO {
             alert.setContentText("학생 등록 실패!!");
             alert.showAndWait();
          }
+         
       }catch (SQLException e) {
          System.out.println("e=[" + e + "]");
       }catch (Exception e) {
