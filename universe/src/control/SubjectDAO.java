@@ -124,30 +124,32 @@ public class SubjectDAO {
 		// ResultSetMetaData 객체 변수 선언
 		ResultSetMetaData rsmd = null;
 		try {
-		con = DBUtil.getConnection();
-		pstmt = con.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		rsmd = rs.getMetaData();
-		int cols = rsmd.getColumnCount();
-		for (int i = 1; i <= cols; i++) {
-		columnName.add(rsmd.getColumnName(i));
-		}
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rsmd = rs.getMetaData();
+			int cols = rsmd.getColumnCount();
+			for (int i = 1; i <= cols; i++) {
+				columnName.add(rsmd.getColumnName(i));
+			}
 		} catch (SQLException se) {
-		System.out.println(se);
+			System.out.println(se);
 		} catch (Exception e) {
-		System.out.println(e);
+			System.out.println(e);
 		} finally {
-		try {
-		if (rs != null)
-		rs.close();
-		if (pstmt != null)
-		pstmt.close();
-		if (con != null)
-		con.close(); catch (SQLException se) {
-		}
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+
+			} catch (SQLException se) {
+			}
 		}
 		return columnName;
-		}
+	}
 
 	// 학과 수정
 	public boolean getSubjectUpdate(int no, String s_num, String s_name) throws Exception {

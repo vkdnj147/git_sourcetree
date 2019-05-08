@@ -86,49 +86,48 @@ public class StudentDAO {
 	// 학생 전체 목록
 	public ArrayList<StudentVO> getStudentTotalList() throws Exception {
 		ArrayList<StudentVO> list = new ArrayList<>();
-		String sql = "select st.no as no, sd_num, sd_name, sd_id, sd_passwd, su.s_name as s_num,
-		sd_birthday, sd_phone, sd_address, sd_email, sd_date "
-		+ " from STUDENT st, SUBJECT su" + " where st.s_num = su.s_num" + " order by no";
+		String sql = "select st.no as no, sd_num, sd_name, sd_id, sd_passwd, su.s_name as s_num, sd_birthday, sd_phone, sd_address, sd_email, sd_date "
+				+ " from STUDENT st, SUBJECT su" + " where st.s_num = su.s_num" + " order by no";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StudentVO sVo = null;
 		try {
-		con = DBUtil.getConnection();
-		pstmt = con.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while (rs.next()) {
-		sVo = new StudentVO();
-		sVo.setNo(rs.getInt("no"));
-		sVo.setSd_num(rs.getString("sd_num"));
-		sVo.setSd_name(rs.getString("sd_name"));
-		sVo.setSd_id(rs.getString("sd_id"));
-		sVo.setSd_passwd(rs.getString("sd_passwd"));
-		sVo.setS_num(rs.getString("s_num"));
-		sVo.setSd_birthday(rs.getString("sd_birthday"));
-		sVo.setSd_phone(rs.getString("sd_phone"));
-		sVo.setSd_address(rs.getString("sd_address"));
-		sVo.setSd_email(rs.getString("sd_email"));
-		sVo.setSd_date(rs.getDate("sd_date") + "");
-		list.add(sVo);
-		}
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				sVo = new StudentVO();
+				sVo.setNo(rs.getInt("no"));
+				sVo.setSd_num(rs.getString("sd_num"));
+				sVo.setSd_name(rs.getString("sd_name"));
+				sVo.setSd_id(rs.getString("sd_id"));
+				sVo.setSd_passwd(rs.getString("sd_passwd"));
+				sVo.setS_num(rs.getString("s_num"));
+				sVo.setSd_birthday(rs.getString("sd_birthday"));
+				sVo.setSd_phone(rs.getString("sd_phone"));
+				sVo.setSd_address(rs.getString("sd_address"));
+				sVo.setSd_email(rs.getString("sd_email"));
+				sVo.setSd_date(rs.getDate("sd_date") + "");
+				list.add(sVo);
+			}
 		} catch (SQLException se) {
-		System.out.println(se);
+			System.out.println(se);
 		} catch (Exception e) {
 			System.out.println(e);
-			} finally {
+		} finally {
 			try {
-			if (rs != null)
-			rs.close();
-			if (pstmt != null)
-			pstmt.close();
-			if (con != null)
-			con.close();
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException se) {
 			}
-			}
-			return list;
-			}
+		}
+		return list;
+	}
 
 	// 동일 학과 학생 일련번호
 	public String getStudentCount(String subejectNum) throws Exception {
@@ -199,8 +198,7 @@ public class StudentDAO {
 
 	// 학생 등록
 	public void getStudentRegiste(StudentVO svo) throws Exception {
-			String sql = "insert into student values " + "(student_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-			sysdate)";
+			String sql = "insert into student values " + "(student_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -283,52 +281,52 @@ public class StudentDAO {
 	}
 
 	// 학생 정보 수정
-	public boolean getStudentUpdate(int no, String sd_passwd, String sd_birthday, String sd_phone,
-				String sd_address, String sd_email) throws Exception {
-				String sql = "update student set sd_passwd=?, sd_birthday=?, sd_phone=?, sd_address=?, sd_email=? where no=?";
-				Connection con = null;
-				PreparedStatement pstmt = null;
-				boolean studentUpdateSucess = false;
-				try {
-				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, sd_passwd);
-				pstmt.setString(2, sd_birthday);
-				pstmt.setString(3, sd_phone);
-				pstmt.setString(4, sd_address);
-				pstmt.setString(5, sd_email);
-				pstmt.setInt(6, no);
-				int i = pstmt.executeUpdate();
-				if (i == 1) {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("학생 정보 수정");
-					alert.setHeaderText(no + " 학생 정보 수정 완료.");
-					alert.setContentText("학생 정보 수정 성공!!!");
-					alert.showAndWait();
-					studentUpdateSucess = true;
-					} else {
-					Alert alert = new Alert(AlertType.WARNING);
-					alert.setTitle("학생 정보 수정");
-					alert.setHeaderText("학생 정보 수정 실패.");
-					alert.setContentText("학생 정보 수정 실패!!!");
-					alert.showAndWait();
-					}
-					} catch (SQLException e) {
-					System.out.println("e=[" + e + "]");
-					} catch (Exception e) {
-					System.out.println("e=[" + e + "]");
-					} finally {
-					try {
-					// 데이터베이스와의 연결에 사용되었던 오브젝트를 해제
-					if (pstmt != null)
+	public boolean getStudentUpdate(int no, String sd_passwd, String sd_birthday, String sd_phone, String sd_address,
+			String sd_email) throws Exception {
+		String sql = "update student set sd_passwd=?, sd_birthday=?, sd_phone=?, sd_address=?, sd_email=? where no=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean studentUpdateSucess = false;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, sd_passwd);
+			pstmt.setString(2, sd_birthday);
+			pstmt.setString(3, sd_phone);
+			pstmt.setString(4, sd_address);
+			pstmt.setString(5, sd_email);
+			pstmt.setInt(6, no);
+			int i = pstmt.executeUpdate();
+			if (i == 1) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("학생 정보 수정");
+				alert.setHeaderText(no + " 학생 정보 수정 완료.");
+				alert.setContentText("학생 정보 수정 성공!!!");
+				alert.showAndWait();
+				studentUpdateSucess = true;
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("학생 정보 수정");
+				alert.setHeaderText("학생 정보 수정 실패.");
+				alert.setContentText("학생 정보 수정 실패!!!");
+				alert.showAndWait();
+			}
+		} catch (SQLException e) {
+			System.out.println("e=[" + e + "]");
+		} catch (Exception e) {
+			System.out.println("e=[" + e + "]");
+		} finally {
+			try {
+				// 데이터베이스와의 연결에 사용되었던 오브젝트를 해제
+				if (pstmt != null)
 					pstmt.close();
-					if (con != null)
+				if (con != null)
 					con.close();
-					} catch (SQLException e) {
-					}
-					}
-					return studentUpdateSucess;
-					}
+			} catch (SQLException e) {
+			}
+		}
+		return studentUpdateSucess;
+	}
 
 	// 학생 정보 삭제
 	public boolean getStudentDelete(int no) throws Exception {
