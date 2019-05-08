@@ -52,37 +52,45 @@ public class MainController implements Initializable {
 		try {
 			mainPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
 				@Override
-				public void changed(ObservableValue<? extends Tab>observable,Tab oldValue,Tab newValue) {
-					if(newValue == subject) {
+				public void changed(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
+					if (newValue == Subject) {
 						System.out.println("학과");
 						try {
 							subjectTabController.subjectTotalList();
-						}catch (Exception e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					}else if(newValue == student) {
+					} else if (newValue == student) {
 						try {
 							studentTabController.studentTotalList();
-						}catch (Exception e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					}else if(newValue ==lesson) {
+					} else if (newValue == lesson) {
 						try {
 							lessonTabController.lessonTotalList();
-						}catch (Exception e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					}else if(newValue == traineeTotal) {
+					} else if (newValue == traineeTotal) {
 						try {
 							traineeTotalTabController.traineeTotalList();
-						}catch (Exception e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
-					
 				}
 			});
-			//메뉴 이벤트 등록
+
+			// 메뉴 이벤트 등록
+			menuExit.setOnAction(event -> handlerMenuExitAction(event));
+			menuLogout.setOnAction(event -> handlerMenuLogoutAction(event));
+			menuInfo.setOnAction(event -> handlerMenuInfoAction(event));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void handlerMenuLogoutAction(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
@@ -120,6 +128,4 @@ public class MainController implements Initializable {
 		alert.showAndWait();
 		Platform.exit();
 	}
-}
-
 }
