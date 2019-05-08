@@ -223,7 +223,7 @@ public class StudentTabController implements Initializable {
 				alert.setContentText("패스워드를 입력하세요.");
 				alert.showAndWait();
 				btnStudentInsert.setDisable(false);
-				btnIdCheck.setDisable(false);
+				btnIdCheck.setDisable(false);//아이디체크 활성화
 			} else if (searchId.equals("")) {
 				btnStudentInsert.setDisable(true);
 				btnIdCheck.setDisable(false);
