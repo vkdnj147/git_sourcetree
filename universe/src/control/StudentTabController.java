@@ -254,14 +254,14 @@ public class StudentTabController implements Initializable {
 	
 	public void handlerCbx_subjectNameActoion(ActionEvent event) {
 		
-		SubjectVO svo = null;
+		SubjectDAO sudao = new SubjectDAO();
 		StudentDAO sdao = new StudentDAO();
 		String serialNumber = "";// 일련번호
 		String sdYear = "";
 		
 		try {
-			svo = (SubjectVO) cbx_subjectName.getSelectionModel().getSelectedItem();
-			selectSubjectNum = svo.getS_num();
+			selectSubjectNum = sudao.getSubjectNum(cbx_subjectName.getSelectionModel().getSelectedItem() + "");
+
 			
 			// 학번은 8 자리로 구성한다. (연도 2 자리+학과 2 자리+일련번호 4 자리 - 예로 06010001)
 			SimpleDateFormat sdf = new SimpleDateFormat("yy");
