@@ -1,19 +1,18 @@
 package model;
 
 public class TraineeVO {
-	int no;//일련번호
-	String sd_num;//학번
-	String sd_name;//학생 이름
-	String l_num;//과목번호
-	String t_section;//과목 구분
-	String t_date;//등록일자
-	
-	//디폴트 생성자
+	int no;// 일련번호
+	String sd_num;// 학번
+	String sd_name;// 학생 이름
+	String l_num;// 과목번호
+	String t_section;// 과목 구분
+	String t_date;// 등록일자
+
+	// 디폴트 생성자
 	public TraineeVO() {
 		super();
 	}
 
-	//일련번호,학생이름 날짜는 뺀 생성자
 	public TraineeVO(String sd_num, String l_num, String t_section) {
 		super();
 		this.sd_num = sd_num;
@@ -21,7 +20,6 @@ public class TraineeVO {
 		this.t_section = t_section;
 	}
 
-	//일련번호, 학생이름 뺀 생성자
 	public TraineeVO(String sd_num, String l_num, String t_section, String t_date) {
 		super();
 		this.sd_num = sd_num;
@@ -30,7 +28,6 @@ public class TraineeVO {
 		this.t_date = t_date;
 	}
 
-	//전체 포함한 생성자
 	public TraineeVO(int no, String sd_num, String sd_name, String l_num, String t_section, String t_date) {
 		super();
 		this.no = no;
@@ -41,7 +38,8 @@ public class TraineeVO {
 		this.t_date = t_date;
 	}
 
-	//접근자 설정자
+	
+	//접근자와 설정자
 	public int getNo() {
 		return no;
 	}
@@ -89,7 +87,5 @@ public class TraineeVO {
 	public void setT_date(String t_date) {
 		this.t_date = t_date;
 	}
-	
-	
 
 }
