@@ -313,7 +313,7 @@ public class StudentTabController implements Initializable {
 				String selectedSd_num = selectStudent.get(0).getSd_num();
 				String selectedSd_name = selectStudent.get(0).getSd_name();
 				String selectedSd_id = selectStudent.get(0).getSd_id();
-				String selectedSd_passwd = selectStudent.get(0).getSd_passwd();
+				String selectedSd_passwd = selectStudent.get(0).getSd_password();
 				String selectedSd_birthday = selectStudent.get(0).getSd_birthday();
 				String selectedSd_phone = selectStudent.get(0).getSd_phone();
 				String selectedSd_address = selectStudent.get(0).getSd_address();

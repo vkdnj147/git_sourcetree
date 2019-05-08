@@ -5,7 +5,7 @@ public class StudentVO {
 	String sd_num;//학번
 	String sd_name;//이름
 	String sd_id;//아이디
-	String sd_passwd;//비밀번호
+	String sd_password;//비밀번호
 	String s_num;//학과번호
 	String sd_birthday;//주민등록번호
 	String sd_phone;//핸드폰 번호
@@ -19,14 +19,14 @@ public class StudentVO {
 	}
 
 	//전체 다 들어가있는 생성자
-	public StudentVO(int no, String sd_num, String sd_name, String sd_id, String sd_passwd, String s_num,
+	public StudentVO(int no, String sd_num, String sd_name, String sd_id, String sd_password, String s_num,
 			String sd_birthday, String sd_phone, String sd_address, String sd_email, String sd_date) {
 		super();
 		this.no = no;
 		this.sd_num = sd_num;
 		this.sd_name = sd_name;
 		this.sd_id = sd_id;
-		this.sd_passwd = sd_passwd;
+		this.sd_password = sd_password;
 		this.s_num = s_num;
 		this.sd_birthday = sd_birthday;
 		this.sd_phone = sd_phone;
@@ -36,13 +36,13 @@ public class StudentVO {
 	}
 
 	//일련번호가 포함되지 않은 생성자
-	public StudentVO(String sd_num, String sd_name, String sd_id, String sd_passwd, String s_num, String sd_birthday,
+	public StudentVO(String sd_num, String sd_name, String sd_id, String sd_password, String s_num, String sd_birthday,
 			String sd_phone, String sd_address, String sd_email, String sd_date) {
 		super();
 		this.sd_num = sd_num;
 		this.sd_name = sd_name;
 		this.sd_id = sd_id;
-		this.sd_passwd = sd_passwd;
+		this.sd_password = sd_password;
 		this.s_num = s_num;
 		this.sd_birthday = sd_birthday;
 		this.sd_phone = sd_phone;
@@ -52,13 +52,13 @@ public class StudentVO {
 	}
 
 	//일련번호 날짜가 포함되지 않은 생성자
-	public StudentVO(String sd_num, String sd_name, String sd_id, String sd_passwd, String s_num, String sd_birthday,
+	public StudentVO(String sd_num, String sd_name, String sd_id, String sd_password, String s_num, String sd_birthday,
 			String sd_phone, String sd_address, String sd_email) {
 		super();
 		this.sd_num = sd_num;
 		this.sd_name = sd_name;
 		this.sd_id = sd_id;
-		this.sd_passwd = sd_passwd;
+		this.sd_password = sd_password;
 		this.s_num = s_num;
 		this.sd_birthday = sd_birthday;
 		this.sd_phone = sd_phone;
@@ -99,12 +99,12 @@ public class StudentVO {
 		this.sd_id = sd_id;
 	}
 
-	public String getSd_passwd() {
-		return sd_passwd;
+	public String getSd_password() {
+		return sd_password;
 	}
 
-	public void setSd_passwd(String sd_passwd) {
-		this.sd_passwd = sd_passwd;
+	public void setSd_passwd(String sd_password) {
+		this.sd_password = sd_password;
 	}
 
 	public String getS_num() {

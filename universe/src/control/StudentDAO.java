@@ -88,7 +88,7 @@ public class StudentDAO {
    public ArrayList<StudentVO> getStudentTotalList() throws Exception {
       ArrayList<StudentVO> list = new ArrayList<>();
 
-      String sql = "select st.no as no, sd_num, sd_name, sd_id, sd_passwd, "
+      String sql = "select st.no as no, sd_num, sd_name, sd_id, sd_password, "
             + "su.s_name as s_num, sd_birthday, sd_phone, sd_address, sd_email, sd_date "
             + " from STUDENT st, SUBJECT su" + " where st.s_num = su.s_num" + " order by no";
 
@@ -108,7 +108,7 @@ public class StudentDAO {
             sVo.setSd_num(rs.getString("sd_num"));
             sVo.setSd_name(rs.getString("sd_name"));
             sVo.setSd_id(rs.getString("sd_id"));
-            sVo.setSd_passwd(rs.getString("sd_passwd"));
+            sVo.setSd_passwd(rs.getString("sd_password"));
             sVo.setS_num(rs.getString("s_num"));
             sVo.setSd_birthday(rs.getString("sd_birthday"));
             sVo.setSd_phone(rs.getString("sd_phone"));
@@ -222,7 +222,7 @@ public class StudentDAO {
          pstmt.setString(1,svo.getSd_num());
          pstmt.setString(2,svo.getSd_name());
          pstmt.setString(3,svo.getSd_id());
-         pstmt.setString(4,svo.getSd_passwd());
+         pstmt.setString(4,svo.getSd_password());
          pstmt.setString(5,svo.getS_num());
          pstmt.setString(6,svo.getSd_birthday());
          pstmt.setString(7,svo.getSd_phone());
@@ -301,9 +301,9 @@ public class StudentDAO {
    }
    
    // 학생 정보 수정
-   public boolean getStudentUpdate(int no, String sd_passwd, String sd_birthday, String sd_phone,
+   public boolean getStudentUpdate(int no, String sd_password, String sd_birthday, String sd_phone,
          String sd_address, String sd_email) throws Exception {
-      String sql = "update student set sd_passwd=?, sd_birthday=?, sd_phone=?,"
+      String sql = "update student set sd_password=?, sd_birthday=?, sd_phone=?,"
             + " sd_address=?, sd_email=?, where no=?";
       Connection con = null;
       PreparedStatement pstmt = null;
@@ -312,7 +312,7 @@ public class StudentDAO {
       try {
          con = DBUtil.getConnection();
          pstmt = con.prepareStatement(sql);
-         pstmt.setString(1, sd_passwd);
+         pstmt.setString(1, sd_password);
          pstmt.setString(2, sd_birthday);
          pstmt.setString(3, sd_phone);
          pstmt.setString(4, sd_address);
