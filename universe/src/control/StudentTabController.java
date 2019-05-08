@@ -167,21 +167,28 @@ public class StudentTabController implements Initializable {
 	// 학생 등록 이벤트 핸들러
 	public void handlerBtnStudentInsertAction(ActionEvent event) {
 		try {
+			
 			studentDataList.removeAll(studentDataList);
 			StudentVO svo = null;
 			StudentDAO sdao = null;
+			
 			svo = new StudentVO(txtsd_num.getText().trim(), txtsd_name.getText().trim(), txtsd_id.getText().trim(),
 					txtsd_passwd.getText().trim(), selectSubjectNum, txtsd_birthday.getText().trim(),
 					txtsd_phone.getText().trim(), txtsd_address.getText().trim(), txtsd_email.getText().trim());
 			sdao = new StudentDAO();
 			sdao.getStudentRegiste(svo);
+			
 			if (sdao != null) {
+				
 				studentTotalList();
+				
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("학생 입력");
 				alert.setHeaderText(txtsd_name.getText() + " 학생이 성공적으로추가되었습니다..");
 				alert.setContentText("다음 학생를 입력하세요");
 				alert.showAndWait();
+				
+				//버튼 눌러서 이벤트가 활성화가 될시에 안에 있는 값은 공백
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -192,6 +199,8 @@ public class StudentTabController implements Initializable {
 				txtsd_address.clear();
 				txtsd_email.clear();
 				txtsd_name.requestFocus();
+				
+				
 			}
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -296,6 +305,7 @@ public class StudentTabController implements Initializable {
 			sVo = list.get(index);
 			studentDataList.add(sVo);
 		}
+		
 		// 추가된 학과명 호출
 		addSubjectName();
 	}
