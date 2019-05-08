@@ -23,7 +23,7 @@
 <?import javafx.scene.control.PasswordField?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns:fx="http://javafx.com/fxml/"
 	fx:controller="control.MainController" prefHeight="500.0"
 	prefWidth="1000.0">
 	<top>
@@ -31,7 +31,7 @@
 			<children>
 				<MenuBar>
 					<menus>
-						<Menu text="학사 관리">
+						<Menu text="학사관리">
 							<items>
 								<MenuItem text="로그아웃" fx:id="menuLogout">
 								</MenuItem>
@@ -53,7 +53,7 @@
 	<center>
 		<TabPane tabClosingPolicy="UNAVAILABLE" fx:id="mainPane">
 			<tabs>
-				<Tab text="학과 등록" fx:id="Subject">
+				<Tab text="학과 등록 " fx:id="subject">
 					<content>
 						<fx:include fx:id="subjectTab" source="subjectTab.fxml" />
 					</content>
@@ -63,7 +63,7 @@
 						<fx:include fx:id="studentTab" source="studentTab.fxml" />
 					</content>
 				</Tab>
-				<Tab text="과목 등록" fx:id="lesson">
+				<Tab text="과목 등록 " fx:id="lesson">
 					<content>
 						<fx:include fx:id="lessonTab" source="lessonTab.fxml" />
 					</content>
@@ -78,4 +78,3 @@
 		</TabPane>
 	</center>
 </BorderPane>
-

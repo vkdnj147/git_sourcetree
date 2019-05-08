@@ -14,7 +14,7 @@ public class JoinDAO {
 	// 관리자 등록
 	public boolean getMangerRegiste(JoinVO jvo) throws Exception {
 
-		String sql = "insert into mangerjoin" + "id, password, name" + "valuse" + "(?,?,?)";
+		String sql = "insert into managerjoin " + "(id, password, name)" + " values " + "(?, ?, ?)";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		boolean joinSucess = false;

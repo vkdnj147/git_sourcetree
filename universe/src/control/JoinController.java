@@ -23,7 +23,7 @@ public class JoinController implements Initializable {
 	@FXML
 	private TextField txtId;
 	@FXML
-	private PasswordField txtPassWord;
+	private PasswordField txtPassword;
 	@FXML
 	private PasswordField txtPasswordRepeat;
 	@FXML
@@ -41,7 +41,7 @@ public class JoinController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		btnJoin.setDisable(true);
-		txtPassWord.setEditable(false);
+		txtPassword.setEditable(false);
 		txtPasswordRepeat.setEditable(false);
 
 		btnOverlap.setOnAction(event -> handlerBtnOverlapActoion(event)); // 아이디 중복 검사 핸들러
@@ -80,9 +80,9 @@ public class JoinController implements Initializable {
 				
 				btnJoin.setDisable(false);
 				btnOverlap.setDisable(true);
-				txtPassWord.setEditable(true);
+				txtPassword.setEditable(true);
 				txtPasswordRepeat.setEditable(true);
-				txtPassWord.requestFocus();
+				txtPassword.requestFocus();
 			
 			} else if (searchId.equals("")) {
 				
@@ -153,10 +153,10 @@ public class JoinController implements Initializable {
 		boolean joinSucess = false;
 		// 패스워드 확인
 		
-		if (txtPassWord.getText().trim().equals(txtPasswordRepeat.getText().trim())
+		if (txtPassword.getText().trim().equals(txtPasswordRepeat.getText().trim())
 		
 				&& !txtName.getText().trim().equals("")) {
-			jvo = new JoinVO(txtId.getText().trim(), txtPassWord.getText().trim(), txtName.getText().trim());
+			jvo = new JoinVO(txtId.getText().trim(), txtPassword.getText().trim(), txtName.getText().trim());
 			jdao = new JoinDAO();
 			
 			try {
@@ -169,7 +169,7 @@ public class JoinController implements Initializable {
 			}
 		} else {
 			
-			txtPassWord.clear();
+			txtPassword.clear();
 			txtPasswordRepeat.clear();
 			
 			Alert alert = new Alert(AlertType.ERROR);

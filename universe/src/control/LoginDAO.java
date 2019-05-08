@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class LoginDAO {
 	// 관리자 로그인
 	public boolean getLogin(String loginId, String loginPassword) throws Exception {
-		String sql = "select * from managerjoin where id = ? and password =?";
+		String sql = "select * from managerjoin where id = ? and password = ?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

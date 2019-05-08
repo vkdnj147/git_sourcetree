@@ -17,7 +17,7 @@ public class SubjectDAO {
 	public ArrayList<SubjectVO> getSubjectTotalList() throws Exception {
 		ArrayList<SubjectVO> list = new ArrayList<>();
 
-		String sql = "select * from subject oder by no";
+		String sql = "select * from subject order by no";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -64,7 +64,8 @@ public class SubjectDAO {
 
 	public void getSubjectRegiste(SubjectVO svo) throws Exception {
 
-		String sql = "insert into subject" + "(no, s_num, s_name)" + " valuse " + "(subject_sql.nextval, ? , ?)";
+		String sql = "insert into subject " + "(no, s_num, s_name)" + " values " +
+				"(subject_seq.nextval, ?, ?)";
 
 		Connection con = null;
 		PreparedStatement pstmt = null; // 이미 정제된 상태로 DB 서버에게 값을 넘겨주는 구문

@@ -214,7 +214,7 @@ public class StudentTabController implements Initializable {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("아이디 중복 검사");
 				alert.setHeaderText(searchId + "를 사용할 수 있습니다.");
-				alert.setContentText("패스어드를 입력하세요.");
+				alert.setContentText("패스워드를 입력하세요.");
 				alert.showAndWait();
 				btnStudentInsert.setDisable(false);
 				btnIdCheck.setDisable(true);
