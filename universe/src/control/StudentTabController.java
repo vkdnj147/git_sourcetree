@@ -182,7 +182,7 @@ public class StudentTabController implements Initializable {
 				alert.setHeaderText(txtsd_name.getText() + " 학생이 성공적으로추가되었습니다..");
 				alert.setContentText("다음 학생를 입력하세요");
 				alert.showAndWait();
-				txtsd_id.setDisable(false);
+				txtsd_id.setDisable(false);//아이디 활성화 시켜주는 거
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -223,7 +223,7 @@ public class StudentTabController implements Initializable {
 				alert.setContentText("패스워드를 입력하세요.");
 				alert.showAndWait();
 				btnStudentInsert.setDisable(false);
-				btnIdCheck.setDisable(true);
+				btnIdCheck.setDisable(false);
 			} else if (searchId.equals("")) {
 				btnStudentInsert.setDisable(true);
 				btnIdCheck.setDisable(false);
