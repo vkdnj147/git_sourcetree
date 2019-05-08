@@ -182,6 +182,7 @@ public class StudentTabController implements Initializable {
 				alert.setHeaderText(txtsd_name.getText() + " 학생이 성공적으로추가되었습니다..");
 				alert.setContentText("다음 학생를 입력하세요");
 				alert.showAndWait();
+				txtsd_id.setDisable(false);
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -192,6 +193,7 @@ public class StudentTabController implements Initializable {
 				txtsd_address.clear();
 				txtsd_email.clear();
 				txtsd_name.requestFocus();
+				
 			}
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.WARNING);
