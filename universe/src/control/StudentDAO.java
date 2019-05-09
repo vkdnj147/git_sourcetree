@@ -265,13 +265,15 @@ public class StudentDAO {
    
    // 데이터베이스에서 학생 테이블에 컬럼의 갯수
    public ArrayList<String> getStudnetColumnName() throws Exception {
-      ArrayList<String> columnName = new ArrayList<String>();
+	   ArrayList<String> columnName = new ArrayList<String>();
       
       String sql = "select * from student order by no";
+     
       Connection con = null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       
+      //객체의 변수 선언
       ResultSetMetaData rsmd = null;
       
       try {
@@ -279,6 +281,7 @@ public class StudentDAO {
          pstmt = con.prepareStatement(sql);
          rs = pstmt.executeQuery();
          rsmd = rs.getMetaData();
+        
          int cols = rsmd.getColumnCount();
          
          for(int i = 1; i<=cols; i++) {
@@ -302,17 +305,23 @@ public class StudentDAO {
       return columnName;
    }
    
+   
+   
+   //열명을 
    // 학생 정보 수정
    public boolean getStudentUpdate(int no, String sd_password, String sd_birthday, String sd_phone,
-         String sd_address, String sd_email) throws Exception {
-      String sql = "update student set sd_passwd=?, sd_birthday=?, sd_phone=?,"
-            + " sd_address=?, sd_email=?, where no=?";
+      
+	String sd_address, String sd_email) throws Exception {
+    String sql = "update student set sd_passwd=?, sd_birthday=?, sd_phone=?"
+            + ", sd_address=?, sd_email=? where no=?"; //형식
+     
       Connection con = null;
       PreparedStatement pstmt = null;
       boolean studentUpdateSucess = false;
       
       try {
          con = DBUtil.getConnection();
+         
          pstmt = con.prepareStatement(sql);
          pstmt.setString(1, sd_password);
          pstmt.setString(2, sd_birthday);
