@@ -187,11 +187,11 @@ public class StudentTabController implements Initializable {
 				alert.setHeaderText(txtsd_name.getText() + " 학생이 성공적으로추가되었습니다..");
 				alert.setContentText("다음 학생를 입력하세요");
 				alert.showAndWait();
-<<<<<<< HEAD
+
 				txtsd_id.setDisable(false);//아이디 활성화 시켜주는 거
-=======
+
 				txtsd_id.setDisable(false);// 아이디 활성화 시켜주는 거
->>>>>>> b148f9f3f27c2f7f07e8339006d5f35dba1f344d
+
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -202,11 +202,7 @@ public class StudentTabController implements Initializable {
 				txtsd_address.clear();
 				txtsd_email.clear();
 				txtsd_name.requestFocus();
-<<<<<<< HEAD
-				
-=======
 
->>>>>>> b148f9f3f27c2f7f07e8339006d5f35dba1f344d
 			}
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -236,11 +232,11 @@ public class StudentTabController implements Initializable {
 				alert.setContentText("패스워드를 입력하세요.");
 				alert.showAndWait();
 				btnStudentInsert.setDisable(false);
-<<<<<<< HEAD
+
 				btnIdCheck.setDisable(false);//아이디체크 활성화
-=======
+
 				btnIdCheck.setDisable(false);
->>>>>>> b148f9f3f27c2f7f07e8339006d5f35dba1f344d
+
 			} else if (searchId.equals("")) {
 				btnStudentInsert.setDisable(true);
 				btnIdCheck.setDisable(false);
