@@ -81,69 +81,69 @@ public class StudentTabController implements Initializable {
 			// 학생 테이블 뷰 컬럼이름 설정
 			@SuppressWarnings("rawtypes")
 			TableColumn colStudentNo = new TableColumn("NO.");
-			
+
 			colStudentNo.setPrefWidth(30);
 			colStudentNo.setStyle("-fx-allignment: CENTER");
 			colStudentNo.setCellValueFactory(new PropertyValueFactory<>("no"));
-			
+
 			TableColumn colStudentNum = new TableColumn("학번");
 			colStudentNum.setPrefWidth(70);
 			colStudentNum.setStyle("-fx-allignment: CENTER");
 			colStudentNum.setCellValueFactory(new PropertyValueFactory<>("sd_num"));
-			
+
 			TableColumn colStudentName = new TableColumn("이름");
 			colStudentName.setPrefWidth(80);
 			colStudentName.setStyle("-fx-allignment: CENTER");
 			colStudentName.setCellValueFactory(new PropertyValueFactory<>("sd_name"));
-			
+
 			TableColumn colStudentId = new TableColumn("아이디");
 			colStudentId.setPrefWidth(80);
 			colStudentId.setStyle("-fx-allignment: CENTER");
 			colStudentId.setCellValueFactory(new PropertyValueFactory<>("sd_id"));
-			
+
 			TableColumn colStudentPassword = new TableColumn("비밀번호");
 			colStudentPassword.setPrefWidth(80);
 			colStudentPassword.setStyle("-fx-allignment: CENTER");
 			colStudentPassword.setCellValueFactory(new PropertyValueFactory<>("sd_passwd"));
-			
+
 			TableColumn colSubjectNum = new TableColumn("학과명");
 			colSubjectNum.setPrefWidth(70);
 			colSubjectNum.setStyle("-fx-allignment: CENTER");
 			colSubjectNum.setCellValueFactory(new PropertyValueFactory<>("s_num"));
-			
+
 			TableColumn colStudentBirthday = new TableColumn("생년월일");
 			colStudentBirthday.setPrefWidth(80);
 			colStudentBirthday.setStyle("-fx-allignment: CENTER");
 			colStudentBirthday.setCellValueFactory(new PropertyValueFactory<>("sd_birthday"));
-			
+
 			TableColumn colStudentPhone = new TableColumn("연락처");
 			colStudentPhone.setPrefWidth(80);
 			colStudentPhone.setStyle("-fx-allignment: CENTER");
 			colStudentPhone.setCellValueFactory(new PropertyValueFactory<>("sd_phone"));
-			
+
 			TableColumn colStudentAddress = new TableColumn("주 소");
 			colStudentAddress.setPrefWidth(150);
 			colStudentAddress.setStyle("-fx-allignment: CENTER");
 			colStudentAddress.setCellValueFactory(new PropertyValueFactory<>("sd_address"));
-			
+
 			TableColumn colStudentEmail = new TableColumn("이메일");
 			colStudentEmail.setPrefWidth(80);
 			colStudentEmail.setStyle("-fx-allignment: CENTER");
 			colStudentEmail.setCellValueFactory(new PropertyValueFactory<>("sd_email"));
-			
+
 			TableColumn colStudentDate = new TableColumn("등록일");
 			colStudentDate.setPrefWidth(80);
 			colStudentDate.setStyle("-fx-allignment: CENTER");
 			colStudentDate.setCellValueFactory(new PropertyValueFactory<>("sd_date"));
-			
+
 			studentTableView.setItems(studentDataList);
 			studentTableView.getColumns().addAll(colStudentNo, colStudentNum, colStudentName, colStudentId,
 					colStudentPassword, colSubjectNum, colStudentBirthday, colStudentPhone, colStudentAddress,
 					colStudentEmail, colStudentDate);
-			
+
 			// 학생 전체 목록
 			studentTotalList();
-			
+
 			// 추가된 학과명 호출
 			// addSubjectName();
 			btnStudentInsert.setOnAction(event -> handlerBtnStudentInsertAction(event));
@@ -162,10 +162,9 @@ public class StudentTabController implements Initializable {
 		StudentDAO sDao = new StudentDAO();
 		ArrayList subjectNameList = new ArrayList<>();
 		subjectNameList = sDao.subjectTotalList();
-		
-		
+
 		System.out.println(subjectNameList.get(0));
-		
+
 		// 학생 등록 탭 학과 번호 콤보 값 설정
 		cbx_subjectName.setItems(FXCollections.observableArrayList(subjectNameList));
 	}
@@ -188,7 +187,11 @@ public class StudentTabController implements Initializable {
 				alert.setHeaderText(txtsd_name.getText() + " 학생이 성공적으로추가되었습니다..");
 				alert.setContentText("다음 학생를 입력하세요");
 				alert.showAndWait();
+<<<<<<< HEAD
 				txtsd_id.setDisable(false);//아이디 활성화 시켜주는 거
+=======
+				txtsd_id.setDisable(false);// 아이디 활성화 시켜주는 거
+>>>>>>> b148f9f3f27c2f7f07e8339006d5f35dba1f344d
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -199,7 +202,11 @@ public class StudentTabController implements Initializable {
 				txtsd_address.clear();
 				txtsd_email.clear();
 				txtsd_name.requestFocus();
+<<<<<<< HEAD
 				
+=======
+
+>>>>>>> b148f9f3f27c2f7f07e8339006d5f35dba1f344d
 			}
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -229,7 +236,11 @@ public class StudentTabController implements Initializable {
 				alert.setContentText("패스워드를 입력하세요.");
 				alert.showAndWait();
 				btnStudentInsert.setDisable(false);
+<<<<<<< HEAD
 				btnIdCheck.setDisable(false);//아이디체크 활성화
+=======
+				btnIdCheck.setDisable(false);
+>>>>>>> b148f9f3f27c2f7f07e8339006d5f35dba1f344d
 			} else if (searchId.equals("")) {
 				btnStudentInsert.setDisable(true);
 				btnIdCheck.setDisable(false);
@@ -259,22 +270,21 @@ public class StudentTabController implements Initializable {
 	}
 
 	// 학생 등록 탭의 학과 선택 이벤트 핸들러
-	
+
 	public void handlerCbx_subjectNameActoion(ActionEvent event) {
-		
+
 		SubjectDAO sudao = new SubjectDAO();
 		StudentDAO sdao = new StudentDAO();
 		String serialNumber = "";// 일련번호
 		String sdYear = "";
-		
+
 		try {
 			selectSubjectNum = sudao.getSubjectNum(cbx_subjectName.getSelectionModel().getSelectedItem() + "");
 
-			
 			// 학번은 8 자리로 구성한다. (연도 2 자리+학과 2 자리+일련번호 4 자리 - 예로 06010001)
 			SimpleDateFormat sdf = new SimpleDateFormat("yy");
 			sdYear = sdf.format(new Date());
-			
+
 			serialNumber = sdao.getStudentCount(selectSubjectNum);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -285,21 +295,21 @@ public class StudentTabController implements Initializable {
 
 	// 학생 전체 목록
 	public void studentTotalList() throws Exception {
-		
+
 		studentDataList.removeAll(studentDataList);
-		
+
 		StudentDAO sDao = new StudentDAO();
 		StudentVO sVo = null;
-		
+
 		ArrayList<String> title;
 		ArrayList<StudentVO> list;
-		
+
 		title = sDao.getStudnetColumnName();
 		int columnCount = title.size();
-		
+
 		list = sDao.getStudentTotalList();
 		int rowCount = list.size();
-		
+
 		for (int index = 0; index < rowCount; index++) {
 			sVo = list.get(index);
 			studentDataList.add(sVo);
@@ -310,14 +320,14 @@ public class StudentTabController implements Initializable {
 
 	// 학생 테이블 뷰 더블 클릭 이벤트 핸들러
 	public void handlerStudentTableViewActoion(MouseEvent event) {
-		
+
 		if (event.getClickCount() == 2) {
-		
+
 			try {
-			
+
 				selectStudent = studentTableView.getSelectionModel().getSelectedItems();
 				selectedStudentIndex = selectStudent.get(0).getNo();
-				
+
 				String selectedSd_num = selectStudent.get(0).getSd_num();
 				String selectedSd_name = selectStudent.get(0).getSd_name();
 				String selectedSd_id = selectStudent.get(0).getSd_id();
@@ -326,7 +336,7 @@ public class StudentTabController implements Initializable {
 				String selectedSd_phone = selectStudent.get(0).getSd_phone();
 				String selectedSd_address = selectStudent.get(0).getSd_address();
 				String selectedSd_email = selectStudent.get(0).getSd_email();
-				
+
 				txtsd_num.setText(selectedSd_num);
 				txtsd_name.setText(selectedSd_name);
 				txtsd_id.setText(selectedSd_id);
@@ -335,14 +345,14 @@ public class StudentTabController implements Initializable {
 				txtsd_phone.setText(selectedSd_phone);
 				txtsd_address.setText(selectedSd_address);
 				txtsd_email.setText(selectedSd_email);
-				
+
 				txtsd_num.setEditable(false);
 				txtsd_name.setEditable(false);
 				txtsd_id.setEditable(false);
-				
+
 				btnIdCheck.setDisable(true);
 				cbx_subjectName.setDisable(true);
-				
+
 				btnStudentUpdate.setDisable(false);
 				btnStudentInit.setDisable(false);
 				btnStudentInsert.setDisable(true);
@@ -367,11 +377,11 @@ public class StudentTabController implements Initializable {
 	// 학생 초기화
 	public void handlerBtnStudentInitAction(ActionEvent event) {
 		try {
-			
+
 			studentDataList.removeAll(studentDataList);
 			studentTotalList();
-			
-			//안에 있는 텍스트를 모두 비우라는 메소드
+
+			// 안에 있는 텍스트를 모두 비우라는 메소드
 			txtsd_num.clear();
 			txtsd_name.clear();
 			txtsd_id.clear();
@@ -380,17 +390,17 @@ public class StudentTabController implements Initializable {
 			txtsd_phone.clear();
 			txtsd_address.clear();
 			txtsd_email.clear();
-			
+
 			txtsd_num.setEditable(true);
 			txtsd_name.setEditable(true);
 			txtsd_id.setEditable(true);
-		
+
 			btnIdCheck.setDisable(false);
 			cbx_subjectName.setDisable(false);
 			btnStudentUpdate.setDisable(true);
 			btnStudentInit.setDisable(true);
 			btnStudentInsert.setDisable(true);
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -399,19 +409,18 @@ public class StudentTabController implements Initializable {
 	// 학생 정보 수정
 	public void handlerBtnStudentUpdateAction(ActionEvent event) {
 		try {
-			
+
 			boolean sucess;
-			
-			
+
 			StudentDAO sdao = new StudentDAO();
 			sucess = sdao.getStudentUpdate(selectedStudentIndex, txtsd_passwd.getText().trim(),
 					txtsd_birthday.getText().trim(), txtsd_phone.getText().trim(), txtsd_address.getText().trim(),
 					txtsd_email.getText().trim());
-			
+
 			if (sucess) {
 				studentDataList.removeAll(studentDataList);
 				studentTotalList();
-				
+
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -420,11 +429,11 @@ public class StudentTabController implements Initializable {
 				txtsd_phone.clear();
 				txtsd_address.clear();
 				txtsd_email.clear();
-				
+
 				txtsd_num.setEditable(true);
 				txtsd_name.setEditable(true);
 				txtsd_id.setEditable(true);
-				
+
 				btnIdCheck.setDisable(false);
 				cbx_subjectName.setDisable(false);
 				btnStudentUpdate.setDisable(true);
