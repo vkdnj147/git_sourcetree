@@ -85,6 +85,7 @@ public class TraineeTotalTabController implements Initializable {
 		}
 	}
 
+	//과목 검색 이벤트 핸들러
 	public void handlerBtnSearchAction(ActionEvent event) {
 
 		String search = "";
@@ -116,6 +117,7 @@ public class TraineeTotalTabController implements Initializable {
 				ArrayList<TraineeVO> list = null;
 				title = tDao.getTraineeColumnName();
 				int columnCount = title.size();
+
 				if (search.equals("학번")) {
 					list = tDao.getTraineeStudentNumSearchList(searchName);
 					if (list.size() == 0) {
