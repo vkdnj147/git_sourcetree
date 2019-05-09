@@ -103,8 +103,7 @@ public class StudentDAO {
          rs = pstmt.executeQuery();
          
          while (rs.next()) {
-           
-        	 sVo = new StudentVO();
+            sVo = new StudentVO();
             sVo.setNo(rs.getInt("no"));
             sVo.setSd_num(rs.getString("sd_num"));
             sVo.setSd_name(rs.getString("sd_name"));
@@ -263,6 +262,7 @@ public class StudentDAO {
       }
    }
    
+   // student -> studnet!!!!!
    // 데이터베이스에서 학생 테이블에 컬럼의 갯수
    public ArrayList<String> getStudnetColumnName() throws Exception {
 	   ArrayList<String> columnName = new ArrayList<String>();

@@ -1,6 +1,9 @@
 package control;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -181,7 +184,11 @@ public class StudentTabController implements Initializable {
 				alert.setHeaderText(txtsd_name.getText() + " 학생이 성공적으로추가되었습니다..");
 				alert.setContentText("다음 학생를 입력하세요");
 				alert.showAndWait();
+
+				txtsd_id.setDisable(false);//아이디 활성화 시켜주는 거
+
 				txtsd_id.setDisable(false);// 아이디 활성화 시켜주는 거
+
 				txtsd_num.clear();
 				txtsd_name.clear();
 				txtsd_id.clear();
@@ -222,7 +229,11 @@ public class StudentTabController implements Initializable {
 				alert.setContentText("패스워드를 입력하세요.");
 				alert.showAndWait();
 				btnStudentInsert.setDisable(false);
+
+				btnIdCheck.setDisable(false);//아이디체크 활성화
+
 				btnIdCheck.setDisable(false);
+
 			} else if (searchId.equals("")) {
 				btnStudentInsert.setDisable(true);
 				btnIdCheck.setDisable(false);
