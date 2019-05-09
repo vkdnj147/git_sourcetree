@@ -1,6 +1,9 @@
 package control;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,6 +55,8 @@ public class StudentTabController implements Initializable {
 	@FXML
 	private Button btnStudentInit; // 초기화
 	@FXML
+	private Button btnStudentDelete;// 학생 삭제
+	@FXML
 	private Button btnStudentTatolList; // 학생 전체 목록
 	@FXML
 	private TableView<StudentVO> studentTableView = new TableView<>();
@@ -69,6 +74,7 @@ public class StudentTabController implements Initializable {
 			btnStudentInsert.setDisable(true);
 			btnStudentUpdate.setDisable(true);
 			btnStudentInit.setDisable(true);
+			btnStudentDelete.setDisable(true);
 			studentTableView.setEditable(false);
 			// 학번 수정 금지
 			txtsd_num.setEditable(false);
@@ -340,6 +346,7 @@ public class StudentTabController implements Initializable {
 				btnStudentUpdate.setDisable(false);
 				btnStudentInit.setDisable(false);
 				btnStudentInsert.setDisable(true);
+				btnStudentDelete.setDisable(false);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
