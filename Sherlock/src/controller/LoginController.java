@@ -52,7 +52,7 @@ public class LoginController {
 
 	public static String managerName = ""; // 관리자이름
 
-	@Override
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txtId.setOnKeyPressed(event -> handerTxtIdKeyPressed(event)); // 아이디 입력에서Enter 키 이벤트 적용
 		txtPassword.setOnKeyPressed(event -> handerTxtPasswordKeyPressed(event)); // 패스워드 입력에서 Enter 키 이벤트 적용
@@ -144,8 +144,8 @@ public class LoginController {
 			alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
 			alert.setResizable(false);
 			alert.showAndWait();
-			txtId.clear();
-			txtPassword.clear();
+			txtId.clear(); //아이디 초기화
+			txtPassword.clear(); //비밀번호 초기화
 		}
 
 	}
