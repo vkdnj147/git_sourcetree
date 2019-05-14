@@ -1,34 +1,34 @@
 package model;
 
 public class JoinVO {
-	
-	//관리자 등록 조건 변수 선언
-	
+
+	// 관리자 등록 조건 변수 선언
+
 	String id;// 아이디
-	String password;//비밀번호
-	String name;//이름
-	String phone;//핸드폰번호
-	String bank;//은행명
-	String account;//계좌번호
-	
-	//디폴트 생성자
+	String password;// 비밀번호
+	String name;// 이름
+	String phone;// 핸드폰번호
+	String bank;// 은행명
+	String account;// 계좌번호
+
+	// 디폴트 생성자
 	public JoinVO() {
 		super();
 	}
 
-	//아이디 중복을 위한 생성자
+	// 아이디 중복을 위한 생성자
 	public JoinVO(String id) {
 		super();
 		this.id = id;
 	}
-	//로그인 일치를 위한 아이디 패스워드 확인 생성자
+	// 로그인 일치를 위한 아이디 패스워드 확인 생성자
 
 	public JoinVO(String id, String password) {
 		super();
 		this.id = id;
 		this.password = password;
 	}
-	//전체 확인을 위한 생성자
+	// 전체 확인을 위한 생성자
 
 	public JoinVO(String id, String password, String name, String phone, String bank, String account) {
 		super();
@@ -88,6 +88,5 @@ public class JoinVO {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	
 
 }
