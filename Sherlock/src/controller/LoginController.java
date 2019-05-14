@@ -63,7 +63,6 @@ public class LoginController implements Initializable {
 
 	}
 
-
 	// 아이디 입력에서 Enter 키 이벤트 적용
 	public void handerTxtIdKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
