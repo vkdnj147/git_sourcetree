@@ -3,13 +3,14 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -27,7 +28,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
 	@FXML
 	private Label lblLogin; // 라벨 로그인
@@ -52,26 +53,16 @@ public class LoginController {
 
 	public static String managerName = ""; // 관리자이름
 
-	
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txtId.setOnKeyPressed(event -> handerTxtIdKeyPressed(event)); // 아이디 입력에서Enter 키 이벤트 적용
 		txtPassword.setOnKeyPressed(event -> handerTxtPasswordKeyPressed(event)); // 패스워드 입력에서 Enter 키 이벤트 적용
 		btnJoin.setOnAction(event -> handerBtnJoinAction(event)); // 관리자 등록창으로 전환
 		btnLogin.setOnAction(event -> handlerBtnLoginActoion(event)); // 로그인
 		btnCancel.setOnAction(event -> handlerBtnCancelActoion(event)); // 로그인창 닫기
-		rbManager.setOnAction(event -> handlerRbManagerActoion(event));
 
 	}
 
-	// 관리자 라디오 버튼 이벤트 핸들러
-	public void handlerRbManagerActoion(ActionEvent event) {
-		URL srtImg = getClass().getResource("../image/manager.png");
-		Image image = new Image(srtImg.toString());
-		iconImg.setImage(image);
-		lblLogin.setText("관리자 로그인");
-		btnJoin.setDisable(false);
-		btnLogin.setText("관리자 로그인");
-	}
 
 	// 아이디 입력에서 Enter 키 이벤트 적용
 	public void handerTxtIdKeyPressed(KeyEvent event) {
@@ -144,8 +135,8 @@ public class LoginController {
 			alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
 			alert.setResizable(false);
 			alert.showAndWait();
-			txtId.clear(); //아이디 초기화
-			txtPassword.clear(); //비밀번호 초기화
+			txtId.clear(); // 아이디 초기화
+			txtPassword.clear(); // 비밀번호 초기화
 		}
 
 	}
