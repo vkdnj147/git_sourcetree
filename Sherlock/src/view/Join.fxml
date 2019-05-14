@@ -30,6 +30,14 @@
 	<children>
 		<Label text="직원 등록" layoutX="35.0" layoutY="30.0" />
 
+		<fx:define>
+			<ToggleGroup fx:id="sectionGroup" />
+		</fx:define>
+		<RadioButton fx:id="rbEmployee" userData="employee" text="직원"
+			toggleGroup="$sectionGroup" layoutX="50.0" layoutY="190.0" />
+		<RadioButton fx:id="rbTimer" userData="timer" text="파트타이머"
+			toggleGroup="$sectionGroup" layoutX="110.0" layoutY="190.0" />
+			
 		<Label text="이 름: " layoutX="35.0" layoutY="82.0" />
 		<TextField fx:id="txtName" layoutX="100.0" layoutY="80.0" />
 
@@ -47,12 +55,10 @@
 			layoutY="200.0" />
 
 		<Label text="핸 드 폰 : " layoutX="35.0" layoutY="202.0" />
-		<TextField fx:id="txtPhone" layoutX="100.0"
-			layoutY="200.0"  />
+		<TextField fx:id="txtPhone" layoutX="100.0" layoutY="200.0" />
 
 		<Label text="은 행 명 : " layoutX="35.0" layoutY="232.0" />
-		<TextField fx:id="txtBank" layoutX="100.0"
-			layoutY="200.0"/>
+		<TextField fx:id="txtBank" layoutX="100.0" layoutY="200.0" />
 
 
 		<Label text="계 좌 번 호 : " layoutX="35.0" layoutY="292.0" />
