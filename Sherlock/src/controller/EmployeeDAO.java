@@ -3,12 +3,17 @@ package controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import model.EmployeeVO;
 
 public class EmployeeDAO {
+
+	private static final boolean EmployeeJoinUpdateSucess = false;
 
 	// 로그인을 한 사람들이라면 모두 볼 수 있다
 	// 등록 된 직원들의 전체 목록
@@ -97,55 +102,106 @@ public class EmployeeDAO {
 		return serialNumber;
 	}
 
+	// 데이터베읻스에서 직원 테이블 컬럼의 갯수
+	public ArrayList<String> getEmployeeColumnName() throws Exception {
+		ArrayList<String> columnName = new ArrayList<String>(); // 이 안에 직원의 정보를 넣는다
+
+		String sql = "select * from EmployeeJoin order by no"; // order by를 사용해서 정렬
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		// 객체의 변수 선언
+		ResultSetMetaData rsmd = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rsmd = rs.getMetaData();
+
+			int cols = rsmd.getColumnCount();
+
+			for (int i = 1; i <= cols; i++) {
+				columnName.add(rsmd.getCatalogName(i));
+			}
+		} catch (SQLException se) {
+			System.out.println(se);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+		return columnName;
+	}
+
 	// 등록한 직원의 정보 수정
 	// 이름, 번호, 주소 , 은행명, 계좌번호
-	public boolean getEmployeeUpdate( String em_name, String em_phone
-			, em_address , em_bank, em_account ) throw Exception {
-			
-		//검색해서 찾을 수 있게
-		String sql = "update Employee set em_name =?, set em_phone = ?, set em_addresd=?"
-				+ ", em_bank =? , em_accoount =? where no =?" ; //형식
-	
-		  Connection con = null;
-	      PreparedStatement pstmt = null;
-	      boolean studentUpdateSucess = false;
-	      
-	      try {
-	    	  con = DBUtil.getConnection();
-	    	  
-	    	  pstmt = con.prepareStatement(sql);
-	    	  pstmt.setString(1, em_name);
-	    	  pstmt.setString(2, em_phone);
-	    	  pstmt.setString(3, em_address);
-	    	  pstmt.setString(4, em_bank);
-	    	  pstmt.setString(5, em_account);
-	    	  
-	    	  int i = pstmt.executeUpdate();
-	    	  
-	    	  if ( i == i ) {
-	    		  Alert alert = new Alert(AlertType.INFORMATION);
-	              alert.setTitle("직원 정보 수정");
-	              alert.setHeaderText(no + " 입력한 직원 정보를 수정합니다.");
-	              alert.setContentText("직원 정보 수정 성공!!");
-	              alert.showAndWait();
-	              studentUpdateSucess = true;
-	    	  }else {
-	    		  Alert alert = new Alert(AlertType.WARNING);
-	              alert.setTitle("직원 정보 수정");
-	              alert.setHeaderText("입력한 직원 정보가 일치하지 않습니다.");
-	              alert.setContentText("직원 정보 수정 실패!!");
-	              alert.showAndWait();
-	    	  }
-	      }catch (SQLException e ) {
-	    	  System.out.println("e = [ " + e + " ]");
-	      }catch (Exception e)
-	    	  System.out.println("e = [ " + e + "]");
-	      }finally {
-	    	  try {
-	    		  if (pstmt ! = null)
-			
+
+	public boolean getEmployeeJoin(String name, String phone, String address, String bank, String account)
+			throws Exception {
+
+		// DB에서 경로를 찾는다.
+		String sql = "update EmployeeJoin set name=?, phone=?, address=?, bank=? , account=? where no=? ";
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean studentUpdateSucess = false;
+
+		try {
+
+			con = DBUtil.getConnection();
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, address);
+			pstmt.setString(4, bank);
+			pstmt.setString(5, account);
+
+			int i = pstmt.executeUpdate();
+
+			if (i == 1) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("직원 정보 수정");
+				alert.setHeaderText(" 직원 정보 수정 완료.");
+				alert.setContentText(" 직원 정보 수정 성공!!");
+				alert.showAndWait();
+				studentUpdateSucess = true;
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("직원 정보 수정");
+				alert.setHeaderText("직원 정보에 누락 된 것이 있는지 확인해주세요.");
+				alert.setContentText("직원 정보 수정 실패!!");
+				alert.showAndWait();
+			}
+
+		} catch (SQLException e) {
+			System.out.println("e=[" + e + "]");
+		} catch (Exception e) {
+			System.out.println("e=[" + e + "]");
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+
+			}
 		}
-	      
-	
+
+		return EmployeeJoinUpdateSucess;
 	}
+
+	// 등록된 직원의 정보 삭제의 기능은 넣지 않았기 때문에 기능을 넣지 않았습니다.
 }
