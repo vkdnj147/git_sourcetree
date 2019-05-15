@@ -23,19 +23,19 @@ import model.JoinVO;
 public class JoinController implements Initializable {
 
 	@FXML
-	private TextField txtId;
+	private TextField txtem_Id;
 	@FXML
-	private PasswordField txtPasswd;
+	private PasswordField txtem_Passwd;
 	@FXML
 	private PasswordField txtPasswdRepeat;
 	@FXML
-	private TextField txtName;
+	private TextField txtem_Name;
 	@FXML
-	private TextField txtPhone;
+	private TextField txtem_Phone;
 	@FXML
-	private TextField txtBank;
+	private TextField txtem_Bank;
 	@FXML
-	private TextField txtAccount;
+	private TextField txtem_Account;
 	@FXML
 	private Button btnCancel;
 	@FXML
@@ -54,7 +54,7 @@ public class JoinController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		btnJoin.setDisable(true);
-		txtPasswd.setEditable(false);
+		txtem_Passwd.setEditable(false);
 		txtPasswdRepeat.setEditable(false);
 
 		btnIdCheck.setOnAction(event -> handlerbtnIdCheckActoion(event)); // 아이디 중복 검사 핸들러
@@ -78,13 +78,13 @@ public class JoinController implements Initializable {
 
 		try {
 
-			searchId = txtId.getText().trim();
+			searchId = txtem_Id.getText().trim();
 			jDao = new JoinDAO();
 			searchResult = (boolean) jDao.getIdCheck(searchId);
 
 			if (!searchResult && !searchId.equals("")) {
 
-				txtId.setDisable(true);
+				txtem_Id.setDisable(true);
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle(" 아이디 중복 검사 ");
@@ -94,9 +94,9 @@ public class JoinController implements Initializable {
 
 				btnJoin.setDisable(false);
 				btnIdCheck.setDisable(true);
-				txtPasswd.setEditable(true);
+				txtem_Passwd.setEditable(true);
 				txtPasswdRepeat.setEditable(true);
-				txtPasswd.requestFocus();
+				txtem_Passwd.requestFocus();
 
 			} else if (searchId.equals("")) {
 
@@ -114,7 +114,7 @@ public class JoinController implements Initializable {
 
 				btnJoin.setDisable(true);
 				btnIdCheck.setDisable(false);
-				txtId.clear();
+				txtem_Id.clear();
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("아이디 중복 검사");
@@ -122,7 +122,7 @@ public class JoinController implements Initializable {
 				alert.setContentText("아이디를 다른것으로 입력하세요.");
 				alert.showAndWait();
 
-				txtId.requestFocus();
+				txtem_Id.requestFocus();
 			}
 		} catch (Exception e) {
 
@@ -176,10 +176,10 @@ public class JoinController implements Initializable {
 		boolean joinSucess = false;
 		// 패스워드 확인
 
-		if (txtPasswd.getText().trim().equals(txtPasswdRepeat.getText().trim())
-				&& !txtName.getText().trim().equals("")) {
-			jvo = new JoinVO(txtId.getText().trim(), txtPasswd.getText().trim(), txtName.getText().trim(),
-					txtPhone.getText().trim(), txtBank.getText().trim(), txtAccount.getText().trim());
+		if (txtem_Passwd.getText().trim().equals(txtPasswdRepeat.getText().trim())
+				&& !txtem_Name.getText().trim().equals("")) {
+			jvo = new JoinVO(txtem_Id.getText().trim(), txtem_Passwd.getText().trim(), txtem_Name.getText().trim(),
+					txtem_Phone.getText().trim(), txtem_Bank.getText().trim(), txtem_Account.getText().trim());
 			jdao = new JoinDAO();
 
 			try {
@@ -192,7 +192,7 @@ public class JoinController implements Initializable {
 			}
 		} else {
 
-			txtPasswd.clear();
+			txtem_Passwd.clear();
 			txtPasswdRepeat.clear();
 
 			Alert alert = new Alert(AlertType.ERROR);

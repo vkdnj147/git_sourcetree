@@ -39,15 +39,15 @@
 			toggleGroup="$sectionGroup" layoutX="150.0" layoutY="50.0" />
 			
 		<Label text="이 름: " layoutX="35.0" layoutY="82.0" />
-		<TextField fx:id="txtName" layoutX="90.0" layoutY="80.0" />
+		<TextField fx:id="txtem_Name" layoutX="90.0" layoutY="80.0" />
 
 		<Label text="아 이 디 : " layoutX="35.0" layoutY="110.0" />
-		<TextField fx:id="txtId" layoutX="100.0" layoutY="110.0" />
+		<TextField fx:id="txtem_Id" layoutX="100.0" layoutY="110.0" />
 		<Button fx:id="btnIdCheck" text="ID 체크" layoutX="240.0"
 			layoutY="110.0" />
 
 		<Label text="비 밀 번 호 : " layoutX="35.0" layoutY="138.0" />
-		<PasswordField fx:id="txtPasswd" layoutX="120.0"
+		<PasswordField fx:id="txtem_Passwd" layoutX="120.0"
 			layoutY="140.0" />
 
 		<Label text="비밀번호 확인 : " layoutX="35.0" layoutY="170.0" />
@@ -55,14 +55,14 @@
 			layoutY="170.0" />
 
 		<Label text="핸 드 폰 : " layoutX="35.0" layoutY="202.0" />
-		<TextField fx:id="txtPhone" layoutX="100.0" layoutY="200.0" />
+		<TextField fx:id="txtem_Phone" layoutX="100.0" layoutY="200.0" />
 
 		<Label text="은 행 명 : " layoutX="35.0" layoutY="232.0" />
-		<TextField fx:id="txtBank" layoutX="100.0" layoutY="230.0" />
+		<TextField fx:id="txtem_Bank" layoutX="100.0" layoutY="230.0" />
 
 
 		<Label text="계 좌 번 호 : " layoutX="35.0" layoutY="262.0" />
-		<TextField fx:id="txtAccount" layoutX="100.0"
+		<TextField fx:id="txtem_Account" layoutX="100.0"
 			layoutY="260.0" />
 
 		<Button fx:id="btnJoin" text="등록" layoutX="100.0"

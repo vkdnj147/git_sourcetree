@@ -15,7 +15,7 @@ public class JoinDAO {
 	// 관리자 등록
 	public boolean getMangerRegiste(JoinVO jvo) throws Exception {
 
-		String sql = "insert into employeejoin " + "(name, id, passwd, phone, bank, account)" + " values " + "(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into employeejoin " + "(em_name, em_id, em_passwd, em_phone, em_bank, em_account, em_rank)" + " values " + "(?, ?, ?, ?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		boolean joinSucess = false;
@@ -24,12 +24,13 @@ public class JoinDAO {
 
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, jvo.getName());
-			pstmt.setString(2, jvo.getId());
-			pstmt.setString(3, jvo.getPassword());
-			pstmt.setString(3, jvo.getPhone());
-			pstmt.setString(3, jvo.getBank());
-			pstmt.setString(3, jvo.getAccount());
+			pstmt.setString(1, jvo.getEm_Name());
+			pstmt.setString(2, jvo.getEm_Id());
+			pstmt.setString(3, jvo.getEm_Passwd());
+			pstmt.setString(4, jvo.getEm_Phone());
+			pstmt.setString(5, jvo.getEm_Bank());
+			pstmt.setString(6, jvo.getEm_Account());
+			pstmt.setString(7, jvo.getEm_Rank());
 			int i = pstmt.executeUpdate();
 
 			// 조건

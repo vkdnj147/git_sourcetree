@@ -1,92 +1,132 @@
 package model;
 
 public class JoinVO {
-
-	// 관리자 등록 조건 변수 선언
-
-	String id;// 아이디
-	String password;// 비밀번호
-	String name;// 이름
-	String phone;// 핸드폰번호
-	String bank;// 은행명
-	String account;// 계좌번호
-
-	// 디폴트 생성자
+	//직원 등록 변수선언
+    String em_No;//직원 번호
+    String em_Id;//아이디
+    String em_Passwd;//비밀번호
+    String em_Name;//이름
+    String em_Phone;//핸드폰 번호
+    String em_Bank;//은행명
+    String em_Account;//계좌번호
+    String em_Rank;//직급
+    String em_Entry;//입사일
+    String em_Leaveday;//퇴사일
+    String em_Address;//주소
+    String em_Whether;//재직여부
+	
+    //디폴트 생성자
 	public JoinVO() {
 		super();
 	}
-
-	// 아이디 중복을 위한 생성자
-	public JoinVO(String id) {
+	//아이디 중복을 위한 아이디만 있는 생성자
+	public JoinVO(String em_Id) {
 		super();
-		this.id = id;
+		this.em_Id = em_Id;
 	}
-	// 로그인 일치를 위한 아이디 패스워드 확인 생성자
-
-	public JoinVO(String id, String password) {
+	//로그인 시에 일치하게 만들기 위해서 
+	public JoinVO(String em_Id, String em_Passwd, String em_Name, String em_Phone, String em_Bank, String em_Account) {
 		super();
-		this.id = id;
-		this.password = password;
+		this.em_Id = em_Id;
+		this.em_Passwd = em_Passwd;
+		this.em_Name = em_Name;
+		this.em_Phone = em_Phone;
+		this.em_Bank = em_Bank;
+		this.em_Account = em_Account;
+		
 	}
-	// 전체 확인을 위한 생성자
-
-	public JoinVO(String id, String password, String name, String phone, String bank, String account) {
+		//전체다
+	public JoinVO(String em_No, String em_Id, String em_Passwd, String em_Name, String em_Phone, String em_Bank,
+			String em_Account, String em_Rank, String em_Entry, String em_Leaveday, String em_Address,
+			String em_Whether) {
 		super();
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.phone = phone;
-		this.bank = bank;
-		this.account = account;
+		this.em_No = em_No;
+		this.em_Id = em_Id;
+		this.em_Passwd = em_Passwd;
+		this.em_Name = em_Name;
+		this.em_Phone = em_Phone;
+		this.em_Bank = em_Bank;
+		this.em_Account = em_Account;
+		this.em_Rank = em_Rank;
+		this.em_Entry = em_Entry;
+		this.em_Leaveday = em_Leaveday;
+		this.em_Address = em_Address;
+		this.em_Whether = em_Whether;
 	}
-	// 접근자 설정자
-
-	public String getId() {
-		return id;
+	
+	//접근자 설정자
+	public String getEm_No() {
+		return em_No;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setEm_No(String em_No) {
+		this.em_No = em_No;
 	}
-
-	public String getPassword() {
-		return password;
+	public String getEm_Id() {
+		return em_Id;
 	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEm_Id(String em_Id) {
+		this.em_Id = em_Id;
 	}
-
-	public String getName() {
-		return name;
+	public String getEm_Passwd() {
+		return em_Passwd;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setEm_Passwd(String em_Passwd) {
+		this.em_Passwd = em_Passwd;
 	}
-
-	public String getPhone() {
-		return phone;
+	public String getEm_Name() {
+		return em_Name;
 	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEm_Name(String em_Name) {
+		this.em_Name = em_Name;
 	}
-
-	public String getBank() {
-		return bank;
+	public String getEm_Phone() {
+		return em_Phone;
 	}
-
-	public void setBank(String bank) {
-		this.bank = bank;
+	public void setEm_Phone(String em_Phone) {
+		this.em_Phone = em_Phone;
 	}
-
-	public String getAccount() {
-		return account;
+	public String getEm_Bank() {
+		return em_Bank;
 	}
-
-	public void setAccount(String account) {
-		this.account = account;
+	public void setEm_Bank(String em_Bank) {
+		this.em_Bank = em_Bank;
 	}
-
+	public String getEm_Account() {
+		return em_Account;
+	}
+	public void setEm_Account(String em_Account) {
+		this.em_Account = em_Account;
+	}
+	public String getEm_Rank() {
+		return em_Rank;
+	}
+	public void setEm_Rank(String em_Rank) {
+		this.em_Rank = em_Rank;
+	}
+	public String getEm_Entry() {
+		return em_Entry;
+	}
+	public void setEm_Entry(String em_Entry) {
+		this.em_Entry = em_Entry;
+	}
+	public String getEm_Leaveday() {
+		return em_Leaveday;
+	}
+	public void setEm_Leaveday(String em_Leaveday) {
+		this.em_Leaveday = em_Leaveday;
+	}
+	public String getEm_Address() {
+		return em_Address;
+	}
+	public void setEm_Address(String em_Address) {
+		this.em_Address = em_Address;
+	}
+	public String getEm_Whether() {
+		return em_Whether;
+	}
+	public void setEm_Whether(String em_Whether) {
+		this.em_Whether = em_Whether;
+	}
+	
+	
 }

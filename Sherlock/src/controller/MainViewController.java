@@ -9,11 +9,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainViewController implements Initializable {
 
@@ -48,6 +52,14 @@ public class MainViewController implements Initializable {
 	public void handlerBtnTimeAction(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(); // 창을 띄우는 기능을 불러온다.
 		loader.setLocation(getClass().getResource("/view/Schedule.fxml"));
+		Stage dialog = new Stage(StageStyle.UTILITY);
+		dialog.initModality(Modality.WINDOW_MODAL);
+		dialog.initOwner(btnTime.getScene().getWindow()); // 시간버튼 누를때 데이터를 받았으므로
+		dialog.setTitle("예약 접수");
+
+	}
+	public void MainViewTotalList() {
+		// TODO Auto-generated method stub
 		
 	}
 

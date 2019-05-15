@@ -40,18 +40,18 @@
 
 					<HBox alignment="CENTER">
 						<Label text="아 이 디 : " />
-						<TextField fx:id="txtId" />
+						<TextField fx:id="txtem_Id" />
 					</HBox>
 					<HBox alignment="CENTER">
 						<Label text="비밀번호: " />
-						<PasswordField fx:id="txtPassword" />
+						<PasswordField fx:id="txtem_Password" />
 					</HBox>
 					<HBox alignment="CENTER">
 						<padding>
 							<Insets top="20" right="10" bottom="20" left="10" />
 						</padding>
 						<spacing>5</spacing>
-						<Button fx:id="btnJoin" text="관리자 등록" />
+						
 						<Button fx:id="btnLogin" text="관리자 로그인" />
 						<Button fx:id="btnCancel" text="종료" />
 					</HBox>

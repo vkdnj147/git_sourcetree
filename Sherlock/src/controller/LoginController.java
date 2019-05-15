@@ -33,15 +33,14 @@ public class LoginController implements Initializable {
 	@FXML
 	private Label lblLogin; // 라벨 로그인
 	@FXML
-	private TextField txtId; // 텍스트 아이디
+	private TextField txtem_Id; // 텍스트 아이디
 	@FXML
-	private PasswordField txtPassword; // 텍스트 비밀번호
+	private PasswordField txtem_Password; // 텍스트 비밀번호
 	@FXML
 	private Button btnCancel; // 종료 버튼
 	@FXML
 	private Button btnLogin; // 로그인 버튼
-	@FXML
-	private Button btnJoin; // 관리자 등록 버튼
+
 	@FXML
 	private ToggleGroup loginGroup; // 로그인그룹
 	@FXML
@@ -52,12 +51,13 @@ public class LoginController implements Initializable {
 	private ImageView iconImg; // 이미지 뷰 이미지
 
 	public static String managerName = ""; // 관리자이름
+	boolean sucess = false; // 블린으로 로그인 성공, 실패
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		txtId.setOnKeyPressed(event -> handerTxtIdKeyPressed(event)); // 아이디 입력에서Enter 키 이벤트 적용
-		txtPassword.setOnKeyPressed(event -> handerTxtPasswordKeyPressed(event)); // 패스워드 입력에서 Enter 키 이벤트 적용
-		btnJoin.setOnAction(event -> handerBtnJoinAction(event)); // 관리자 등록창으로 전환
+		txtem_Id.setOnKeyPressed(event -> handerTxtIdKeyPressed(event)); // 아이디 입력에서Enter 키 이벤트 적용
+		txtem_Password.setOnKeyPressed(event -> handerTxtPasswordKeyPressed(event)); // 패스워드 입력에서 Enter 키 이벤트 적용
+		
 		btnLogin.setOnAction(event -> handlerBtnLoginActoion(event)); // 로그인
 		btnCancel.setOnAction(event -> handlerBtnCancelActoion(event)); // 로그인창 닫기
 
@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
 	// 아이디 입력에서 Enter 키 이벤트 적용
 	public void handerTxtIdKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
-			txtPassword.requestFocus();
+			txtem_Password.requestFocus();
 		}
 	}
 
@@ -77,22 +77,7 @@ public class LoginController implements Initializable {
 		}
 	}
 
-	// 관리자 등록창으로 전환
-	public void handerBtnJoinAction(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Join.fxml"));
-			Parent mainView = (Parent) loader.load();
-			Scene scane = new Scene(mainView);
-			Stage mainMtage = new Stage();
-			mainMtage.setTitle("관리자 등록 성공!");
-			mainMtage.setScene(scane);
-			Stage oldStage = (Stage) btnLogin.getScene().getWindow();
-			oldStage.close();
-			mainMtage.show();
-		} catch (IOException e) {
-			System.err.println("오류" + e);
-		}
-	}
+	
 
 	// 로그인창 닫기
 	public void handlerBtnCancelActoion(ActionEvent event) {
@@ -101,13 +86,26 @@ public class LoginController implements Initializable {
 
 	// 로그인
 	public void handlerBtnLoginActoion(ActionEvent event) {
-		login();
+		
+		
+		if(txtem_Id.getText().trim().equals("admin")&&txtem_Password.getText().trim().equals("1234")) {
+			sucess=true;
+			login();
+		}
+		
+		if(!(txtem_Id.getText().trim().equals("admin")&&txtem_Password.getText().trim().equals("1234"))) {
+			sucess=false;
+			login();
+		}
+		
+		
+		
 	}
 
 	// 로그인 메소드
 	public void login() {
 		LoginDAO login = new LoginDAO(); // 로그인 인스턴스, 객체 생성
-		boolean sucess = false; // 블린으로 로그인 성공, 실패
+		
 
 		// 로그인 성공시 메인 페이지로 이동
 		if (sucess) {
@@ -116,7 +114,7 @@ public class LoginController implements Initializable {
 				Parent mainView = (Parent) loader.load();
 				Scene scane = new Scene(mainView);
 				Stage mainMtage = new Stage();
-				mainMtage.setTitle("미래 대학교 학사관리");
+				mainMtage.setTitle("명탐정 방탈출 예약관리 시스템");
 				mainMtage.setResizable(false);
 				mainMtage.setScene(scane);
 				Stage oldStage = (Stage) btnLogin.getScene().getWindow();
@@ -125,7 +123,7 @@ public class LoginController implements Initializable {
 			} catch (IOException e) {
 				System.err.println("오류" + e);
 			}
-		} else {
+		} else  {
 			// 아이디패스워드 확인하라는 창
 			Alert alert;
 			alert = new Alert(AlertType.WARNING);
@@ -134,8 +132,8 @@ public class LoginController implements Initializable {
 			alert.setContentText("아이디와 비밀번호가 일치하지않습니다." + "\n 다시 제대로 입력하시오.");
 			alert.setResizable(false);
 			alert.showAndWait();
-			txtId.clear(); // 아이디 초기화
-			txtPassword.clear(); // 비밀번호 초기화
+			txtem_Id.clear(); // 아이디 초기화
+			txtem_Password.clear(); // 비밀번호 초기화
 		}
 
 	}
@@ -144,7 +142,7 @@ public class LoginController implements Initializable {
 		LoginDAO ldao = new LoginDAO();
 		String name = null;
 		try {
-			name = ldao.getLoginName(txtId.getText());
+			name = ldao.getLoginName(txtem_Id.getText());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
