@@ -17,7 +17,11 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
+<<<<<<< HEAD
 			System.out.println("552");
+=======
+			System.out.println("54555");
+>>>>>>> 448042db30c30e9841570774ec7acf4a7f4b59cd
 
 		} catch (Exception e) {
 			e.printStackTrace();

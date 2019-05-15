@@ -44,7 +44,7 @@
 					</HBox>
 					<HBox alignment="CENTER">
 						<Label text="비밀번호: " />
-						<PasswordField fx:id="txtem_Password" />
+						<PasswordField fx:id="txtem_Passwd" />
 					</HBox>
 					<HBox alignment="CENTER">
 						<padding>
