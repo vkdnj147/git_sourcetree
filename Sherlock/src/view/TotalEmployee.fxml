@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Cell?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
+
+	<padding>
+		<Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+	</padding>
+	<center>
+		<GridPane hgap="10.0" vgap="10.0">
+			<!-- 추가 된 일련 번호 -->
+			<children>
+				<!-- 사원번호, 직급, 이름, 아이디, 비밀번호, 핸드폰 번호, 주소, 은행명, 계좌번호, 입사일, 퇴사일, 재직여부 -->
+				<Label text="사원번호: " prefWidth="50" GridPane.rowIndex="1" />
+
+				<Label text="직급 : " prefWidth="50" GridPane.rowIndex="2" />
+				<Label text="이름 : " prefWidth="50" GridPane.rowIndex="3" />
+				<Label text="아이디 : " prefWidth="50" GridPane.rowIndex="4" />
+				<Label text="비밀번호 : " prefWidth="50" GridPane.rowIndex="5" />
+				<Label text="핸드폰번호 : " prefWidth="50" GridPane.rowIndex="6" />
+				<Label text="주소 : " prefWidth="50" GridPane.rowIndex="7" />
+				<Label text="은행명 : " prefWidth="50" GridPane.rowIndex="8" />
+				<Label text="계좌번호 : " prefWidth="50" GridPane.rowIndex="9" />
+				<Label text="입사일 : " prefWidth="50" GridPane.rowIndex="10" />
+				<Label text="퇴사일 : " prefWidth="50" GridPane.rowIndex="11" />
+				<Label text="재직여부 : " prefWidth="50" GridPane.rowIndex="12" />
+
+				<!-- 라벨텍스트에 들어갈 텍스트 필드를 생성 -->
+				<TextField id="txtem_no" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+				<TextField id="txtem_rank" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+				<TextField id="txtem_name" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+				<TextField id="txtem_id" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+				<TextField id="txtem_passwd" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+				<TextField id="txtem_phone" fx:id="ko" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+				<TextField id="txtem_address" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+				<TextField id="txtem_bank" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+				<TextField id="txtem_account" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+				<DatePicker id="txtem_entry" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+				<DatePicker id="txtem_leaveday" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+				<TextField id="txtem_wether" prefWidth="100"
+					GridPane.columnIndex="1" GridPane.rowIndex="12" />
+
+			</children>
+
+		</GridPane>
+	</center>
+
+
+</AnchorPane>
+
