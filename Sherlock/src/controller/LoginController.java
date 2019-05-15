@@ -115,7 +115,7 @@ public class LoginController implements Initializable {
 				Scene scane = new Scene(mainView);
 				Stage mainMtage = new Stage();
 
-				mainMtage.setTitle("명탐정 방탈출 예약관리 시스템");
+				mainMtage.setTitle("명탐정 방탈출 예약관리 시");
 
 				mainMtage.setTitle("방탈출 예약관리 시스템");
 
