@@ -116,7 +116,7 @@ public class LoginController implements Initializable {
 				Parent mainView = (Parent) loader.load();
 				Scene scane = new Scene(mainView);
 				Stage mainMtage = new Stage();
-				mainMtage.setTitle("미래 대학교 학사관리");
+				mainMtage.setTitle("방탈출 예약관리 시스템");
 				mainMtage.setResizable(false);
 				mainMtage.setScene(scane);
 				Stage oldStage = (Stage) btnLogin.getScene().getWindow();
