@@ -87,9 +87,9 @@ public class JoinController implements Initializable {
 				txtId.setDisable(true);
 
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("아이디 중복 검사");
-				alert.setHeaderText(searchId + "를 사용할 수 있습니다.");
-				alert.setContentText("패스어드를 입력하세요.");
+				alert.setTitle(" 아이디 중복 검사 ");
+				alert.setHeaderText( searchId + "를 사용할 수 있습니다.");
+				alert.setContentText("비밀번호를 입력하세요.");
 				alert.showAndWait();
 
 				btnJoin.setDisable(false);
@@ -196,9 +196,9 @@ public class JoinController implements Initializable {
 			txtPasswdRepeat.clear();
 
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("패스워드, 이름 확인");
-			alert.setHeaderText("패스워드, 이름 확인 검사에 오류가 발생하였습니다.");
-			alert.setContentText("패스워드와 이름을 다시 입력하세요.");
+			alert.setTitle("비밀번호, 이름 확인");
+			alert.setHeaderText("비밀번호, 이름 확인 검사에 오류가 발생하였습니다.");
+			alert.setContentText("비밀번호와 이름을 다시 입력하세요.");
 			alert.showAndWait();
 		}
 	}
