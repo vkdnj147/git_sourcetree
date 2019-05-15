@@ -35,7 +35,7 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField txtem_Id; // 텍스트 아이디
 	@FXML
-	private PasswordField txtem_Password; // 텍스트 비밀번호
+	private PasswordField txtem_Passwd; // 텍스트 비밀번호
 	@FXML
 	private Button btnCancel; // 종료 버튼
 	@FXML
@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txtem_Id.setOnKeyPressed(event -> handerTxtIdKeyPressed(event)); // 아이디 입력에서Enter 키 이벤트 적용
-		txtem_Password.setOnKeyPressed(event -> handerTxtPasswordKeyPressed(event)); // 패스워드 입력에서 Enter 키 이벤트 적용
+		txtem_Passwd.setOnKeyPressed(event -> handerTxtPasswordKeyPressed(event)); // 패스워드 입력에서 Enter 키 이벤트 적용
 		
 		btnLogin.setOnAction(event -> handlerBtnLoginActoion(event)); // 로그인
 		btnCancel.setOnAction(event -> handlerBtnCancelActoion(event)); // 로그인창 닫기
@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
 	// 아이디 입력에서 Enter 키 이벤트 적용
 	public void handerTxtIdKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
-			txtem_Password.requestFocus();
+			txtem_Passwd.requestFocus();
 		}
 	}
 
@@ -88,12 +88,12 @@ public class LoginController implements Initializable {
 	public void handlerBtnLoginActoion(ActionEvent event) {
 		
 		
-		if(txtem_Id.getText().trim().equals("admin")&&txtem_Password.getText().trim().equals("1234")) {
+		if(txtem_Id.getText().trim().equals("admin")&&txtem_Passwd.getText().trim().equals("1234")) {
 			sucess=true;
 			login();
 		}
 		
-		if(!(txtem_Id.getText().trim().equals("admin")&&txtem_Password.getText().trim().equals("1234"))) {
+		if(!(txtem_Id.getText().trim().equals("admin")&&txtem_Passwd.getText().trim().equals("1234"))) {
 			sucess=false;
 			login();
 		}
@@ -114,7 +114,11 @@ public class LoginController implements Initializable {
 				Parent mainView = (Parent) loader.load();
 				Scene scane = new Scene(mainView);
 				Stage mainMtage = new Stage();
+
 				mainMtage.setTitle("명탐정 방탈출 예약관리 시스템");
+
+				mainMtage.setTitle("방탈출 예약관리 시스템");
+
 				mainMtage.setResizable(false);
 				mainMtage.setScene(scane);
 				Stage oldStage = (Stage) btnLogin.getScene().getWindow();
@@ -133,7 +137,7 @@ public class LoginController implements Initializable {
 			alert.setResizable(false);
 			alert.showAndWait();
 			txtem_Id.clear(); // 아이디 초기화
-			txtem_Password.clear(); // 비밀번호 초기화
+			txtem_Passwd.clear(); // 비밀번호 초기화
 		}
 
 	}
