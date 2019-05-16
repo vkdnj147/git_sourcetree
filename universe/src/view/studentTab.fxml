@@ -26,6 +26,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="control.StudentTabController" prefHeight="500"
 	prefWidth="1000">
+	
 	<children>
 		<Label text="학생 등록" layoutX="35.0" layoutY="30.0" />
 		<Label text="학과명 : " layoutX="35.0" layoutY="52.0" />
