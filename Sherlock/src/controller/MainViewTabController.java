@@ -20,40 +20,33 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-public class MainViewTabController implements Initializable{
-	
-	
-	@FXML
-	private TabPane mainPane;
 
-	
-	
-	//메인 뷰를 보여주는 탭
+public class MainViewTabController implements Initializable {
+
+	// 메인 뷰를 보여주는 탭
 	@FXML
 	private Tab mainView;
 	@FXML
 	private MainViewController mainViewController;// 참조변수명 부여 방법:include 시 명시한 id+"controller"
-	
-	
-	
-	//이용자 관리
+
+	// 이용자 관리
 	@FXML
 	private Tab totalCustomer;
 	/*
 	 * @FXML private TotalCustomerTabController TotalCustomerTabController;
 	 */
-	//직원 관리
+	// 직원 관리
 	@FXML
 	private Tab totalEmployee;
 	@FXML
 	private TotalEmployeeTabController totalEmployeeTabController;
-	
-	//매출현황
+
+	// 매출현황
 	@FXML
 	private Tab totalSale;
-	
-	//@FXML private TotalSaleTabController TotalSaleTabController;
-	
+
+	// @FXML private TotalSaleTabController TotalSaleTabController;
+
 	@FXML
 	private MenuItem menuExit;
 	@FXML
@@ -61,17 +54,17 @@ public class MainViewTabController implements Initializable{
 	@FXML
 	private MenuItem menuInfo;
 	@FXML
-	private TabPane mainViewTabPane;
+	private TabPane mainViewTabPane; //
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		
 		try {
 			mainViewTabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
 				@Override
 				public void changed(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
 					if (newValue == mainView) {
-						System.out.println("메인메뉴");
+
 						try {
 							MainViewController.MainViewTotalList();
 						} catch (Exception e) {
@@ -79,19 +72,19 @@ public class MainViewTabController implements Initializable{
 						}
 					} else if (newValue == totalCustomer) {
 						try {
-							//TotalCustomerTabController.TotalCustomerTotalList();
+							// TotalCustomerTabController.TotalCustomerTotalList();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					} else if (newValue == totalEmployee) {
 						try {
-							//TotalEmployeeTabController.TotalEmployeeTotalList();
+							// TotalEmployeeTabController.TotalEmployeeTotalList();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					} else if (newValue == totalSale) {
 						try {
-							//TotalSaleTabController.TotalSaleTotalList();
+							// TotalSaleTabController.TotalSaleTotalList();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -99,51 +92,49 @@ public class MainViewTabController implements Initializable{
 				}
 			});
 			// 메뉴 이벤트 등록
-						menuExit.setOnAction(event -> handlerMenuExitAction(event));
-						menuLogout.setOnAction(event -> handlerMenuLogoutAction(event));
-						menuInfo.setOnAction(event -> handlerMenuInfoAction(event));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+			menuExit.setOnAction(event -> handlerMenuExitAction(event));
+			menuLogout.setOnAction(event -> handlerMenuLogoutAction(event));
+			menuInfo.setOnAction(event -> handlerMenuInfoAction(event));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-				public void handlerMenuLogoutAction(ActionEvent event) {
-					try {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
-						Parent mainView = (Parent) loader.load();
-						Scene scane = new Scene(mainView);
-						Stage mainMtage = new Stage();
-						mainMtage.setTitle("명탐정 방탈출 예약 관리 시스템");
-						mainMtage.setResizable(false);
-						mainMtage.setScene(scane);
-						Stage oldStage = (Stage) mainPane.getScene().getWindow();
-						oldStage.close();
-						mainMtage.show();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+	public void handlerMenuLogoutAction(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
+			Parent mainView = (Parent) loader.load();
+			Scene scane = new Scene(mainView);
+			Stage mainMtage = new Stage();
+			mainMtage.setTitle("명탐정 방탈출 예약 관리 시스템");
+			mainMtage.setResizable(false);
+			mainMtage.setScene(scane);
+			Stage oldStage = (Stage) mainViewTabPane.getScene().getWindow();
+			oldStage.close();
+			mainMtage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-				public void handlerMenuInfoAction(ActionEvent event) {
-					Alert alert;
-					alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("명탐정 방탈출카페");
-					alert.setHeaderText("명탐정 방탈출 카페 예약 관리 시스템");
-					alert.setContentText("The Ultimate Real-Life Room Escape Game");
-					alert.setResizable(false);
-					alert.showAndWait();
-				}
+	public void handlerMenuInfoAction(ActionEvent event) {
+		Alert alert;
+		alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("명탐정 방탈출카페");
+		alert.setHeaderText("명탐정 방탈출 카페 예약 관리 시스템");
+		alert.setContentText("The Ultimate Real-Life Room Escape Game");
+		alert.setResizable(false);
+		alert.showAndWait();
+	}
 
-				public void handlerMenuExitAction(ActionEvent event) {
-					Alert alert;
-					alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("명탐정 방탈출카페");
-					alert.setHeaderText("명탐정 방탈출 카페 예약 관리 프로그램 종료");
-					alert.setContentText("확인 버튼을 클릭하면 명탐정 방탈출 카페 예약 관리 프로그램을 종료합니다.");
-					alert.setResizable(false);
-					alert.showAndWait();
-					Platform.exit();
-				}
-			}
-
-
+	public void handlerMenuExitAction(ActionEvent event) {
+		Alert alert;
+		alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("명탐정 방탈출카페");
+		alert.setHeaderText("명탐정 방탈출 카페 예약 관리 프로그램 종료");
+		alert.setContentText("확인 버튼을 클릭하면 명탐정 방탈출 카페 예약 관리 프로그램을 종료합니다.");
+		alert.setResizable(false);
+		alert.showAndWait();
+		Platform.exit();
+	}
+}

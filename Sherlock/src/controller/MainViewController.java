@@ -59,7 +59,7 @@ public class MainViewController implements Initializable {
 
 	}
 	public static void MainViewTotalList() {
-		// TODO Auto-generated method stub
+		System.out.println("aaa");
 		
 	}
 
