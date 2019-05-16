@@ -73,7 +73,16 @@ public class LoginController implements Initializable {
 	// 패스워드 입력에서 Enter 키 이벤트 적용
 	public void handerTxtPasswordKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
-			login();
+			if(txtem_Id.getText().trim().equals("admin")&&txtem_Passwd.getText().trim().equals("1234")) {
+				sucess=true;
+				login();
+			}
+			
+			if(!(txtem_Id.getText().trim().equals("admin")&&txtem_Passwd.getText().trim().equals("1234"))) {
+				sucess=false;
+				login();
+			}
+			
 		}
 	}
 
