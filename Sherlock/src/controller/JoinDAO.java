@@ -24,18 +24,18 @@ public class JoinDAO {
 
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, jvo.getEm_Name());
-			pstmt.setString(2, jvo.getEm_Id());
-			pstmt.setString(3, jvo.getEm_Passwd());
-			pstmt.setString(4, jvo.getEm_Phone());
-			pstmt.setString(5, jvo.getEm_Bank());
-			pstmt.setString(6, jvo.getEm_Account());
-			pstmt.setString(7, jvo.getEm_Rank());
-			pstmt.setString(8, jvo.getEm_Entry());
-			pstmt.setString(9, jvo.getEm_Leaveday());
-			pstmt.setString(10, jvo.getEm_Address());
-			pstmt.setString(11, jvo.getEm_No());
-			pstmt.setString(12, jvo.getEm_Whether());
+			pstmt.setString(1, jvo.getEm_name());
+			pstmt.setString(2, jvo.getEm_id());
+			pstmt.setString(3, jvo.getEm_passwd());
+			pstmt.setString(4, jvo.getEm_phone());
+			pstmt.setString(5, jvo.getEm_bank());
+			pstmt.setString(6, jvo.getEm_account());
+			pstmt.setString(7, jvo.getEm_rank());
+			pstmt.setString(8, jvo.getEm_entry());
+			pstmt.setString(9, jvo.getEm_leaveday());
+			pstmt.setString(10, jvo.getEm_address());
+			pstmt.setString(11, jvo.getEm_no());
+			pstmt.setString(12, jvo.getEm_whether());
 		
 			int i = pstmt.executeUpdate();
 

@@ -3,7 +3,7 @@ package model;
 //전체리스트 직원정보
 public class EmployeeVO {
 
-	int em_no; // 사원번호
+	String em_no; // 사원번호
 	String em_rank; //직급
 	String em_name; // 이름
 	String em_id; // 아이디
@@ -35,7 +35,7 @@ public class EmployeeVO {
 		this.em_whether = em_whether;
 	}
 
-	public EmployeeVO(int em_no, String em_rank, String em_name, String em_id, String em_passwd, String em_phone,
+	public EmployeeVO(String em_no, String em_rank, String em_name, String em_id, String em_passwd, String em_phone,
 			String em_address, String em_bank, String em_account, String em_entry, String em_leaveday,
 			String em_whether) {
 		super();
@@ -55,11 +55,11 @@ public class EmployeeVO {
 
 	
 	//접근자와 설정자
-	public int getEm_no() {
+	public String getEm_no() {
 		return em_no;
 	}
 
-	public void setEm_no(int em_no) {
+	public void setEm_no(String em_no) {
 		this.em_no = em_no;
 	}
 

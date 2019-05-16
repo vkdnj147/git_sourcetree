@@ -40,7 +40,7 @@ public class EmployeeDAO {
 			// 사원번호, 직급, 이름, 재직*퇴사여부
 			while (rs.next()) {
 				EVo = new EmployeeVO();
-				EVo.setEm_no(rs.getInt("no"));
+				EVo.setEm_no(rs.getString("no"));
 				EVo.setEm_rank(rs.getString("em_rank"));
 				EVo.setEm_name(rs.getString("em_name"));
 				EVo.setEm_whether(rs.getString("em_whether"));
