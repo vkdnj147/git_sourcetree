@@ -110,7 +110,7 @@ public class LoginController implements Initializable {
 		// 로그인 성공시 메인 페이지로 이동
 		if (sucess) {
 			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainViewTab.fxml"));
 				Parent mainView = (Parent) loader.load();
 				Scene scane = new Scene(mainView);
 				Stage mainMtage = new Stage();
