@@ -15,7 +15,7 @@ public class JoinDAO {
 	// 관리자 등록
 	public boolean getMangerRegiste(JoinVO jvo) throws Exception {
 
-		String sql = "insert into employeejoin " + "(em_name, em_id, em_passwd, em_phone, em_bank, em_account, em_rank)" + " values " + "(?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into employeejoin " + "(em_name, em_id, em_passwd, em_phone, em_bank, em_account, em_rank, em_entry, em_leaveday, em_address, em_no, em_whether)" + " values " + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		boolean joinSucess = false;
@@ -31,6 +31,12 @@ public class JoinDAO {
 			pstmt.setString(5, jvo.getEm_Bank());
 			pstmt.setString(6, jvo.getEm_Account());
 			pstmt.setString(7, jvo.getEm_Rank());
+			pstmt.setString(8, jvo.getEm_Entry());
+			pstmt.setString(9, jvo.getEm_Leaveday());
+			pstmt.setString(10, jvo.getEm_Address());
+			pstmt.setString(11, jvo.getEm_No());
+			pstmt.setString(12, jvo.getEm_Whether());
+		
 			int i = pstmt.executeUpdate();
 
 			// 조건
@@ -74,7 +80,7 @@ public class JoinDAO {
 
 	public boolean getIdCheck(String searchId) throws Exception{
 		
-		String sql = "select * from student where sd_id = ?";
+		String sql = "select * from employee where sd_id = ?";
 	      Connection con = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;

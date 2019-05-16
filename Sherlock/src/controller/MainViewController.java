@@ -58,7 +58,7 @@ public class MainViewController implements Initializable {
 		dialog.setTitle("예약 접수");
 
 	}
-	public void MainViewTotalList() {
+	public static void MainViewTotalList() {
 		// TODO Auto-generated method stub
 		
 	}

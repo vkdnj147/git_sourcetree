@@ -37,6 +37,16 @@ public class JoinController implements Initializable {
 	@FXML
 	private TextField txtem_Account;
 	@FXML
+	private TextField txtem_No;
+	@FXML
+	private TextField txtem_Address;
+	@FXML
+	private TextField txtem_Entry;
+	@FXML
+	private TextField txtem_Leaveday;
+	@FXML
+	private TextField txtem_Whether;
+	@FXML
 	private Button btnCancel;
 	@FXML
 	private Button btnJoin;
@@ -179,7 +189,9 @@ public class JoinController implements Initializable {
 		if (txtem_Passwd.getText().trim().equals(txtPasswdRepeat.getText().trim())
 				&& !txtem_Name.getText().trim().equals("")) {
 			jvo = new JoinVO(txtem_Id.getText().trim(), txtem_Passwd.getText().trim(), txtem_Name.getText().trim(),
-					txtem_Phone.getText().trim(), txtem_Bank.getText().trim(), txtem_Account.getText().trim());
+					txtem_Phone.getText().trim(), txtem_Bank.getText().trim(), txtem_Account.getText().trim(), txtem_No.getText().trim(), 
+					txtem_Address.getText().trim(), txtem_Entry.getText().trim(), txtem_Leaveday.getText().trim(), 
+					txtem_Whether.getText().trim(), null);
 			jdao = new JoinDAO();
 
 			try {
