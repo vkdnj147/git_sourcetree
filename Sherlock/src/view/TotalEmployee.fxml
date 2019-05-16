@@ -5,73 +5,52 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.Cell?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+	prefHeight="500" prefWidth="700">
 
-	<padding>
-		<Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
-	</padding>
-	<center>
-		<GridPane hgap="10.0" vgap="10.0">
-			<!-- 추가 된 일련 번호 -->
-			<children>
-				<!-- 사원번호, 직급, 이름, 아이디, 비밀번호, 핸드폰 번호, 주소, 은행명, 계좌번호, 입사일, 퇴사일, 재직여부 -->
-				<Label text="사원번호: " prefWidth="50" GridPane.rowIndex="1" />
+	<VBox alignment="CENTER">
 
-				<Label text="직급 : " prefWidth="50" GridPane.rowIndex="2" />
-				<Label text="이름 : " prefWidth="50" GridPane.rowIndex="3" />
-				<Label text="아이디 : " prefWidth="50" GridPane.rowIndex="4" />
-				<Label text="비밀번호 : " prefWidth="50" GridPane.rowIndex="5" />
-				<Label text="핸드폰번호 : " prefWidth="50" GridPane.rowIndex="6" />
-				<Label text="주소 : " prefWidth="50" GridPane.rowIndex="7" />
-				<Label text="은행명 : " prefWidth="50" GridPane.rowIndex="8" />
-				<Label text="계좌번호 : " prefWidth="50" GridPane.rowIndex="9" />
-				<Label text="입사일 : " prefWidth="50" GridPane.rowIndex="10" />
-				<Label text="퇴사일 : " prefWidth="50" GridPane.rowIndex="11" />
-				<Label text="재직여부 : " prefWidth="50" GridPane.rowIndex="12" />
+		<padding>
+			<Insets top="20" bottom="20" />
+		</padding>
 
-				<!-- 라벨텍스트에 들어갈 텍스트 필드를 생성 -->
-				<TextField id="txtem_no" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="1" />
+		<Label text="전체 직원 관리 창" />
+		<spacing>10</spacing>
 
-				<TextField id="txtem_rank" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="2" />
+		<Separator prefWidth="700"></Separator>
 
-				<TextField id="txtem_name" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="3" />
+		<HBox alignment="CENTER">
 
-				<TextField id="txtem_id" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="4" />
+			<Label text="전체 직원 목록" layoutX="50.0" layoutY="30.0" />
 
-				<TextField id="txtem_passwd" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="5" />
+			<spacing>15</spacing>
 
-				<TextField id="txtem_phone" fx:id="ko" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="6" />
+			<ComboBox fx:id="cbx_searchList" layoutX="50.0"
+				layoutY="50.0" promptText="검색 분류 선택" />
+			<TextField fx:id="txtSearchWord" layoutX="175.0"
+				layoutY="50.0" promptText="검색어" />
+			<Button fx:id="btnSearch" text="검색" layoutX="320.0"
+				layoutY="50.0" />
+			<Button fx:id="btnTotal" text="전체" layoutX="390.0"
+				layoutY="50.0" />
+			<Label text="전체 직원  " layoutX="450.0" layoutY="54.0" />
+			<Label fx:id="lblCount" text="" layoutX="450.0" layoutY="54.0" />
+		</HBox>
 
-				<TextField id="txtem_address" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-				<TextField id="txtem_bank" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="8" />
+		<TableView fx:id="TotalEmployeeTableView" layoutX="10.0"
+			layoutY="80.0" prefHeight="340" prefWidth="903">
+		</TableView>
 
-				<TextField id="txtem_account" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
-				<DatePicker id="txtem_entry" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
-				<DatePicker id="txtem_leaveday" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
-				<TextField id="txtem_wether" prefWidth="100"
-					GridPane.columnIndex="1" GridPane.rowIndex="12" />
-
-			</children>
-
-		</GridPane>
-	</center>
-
+	</VBox>
 
 </AnchorPane>
 
