@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Cell?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+	prefHeight="500" prefWidth="900"
+	fx:controller="controller.ReservationController">
+	<HBox>
+		<VBox alignment="CENTER">
+			
+				<padding>
+					<Insets top="20" right="40" bottom="20" left="10" />
+				</padding>
+				<spacing>10</spacing>
+				<ImageView pickOnBounds="true" preserveRatio="true"
+					fx:id="iconImg">
+					<image>
+						<Image url="@/image/reservationlogo.png" />
+					</image>
+
+				</ImageView>
+				<VBox alignment="CENTER">
+					<padding>
+						<Insets top="30" bottom="20" />
+					</padding>
+
+					<Label text="| 전 체 예 약 관 리  |" />
+					<spacing>10</spacing>
+					<Separator prefWidth="300"></Separator>
+				</VBox>
+		
+			<HBox> <!-- 전체 묶음 창 -->
+				<VBox>
+					<spacing>12</spacing>
+					<Label text=" 예약 날짜  " />
+
+					<DatePicker fx:id="dpDate"></DatePicker>
+
+				</VBox>
+			</HBox>
+
+			<HBox>
+				<children>
+					<VBox>
+						<padding>
+							<Insets top="20" right="10" bottom="10" left="10" />
+						</padding>
+						<spacing>5</spacing>
+						<children>
+
+							<Label text=" 테 마 : " />
+							<ComboBox fx:id="cbx_t_Theme" layoutX="20.0"
+								layoutY="50.0" promptText="테마 선택" />
+
+							<Label text="이    름 : " />
+							<TextField fx:id="txtc_Name" promptText="20자이내" />
+
+
+							<Label text="인 원  : " />
+							<ComboBox fx:id="cbx_c_Team" layoutX="50.0"
+								layoutY="100.0" promptText="인원 수" />
+
+							<Label text="핸 드 폰 : " />
+							<TextField fx:id="txtc_Phone" promptText="'-' 빼고 입력" />
+
+							<Label text="나 이 : " />
+							<TextField fx:id="txtc_Age" />
+
+							<Label text="금 액  : " />
+							<TextField fx:id="txtr_Price" />
+
+							<HBox>
+								<Label text="결제 완료 여부 : " />
+								<ComboBox fx:id="cbx_r_Payment" layoutX="20.0"
+									layoutY="50.0" promptText="결제 방법" />
+								<ComboBox fx:id="cbx_r_Pay" layoutX="40.0"
+									layoutY="70.0" promptText="결제 여부" />
+							</HBox>
+
+
+							<Separator prefHeight="20" prefWidth="400"></Separator>
+
+							<Label text="성 공 : " />
+							<TextField fx:id="txtr_recode" />
+
+							<Button fx:id="btnFile" text="실패" layoutX="150.0"
+								layoutY="550.0" />
+							<Label text="힌 트 : " />
+							<ComboBox fx:id="cbxHint" layoutX="50.0" layoutY="650.0"
+								promptText="힌트 사용" />
+
+							<Separator prefHeight="30" prefWidth="400"></Separator>
+							<HBox>
+								<Button fx:id="btnJoin" text="등록" layoutX="150.0"
+									layoutY="750.0" />
+
+								<Button fx:id="btnCorrect" text="수정" layoutX="250.0"
+									layoutY="750.0" />
+
+								<Button fx:id="btnOk" text="확인" layoutX="350.0"
+									layoutY="750.0" />
+							</HBox>
+						</children>
+					</VBox>
+
+				</children>
+			</HBox>
+		</VBox>
+		<HBox>
+			<VBox>
+				<padding>
+					<Insets top="300" right="5" bottom="20" left="10" />
+				</padding>
+				<Label text="전체 이용자 목록" layoutX="50.0" layoutY="30.0" />
+				<spacing>10</spacing>
+				<HBox>
+					<ComboBox fx:id="cbx_searchList" layoutX="50.0"
+						layoutY="50.0" promptText="검색 분류 선택" />
+					<TextField fx:id="txtSearchWord" layoutX="50.0"
+						layoutY="50.0" promptText="검색어" />
+
+					<Button fx:id="btnSearch" text="검색" layoutX="50.0"
+						layoutY="50.0" />
+					<Button fx:id="btnTotal" text="전체" layoutX="70.0"
+						layoutY="50.0" />
+
+					<Label layoutX="450.0" layoutY="54.0" />
+					<Label fx:id="lblCount" text="" layoutX="450.0"
+						layoutY="54.0" />
+				</HBox>
+				<TableView fx:id="TotalCustomerTableView" layoutX="10.0"
+					layoutY="80.0" prefHeight="340" prefWidth="500">
+				</TableView>
+			</VBox>
+		</HBox>
+	</HBox>
+</AnchorPane>
