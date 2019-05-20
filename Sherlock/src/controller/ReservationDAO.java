@@ -17,8 +17,8 @@ public class ReservationDAO {
 		public ArrayList<ReservationVO> getReservationTotalList() throws Exception {
 			ArrayList<ReservationVO> list = new ArrayList<>();
 			String sql = "select cu.c_name as c_name, cu.c_phone as c_phone, th.t_name as t_name, re.r_escape as r_escape "
-					+ "from customer cu, reservation re, theme th"
-					+ "where cu.c_name = re.c_name and cu.c_phone = re.c_phone and cu.c_no = re.c_no ";
+					+ "from customer cu, reservation re, theme th "
+					+ " where cu.c_name = re.c_name and cu.c_phone = re.c_phone and cu.c_no = re.c_no ";
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -61,8 +61,8 @@ public class ReservationDAO {
 			//String c_phone = getC_phone(c_phone);
 			ArrayList<ReservationVO> list = new ArrayList<>();
 			String sql = "select cu.c_name as c_name, cu.c_phone as c_phone, th.t_name as t_name, re.r_escape as r_escape "
-					+ "from customer cu, reservation re, theme th"
-					+ "where cu.c_name = re.c_name and cu.c_phone = re.c_phone and cu.c_no = re.c_no ?";
+					+ "from customer cu, reservation re, theme th "
+					+ " where cu.c_name = re.c_name and cu.c_phone = re.c_phone and cu.c_no = re.c_no ?";
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -110,8 +110,8 @@ public class ReservationDAO {
 		public ArrayList<ReservationVO> getTraineeStudentNameSearchList(String c_name) throws Exception {
 			ArrayList<ReservationVO> list = new ArrayList<>();
 			String sql = "select cu.c_name as c_name, cu.c_phone as c_phone, th.t_name as t_name, re.r_escape as r_escape "
-					+ "from customer cu, reservation re, theme th"
-					+ "where cu.c_name = re.c_name and cu.c_phone = re.c_phone and cu.c_no = re.c_no ";
+					+ " from customer cu, reservation re, theme th "
+					+ " where cu.c_name = re.c_name and cu.c_phone = re.c_phone and cu.c_no = re.c_no ";
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;

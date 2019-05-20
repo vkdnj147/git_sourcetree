@@ -151,16 +151,11 @@ public class LoginController implements Initializable {
 
 	}
 
-	public String managerLoginName() {
-		LoginDAO ldao = new LoginDAO();
-		String name = null;
-		try {
-			name = ldao.getLoginName(txtem_Id.getText());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return name;
-	}
+	/*
+	 * public String managerLoginName() { LoginDAO ldao = new LoginDAO(); String
+	 * name = null; try { name = ldao.getLoginName(txtem_Id.getText()); } catch
+	 * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
+	 * return name; }
+	 */
 
 }
