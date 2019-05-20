@@ -44,9 +44,9 @@ public class TotalCustomerController implements Initializable {
 		// TODO Auto-generated method stub
 		try {
 
-			cbx_searchList.setItems(FXCollections.observableArrayList("학번", "과목명", "학생이름"));
+			cbx_searchList.setItems(FXCollections.observableArrayList("핸드폰", "이름"));
 
-			// 수강 테이블 뷰 컬럼 이름 설정
+			// 고객 테이블 뷰 컬럼 이름 설정
 			TableColumn colNo = new TableColumn("NO");
 
 			colNo.setPrefWidth(50); // 크기 설정
