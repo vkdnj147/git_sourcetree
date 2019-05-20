@@ -61,7 +61,11 @@
 				</Tab>
 				<Tab text="전체 이용자 관리" fx:id="totalCustomer">
 					 <content>
+<<<<<<< HEAD
 						<fx:include fx:id="TotalReservation" source="TotalCustomer.fxml" />
+=======
+						<fx:include fx:id="Reservation" source="Reservation.fxml" />
+>>>>>>> 2cc0e06d1d2be925de016fe84213a4eb2d0f44ce
 					</content> 
 				</Tab>
 				<Tab text="직원 관리" fx:id="totalEmployee">
