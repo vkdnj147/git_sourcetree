@@ -155,5 +155,13 @@ public class CustomerDAO {
 			return false;
 		}
 
+
+
+		public boolean getTotalCustomerList(int selectedIndex, String trim, String trim2, String trim3, String trim4,
+				TextField txtr_recode) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
 	}
 

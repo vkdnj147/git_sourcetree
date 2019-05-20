@@ -160,7 +160,7 @@ public class ReservationController implements Initializable {
 		try {
 			boolean sucess;
 			CustomerDAO cdao = new CustomerDAO();
-			sucess = cdao.getReservationTotalList(selectedIndex, txtc_Name.getText().trim(),
+			sucess = cdao.getTotalCustomerList(selectedIndex, txtc_Name.getText().trim(),
 					txtc_Phone.getText().trim(), txtc_Age.getText().trim(), txtr_Price.getText().trim(), txtr_recode);
 			if (sucess) {
 				TotalCustomerDataList.removeAll(TotalCustomerDataList);
