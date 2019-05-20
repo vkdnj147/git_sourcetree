@@ -11,8 +11,8 @@
 <?import javafx.scene.control.Label?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.MainViewController" prefHeight="900"
-	prefWidth="1000">
+	fx:controller="controller.MainViewController" prefHeight="1000"
+	prefWidth="1200">
 
 	<HBox alignment="CENTER">
 		<!-- 날짜 나타내기 -->
@@ -62,39 +62,39 @@
 				<VBox alignment="CENTER">
 
 					<Button fx:id="btnTime0" text="11:00~12:00" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<spacing>10</spacing>
 
 					<Button fx:id="btnTime1" text="12:10~13:10" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime2" text="13:20~14:20" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime3" text="14:30~15:30" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime4" text="15:40~16:40" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime5" text="16:50~17:50" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime6" text="18:00~19:00" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime7" text="19:10~20:10" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime8" text="20:20~21:20" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime9" text="21:30~22:30" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime10" text="22:40~23:40" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 				</VBox>
 			</children>
 		</VBox>
@@ -115,38 +115,38 @@
 
 				<VBox alignment="CENTER">
 					<Button fx:id="btnTime11" text="11:00~12:00" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<spacing>10</spacing>
 					<Button fx:id="btnTime12" text="12:10~13:10" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime13" text="13:20~14:20" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime14" text="14:30~15:30" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime15" text="15:40~16:40" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime16" text="16:50~17:50" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime17" text="18:00~19:00" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime18" text="19:10~20:10" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime19" text="20:20~21:20" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime20" text="21:30~22:30" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime21" text="22:40~23:40" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 				</VBox><!-- -->
 			</children>
 		</VBox>
@@ -169,37 +169,37 @@
 
 					<spacing>10</spacing>
 					<Button fx:id="btnTime22" text="11:00~12:00" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime23" text="12:10~13:10" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime24" text="13:20~14:20" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime25" text="14:30~15:30" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime26" text="15:40~16:40" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime27" text="16:50~17:50" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime28" text="18:00~19:00" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime29" text="19:10~20:10" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime30" text="20:20~21:20" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime31" text="21:30~22:30" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 					<Button fx:id="btnTime32" text="22:40~23:40" prefWidth="180"
-						prefHeight="40" />
+						prefHeight="30" />
 
 				</VBox>
 			</children>
