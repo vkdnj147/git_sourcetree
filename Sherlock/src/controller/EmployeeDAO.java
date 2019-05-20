@@ -25,7 +25,7 @@ public class EmployeeDAO {
 		// sql문 : 직원, 파트타이머 테이블명 : employeejoin에 대한 내용을 가지고 오는 것
 		// 사원 번호 , 직급 , 이름, 아이디, 비밀번호, 핸드폰 번호, 주소, 은행명, 계좌번호, 입사일, 퇴사일, 재직여부
 		String sql = "select em_no, em_rank, em_name, em_id, em_passwd, em_phone, em_address, em_bank, em_account, em_entry, em_leaveday, em_whether "
-				+ "from employeejoin" + "order by no";
+				+ " from employeejoin" + " order by no";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;

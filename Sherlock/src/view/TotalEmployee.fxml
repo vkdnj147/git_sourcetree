@@ -98,7 +98,7 @@
 					<HBox>
 
 						<Label text="재 직 여 부 : " layoutX="35.0" layoutY="52.0" />
-						<ComboBox fx:id="cbx_em_rank" layoutX="100.0"
+						<ComboBox fx:id="cbx_rank" layoutX="100.0"
 							layoutY="50.0" promptText="선택" />
 					</HBox>
 					<HBox alignment="CENTER">
