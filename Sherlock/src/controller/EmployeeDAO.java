@@ -68,7 +68,7 @@ public class EmployeeDAO {
 	// 등록한 직원의 일련번호
 
 	public String getEmployeeCount(String em_no) throws Exception {
-		String sql = "select LPAD (count (*) + 1 , 4 , '0' as EmployeeJoinCount" + "from EmplyeeJoin";
+		String sql = "select LPAD (count (*) + 1 , 4 , '0' as EmployeeJoinCount" + " from EmplyeeJoin";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;

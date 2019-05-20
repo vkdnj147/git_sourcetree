@@ -16,7 +16,7 @@ public class CustomerDAO {
 		public ArrayList<CustomerVO> getTotalCustomerColumnName(String c_phone) throws Exception {
 			ArrayList<CustomerVO> list = new ArrayList<>();
 			String sql = "select c_no, c_name, c_age, c_phone, c_team"
-					+ "from customer ";
+					+ " from customer ";
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -60,7 +60,7 @@ public class CustomerDAO {
 		public ArrayList<CustomerVO> getTotalCustomerNameSearchList(String c_name) throws Exception {
 			ArrayList<CustomerVO> list = new ArrayList<>();
 			String sql = "select c_no, c_name, c_age, c_phone, c_team"
-					+ "from customer ";
+					+ " from customer ";
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -105,7 +105,7 @@ public class CustomerDAO {
 			
 				ArrayList<CustomerVO> list = new ArrayList<>();
 				String sql = "select c_no, c_name, c_age, c_phone, c_team"
-						+ "from customer ";
+						+ " from customer ";
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
