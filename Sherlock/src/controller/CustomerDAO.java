@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.scene.control.TextField;
 import model.CustomerVO;
 
 public class CustomerDAO {
@@ -144,6 +145,14 @@ public class CustomerDAO {
 		public ArrayList<String> getTotalCustomerColumnName() {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+
+
+		public boolean getReservationTotalList(int selectedIndex, String trim, String trim2, String trim3, String trim4,
+				TextField txtr_recode) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 
 	}
