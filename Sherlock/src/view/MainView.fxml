@@ -12,7 +12,7 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controller.MainViewController" prefHeight="900"
-	prefWidth="1000">
+	prefWidth="1200">
 
 	<HBox alignment="CENTER">
 		<!-- 날짜 나타내기 -->
