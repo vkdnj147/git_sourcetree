@@ -21,8 +21,17 @@ public class EmployeeVO {
 		super();
 	}
 
+	
+	
+	public EmployeeVO(String em_id) {
+		super();
+		this.em_id = em_id;
+	}
+
+
+
 	public EmployeeVO(String em_rank, String em_name, String em_phone, String em_address, String em_bank,
-			String em_account, String em_entry, String em_leaveday, String em_whether) {
+			String em_account, String em_entry, String em_leaveday) {
 		super();
 		this.em_rank = em_rank;
 		this.em_name = em_name;

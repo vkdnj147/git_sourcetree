@@ -204,5 +204,17 @@ public class EmployeeDAO {
 		return EmployeeJoinUpdateSucess;
 	}
 
+	public boolean getEmployeeIdOverlap(String searchId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean getEmployeeUpdate(String selectedEmployeeIndex, String trim, String trim2, String trim3,
+			String trim4, String trim5, String trim6, String trim7) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 	// 등록된 직원의 정보 삭제의 기능은 넣지 않았기 때문에 기능을 넣지 않았습니다.
 }
