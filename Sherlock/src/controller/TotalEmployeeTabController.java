@@ -84,7 +84,7 @@ public class TotalEmployeeTabController implements Initializable {
 			// 직원 등록 초기화
 			btnEmployeeInsert.setDisable(true);
 			btnEmployeeUpdate.setDisable(true);
-			btnEmployeeInit.setDisable(true);
+			/* btnEmployeeInit.setDisable(true); */
 			EmployeeTableView.setEditable(false);
 
 			// 사원 번호 수정 금지
