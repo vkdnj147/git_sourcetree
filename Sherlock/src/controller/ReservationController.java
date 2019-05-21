@@ -144,7 +144,7 @@ public class ReservationController implements Initializable {
 			TotalResvervationList();
 
 			// 고객의 정보를 불러오는것
-			TotalCustomerList();
+			//TotalCustomerList();
 
 			cbx_searchList.setItems(FXCollections.observableArrayList("핸드폰", "이름"));
 			cbx_t_Theme.setItems(FXCollections.observableArrayList("스릴러", "살인사건", "밀실"));
@@ -192,7 +192,7 @@ public class ReservationController implements Initializable {
 					txtc_Age.getText().trim(), txtr_Price.getText().trim(), txtr_recode);
 			if (sucess) {
 				TotalCustomerDataList.removeAll(TotalCustomerDataList);
-				TotalCustomerList();
+				TotalResvervationList();
 				txtc_Name.clear();
 				txtc_Phone.clear();
 				txtc_Age.clear();
@@ -231,7 +231,7 @@ public class ReservationController implements Initializable {
 					alert.setHeaderText("예약 검색 정보를 입력하시오.");
 					alert.setContentText("일치 하는 값이 없습니다.");
 					alert.showAndWait();
-					TotalCustomerList();
+					TotalResvervationList();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -297,7 +297,7 @@ public class ReservationController implements Initializable {
 	}
 
 	//전체 고객 리스트 조회하기 위함
-	public void TotalCustomerList() throws Exception {
+	public void TotalReservationList() throws Exception {
 		TotalCustomerDataList.removeAll(TotalCustomerDataList);
 		// 객체 생성
 		CustomerDAO cDao = new CustomerDAO();
@@ -372,7 +372,7 @@ public class ReservationController implements Initializable {
 			cdao = new CustomerDAO();
 
 			if (cdao != null) {
-				TotalCustomerList();
+				TotalResvervationList();
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("예약 완료");
 				alert.setHeaderText(txtc_Name.getText() + " 예약이 성공적으로 완료 되었습니다..");

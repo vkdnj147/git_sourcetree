@@ -138,7 +138,7 @@
 					<Label fx:id="lblCount" text="" layoutX="450.0"
 						layoutY="54.0" />
 				</HBox>
-				<TableView fx:id="TotalCustomerTableView" layoutX="10.0"
+				<TableView fx:id="TotalReservationTableView" layoutX="10.0"
 					layoutY="80.0" prefHeight="340" prefWidth="653">
 				</TableView>
 			</VBox>
