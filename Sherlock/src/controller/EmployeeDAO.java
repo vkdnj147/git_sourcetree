@@ -152,7 +152,7 @@ public class EmployeeDAO {
 			throws Exception {
 
 		// DB에서 경로를 찾는다.
-		String sql = "update EmployeeJoin set name=?, phone=?, address=?, bank=? , account=? where no=? ";
+		String sql = "update Employee set name=?, phone=?, address=?, bank=? , account=? where no=? ";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
