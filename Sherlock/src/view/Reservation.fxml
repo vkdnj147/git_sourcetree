@@ -139,7 +139,7 @@
 						layoutY="54.0" />
 				</HBox>
 				<TableView fx:id="TotalCustomerTableView" layoutX="10.0"
-					layoutY="80.0" prefHeight="340" prefWidth="500">
+					layoutY="80.0" prefHeight="340" prefWidth="653">
 				</TableView>
 			</VBox>
 		</HBox>

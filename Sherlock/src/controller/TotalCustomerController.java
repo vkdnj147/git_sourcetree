@@ -47,34 +47,34 @@ public class TotalCustomerController implements Initializable {
 			cbx_searchList.setItems(FXCollections.observableArrayList("핸드폰", "이름"));
 
 			// 고객 테이블 뷰 컬럼 이름 설정
-			TableColumn colNo = new TableColumn("NO");
+			TableColumn colCustomerNO = new TableColumn("NO");
 
-			colNo.setPrefWidth(50); // 크기 설정
-			colNo.setStyle("-fx-allignment : CENTER");
-			colNo.setCellValueFactory(new PropertyValueFactory<>("c_no"));
+			colCustomerNO.setPrefWidth(50); // 크기 설정
+			colCustomerNO.setStyle("-fx-allignment : CENTER");
+			colCustomerNO.setCellValueFactory(new PropertyValueFactory<>("c_no"));
 
-			TableColumn colSdNum = new TableColumn("이름");
-			colSdNum.setPrefWidth(150);
-			colSdNum.setStyle("-fx-allignment : CENTER");
-			colSdNum.setCellValueFactory(new PropertyValueFactory<>("c_name"));
+			TableColumn colCustomerName = new TableColumn("이름");
+			colCustomerName.setPrefWidth(150);
+			colCustomerName.setStyle("-fx-allignment : CENTER");
+			colCustomerName.setCellValueFactory(new PropertyValueFactory<>("c_name"));
 
-			TableColumn colSdName = new TableColumn("핸드폰");
-			colSdName.setPrefWidth(150);
-			colSdName.setStyle("-fx-allignment: CENTER");
-			colSdName.setCellValueFactory(new PropertyValueFactory<>("c_name"));
+			TableColumn colCustomerPhone = new TableColumn("핸드폰");
+			colCustomerPhone.setPrefWidth(150);
+			colCustomerPhone.setStyle("-fx-allignment: CENTER");
+			colCustomerPhone.setCellValueFactory(new PropertyValueFactory<>("c_name"));
 			
-			TableColumn colLNum = new TableColumn("테마");
-			colLNum.setPrefWidth(150);
-			colLNum.setStyle("-fx-allignment: CENTER");
-			colLNum.setCellValueFactory(new PropertyValueFactory<>("c_num"));
+			TableColumn colCustomerTheme = new TableColumn("테마");
+			colCustomerTheme.setPrefWidth(150);
+			colCustomerTheme.setStyle("-fx-allignment: CENTER");
+			colCustomerTheme.setCellValueFactory(new PropertyValueFactory<>("t_theme"));
 			
-			TableColumn colTSection = new TableColumn("탈출 여부");
-			colTSection.setPrefWidth(150);
-			colTSection.setStyle("-fx-allignment: CENTER");
-			colTSection.setCellValueFactory(new PropertyValueFactory<>("r_escape"));
+			TableColumn colCustomerEscape = new TableColumn("탈출 여부");
+			colCustomerEscape.setPrefWidth(150);
+			colCustomerEscape.setStyle("-fx-allignment: CENTER");
+			colCustomerEscape.setCellValueFactory(new PropertyValueFactory<>("r_escape"));
 			
 			TotalCustomerTableView.setItems(TotalCustomerDataList);
-			TotalCustomerTableView.getColumns().addAll(colNo, colSdNum, colSdName, colLNum, colTSection);
+			TotalCustomerTableView.getColumns().addAll(colCustomerNO, colCustomerName, colCustomerPhone, colCustomerTheme, colCustomerEscape);
 
 			//전체 이용자 목록
 			TotalCustomerList();

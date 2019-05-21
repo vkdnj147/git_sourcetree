@@ -306,7 +306,7 @@ public class ReservationController implements Initializable {
 
 	public void handlerBtnOkAction(ActionEvent event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainViewTab.fxml"));
 
 			Parent mainView = (Parent) loader.load();
 			Scene scane = new Scene(mainView);

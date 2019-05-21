@@ -25,7 +25,7 @@ public class EmployeeDAO {
 		// sql문 : 직원, 파트타이머 테이블명 : employeejoin에 대한 내용을 가지고 오는 것
 		// 사원 번호 , 직급 , 이름, 아이디, 비밀번호, 핸드폰 번호, 주소, 은행명, 계좌번호, 입사일, 퇴사일, 재직여부
 		String sql = "select em_no, em_rank, em_name, em_id, em_passwd, em_phone, em_address, em_bank, em_account, em_entry, em_leaveday, em_whether "
-				+ "from employeejoin" + "order by no";
+				+ " from employee " + " order by em_no";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -40,7 +40,7 @@ public class EmployeeDAO {
 			// 사원번호, 직급, 이름, 재직*퇴사여부
 			while (rs.next()) {
 				EVo = new EmployeeVO();
-				EVo.setEm_no(rs.getString("no"));
+				EVo.setEm_no(rs.getString("em_no"));
 				EVo.setEm_rank(rs.getString("em_rank"));
 				EVo.setEm_name(rs.getString("em_name"));
 				EVo.setEm_whether(rs.getString("em_whether"));
@@ -68,7 +68,7 @@ public class EmployeeDAO {
 	// 등록한 직원의 일련번호
 
 	public String getEmployeeCount(String em_no) throws Exception {
-		String sql = "select LPAD (count (*) + 1 , 4 , '0' as EmployeeJoinCount" + " from EmplyeeJoin";
+		String sql = "select LPAD (count (*) + 1 , 4 , '0' as EmployeeCount" + " from Emplyee";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -107,7 +107,7 @@ public class EmployeeDAO {
 	public ArrayList<String> getEmployeeColumnName() throws Exception {
 		ArrayList<String> columnName = new ArrayList<String>(); // 이 안에 직원의 정보를 넣는다
 
-		String sql = "select * from EmployeeJoin order by no"; // order by를 사용해서 정렬
+		String sql = "select * from Employee order by em_no"; // order by를 사용해서 정렬
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -152,7 +152,7 @@ public class EmployeeDAO {
 			throws Exception {
 
 		// DB에서 경로를 찾는다.
-		String sql = "update EmployeeJoin set name=?, phone=?, address=?, bank=? , account=? where no=? ";
+		String sql = "update Employee set em_name=?, em_phone=?, em_address=?, em_bank=? , em_account=? where em_no=? ";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -202,6 +202,17 @@ public class EmployeeDAO {
 		}
 
 		return EmployeeJoinUpdateSucess;
+	}
+
+	public boolean getEmployeeUpdate(EmployeeVO selectedEmployee, String trim, String trim2, String trim3, String trim4,
+			String trim5, String employeeNumber, String employeeNumber2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean getEmployeeIdCheck(String searchId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	// 등록된 직원의 정보 삭제의 기능은 넣지 않았기 때문에 기능을 넣지 않았습니다.

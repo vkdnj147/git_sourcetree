@@ -12,13 +12,13 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controller.MainViewController" prefHeight="1000"
-	prefWidth="1200">
+	prefWidth="1000">
 
 	<HBox alignment="CENTER">
 		<!-- 날짜 나타내기 -->
 		<VBox>
 			<padding>
-				<Insets top="50" right="100" bottom="20" left="30" />
+				<Insets top="50" right="100" bottom="20" left="50" />
 			</padding>
 			<spacing>10</spacing>
 			<Label text=" 예약 날짜 관리 " />
@@ -29,11 +29,11 @@
 		<!-- 로고 삽입 -->
 		<VBox>
 			<padding>
-				<Insets top="20" right="20" bottom="20" left="50" />
+				<Insets top="20" right="20" bottom="20" left="100" />
 			</padding>
 			<children>
 				<ImageView pickOnBounds="true" preserveRatio="true"
-					layoutX="1000" layoutY="700">
+					layoutX="3000" layoutY="700">
 					<image>
 						<Image url="@../image/1515.png" /><!-- @..은 뷰 폴더 가 잇을경우 @/은 하위로 
 							바로 있을경우 -->
@@ -45,10 +45,10 @@
 	</HBox>
 
 	<!-- 테마1 -->
-	<HBox>
+	<HBox alignment="CENTER">
 		<VBox>
 			<padding>
-				<Insets top="170" right="50" bottom="20" left="50" />
+				<Insets top="170" right="50" bottom="20" left="400" />
 			</padding>
 			<spacing>10</spacing>
 			<children>
