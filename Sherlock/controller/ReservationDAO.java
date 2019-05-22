@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import model.CustomerVO;
 import model.ReservationVO;
-import model.ThemeVO;
 
 public class ReservationDAO {
 
@@ -107,78 +106,11 @@ public class ReservationDAO {
 		return list;
 	}
 
-	// 예약 insert 쿼리문
-	public boolean getReservationInsert(ReservationVO rVo) throws Exception {
-
-		// DB에서 경로를 찾는다.
-		// 입력된 모든 정보를 가져오는 쿼리문
-		String sql = "insert into Reservation (r_no, r_payment, r_price, r_reserveddate, r_checkin, r_record, r_escape, c_no, em_no, "
-				+ "t_no, c_name, c_phone, c_age, c_team, t_name) values ( ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,? ,? ,? ,? ,?)";
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		boolean reservationInsertsucess = false;
-
-		try {
-
-			con = DBUtil.getConnection();
-
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rVo.getR_no());
-			pstmt.setString(2, rVo.getR_payment());
-			pstmt.setString(3, rVo.getR_price());
-			pstmt.setString(4, rVo.getR_reserveddate());
-			pstmt.setString(5, rVo.getR_checkin());
-			pstmt.setString(6, rVo.getR_record());
-			pstmt.setString(7, rVo.getR_escape());
-			pstmt.setString(8, rVo.getC_no());
-			pstmt.setString(9, rVo.getEm_no());
-			pstmt.setString(10, rVo.getT_no());
-			pstmt.setString(11, rVo.getC_name());
-			pstmt.setString(12, rVo.getC_phone());
-			pstmt.setString(13, rVo.getC_age());
-			pstmt.setString(14, rVo.getC_team());
-			pstmt.setString(15, rVo.getT_name());
-
-			int i = pstmt.executeUpdate();
-
-			if (i == 1) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("예약 정보 ");
-				alert.setHeaderText(" 예약 정보 등록 완료.");
-				alert.setContentText(" 예약 정보 등록 성공!!");
-				alert.showAndWait();
-				reservationInsertsucess = true;
-			} else {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("예약 정보 ");
-				alert.setHeaderText("예약 정보에 누락 된 것이 있는지 확인해주세요.");
-				alert.setContentText("예약 정보 등록 실패!!");
-				alert.showAndWait();
-			}
-
-		} catch (SQLException e) {
-			System.out.println("e=[" + e + "]");
-		} catch (Exception e) {
-			System.out.println("e=[" + e + "]");
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException se) {
-
-			}
-		}
-
-		return reservationInsertsucess;
-	}
-
 	// 전체 고객 컬럼리스트를 읽어오는 메소드
 	public ArrayList<CustomerVO> getTotalCustomerColumnName() throws Exception {
 
-		ArrayList<CustomerVO> list = new ArrayList<CustomerVO>(); // 고객리스트의 전체 정보를가져오는 것
+		ArrayList<CustomerVO> list = new ArrayList<CustomerVO>();
+		// 고객리스트의 전체 정보를 가져오는 것
 		String sql = "select c_no , c_name , c_phone , c_age, c_team " + " from customer " + "order by c_no ";
 
 		// 반환타입
@@ -217,26 +149,47 @@ public class ReservationDAO {
 		return list;
 	}
 
-	/*
-	 * public ArrayList<CustomerVO> getTotalCustomerList() { ArrayList<CustomerVO>
-	 * list = new ArrayList<CustomerVO>(); // 고객리스트의 전체 정보를 가져오는 것 String sql =
-	 * "select c_no , c_name , c_phone , c_age, c_team " + " from customer " +
-	 * "order by c_no ";
-	 * 
-	 * // 반환타입 Connection con = null; PreparedStatement pstmt = null; ResultSet rs =
-	 * null; CustomerVO cVo = null; try { con = DBUtil.getConnection(); pstmt =
-	 * con.prepareStatement(sql); rs = pstmt.executeQuery(); while (rs.next()) { cVo
-	 * = new CustomerVO(); cVo.setC_no(rs.getString(0));
-	 * cVo.setC_name(rs.getString("c_name"));
-	 * cVo.setC_phone(rs.getString("c_phone")); cVo.setC_age(rs.getString("c_age"));
-	 * cVo.setC_team(rs.getString("c_team")); list.add(cVo); } } catch (SQLException
-	 * se) { System.out.println(se); } catch (Exception e) { System.out.println(e);
-	 * } finally { try { if (rs != null) rs.close(); if (pstmt != null)
-	 * pstmt.close(); if (con != null) con.close(); } catch (SQLException se) { } }
-	 * return list;
-	 * 
-	 * }
-	 */
+	public ArrayList<CustomerVO> getTotalCustomerList() {
+		ArrayList<CustomerVO> list = new ArrayList<CustomerVO>();
+		// 고객리스트의 전체 정보를 가져오는 것
+		String sql = "select c_no , c_name , c_phone , c_age, c_team " + " from customer " + "order by c_no ";
+
+		// 반환타입
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CustomerVO cVo = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				cVo = new CustomerVO();
+				cVo.setC_no(rs.getString(0));
+				cVo.setC_name(rs.getString("c_name"));
+				cVo.setC_phone(rs.getString("c_phone"));
+				cVo.setC_age(rs.getString("c_age"));
+				cVo.setC_team(rs.getString("c_team"));
+				list.add(cVo);
+			}
+		} catch (SQLException se) {
+			System.out.println(se);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+		return list;
+
+	}
 	/*
 	 * private String getC_phone(String c_phone) { // TODO Auto-generated method
 	 * stub return null; }
