@@ -81,6 +81,7 @@ public class ReservationController implements Initializable {
 	DatePicker dpDate;
 	@FXML
 	TableView<TotalReservationVO> TotalReservationTableView = new TableView<>();// 고객 테이블 인스턴스화
+	
 	ObservableList<TotalReservationVO> TotalReservationDataList = FXCollections.observableArrayList();// 고객 정보를 저장
 
 	int selectedIndex; // 테이블에서 선택한 예약 정보 인덱스 저장
