@@ -91,6 +91,7 @@ public class EmployeeDAO {
 	 * (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch
 	 * (SQLException se) { } } return serialNumber; }
 	 */
+	
 	// 데이터베읻스에서 직원 테이블 컬럼의 갯수
 	public ArrayList<String> getEmployeeColumnName() throws Exception {
 		ArrayList<String> columnName = new ArrayList<String>(); // 이 안에 직원의 정보를 넣는다
