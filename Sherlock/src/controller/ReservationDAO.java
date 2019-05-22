@@ -62,7 +62,7 @@ public class ReservationDAO {
 	}
 
 	// 전체 예약 탭에서 핸드폰 번호 입력으로 검색
-	public ArrayList<ReservationVO> getTotalReservationNameSearchList(String c_phone) throws Exception {
+	public ArrayList<ReservationVO> getTotalReservationSearchList(String c_phone) throws Exception {
 		// String c_phone = getC_phone(c_phone);
 		ArrayList<ReservationVO> list = new ArrayList<>();
 
@@ -106,6 +106,51 @@ public class ReservationDAO {
 		}
 		return list;
 	}
+	// 전체 예약 탭에서 이름 입력으로 검색
+		public ArrayList<ReservationVO> getTotalReservationNameSearchList(String c_name) throws Exception {
+			// String c_phone = getC_phone(c_phone);
+			ArrayList<ReservationVO> list = new ArrayList<>();
+
+			// 예약자 번호, 이름, 핸드폰, 테마, 성공여부를 불러와야한다.
+			// 예약자 정보를 가진 테이블 이름 : reservation
+			String sql = "select c.c_no , c.c_name , c.c_phone , t.t_name , r.r_escape "
+					+ " from customer c , theme t , reservation r " + "order by c_phone ";
+
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ReservationVO rVo = null;
+			try {
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, c_name);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					rVo = new ReservationVO();
+
+					rVo.setC_name(rs.getString("c_name"));
+					rVo.setC_phone(rs.getString("c_phone"));
+					rVo.setT_name(rs.getString("t_name"));
+					rVo.setR_escape(rs.getString("r_escape"));
+					list.add(rVo);
+				}
+			} catch (SQLException se) {
+				System.out.println(se);
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (con != null)
+						con.close();
+				} catch (SQLException se) {
+				}
+			}
+			return list;
+		}
 
 	// 예약 insert 쿼리문
 	public boolean getReservationInsert(ReservationVO rVo) throws Exception {
