@@ -78,7 +78,7 @@ public class MainViewTabController implements Initializable {
 						}
 					} else if (newValue == totalEmployee) {
 						try {
-							// TotalEmployeeTabController.TotalEmployeeTotalList();
+							totalEmployeeTabController.employeeTotalList();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -52,8 +52,8 @@ public class EmployeeVO {
 		this.em_leaveday = em_leaveday;
 		this.em_whether = em_whether;
 	}
-
 	
+
 	//접근자와 설정자
 	public String getEm_no() {
 		return em_no;
@@ -151,8 +151,4 @@ public class EmployeeVO {
 		this.em_whether = em_whether;
 	}
 
-	
-	
-	
-	
 }

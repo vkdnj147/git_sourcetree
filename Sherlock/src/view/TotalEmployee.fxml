@@ -51,11 +51,17 @@
 							layoutY="80.0" />
 					</HBox>
 					<HBox>
-						<Label text="아 이 디 :     " layoutX="35.0" layoutY="120.0" />
+						<Label text="사 원 이 름  : " layoutX="35.0" layoutY="120.0" />
+						<TextField fx:id="txtem_name" layoutX="120.0"
+							layoutY="80.0" />
+					</HBox>
+					<HBox>
+						<Label text="아 이 디 :     " layoutX="35.0" layoutY="140.0" />
 						<TextField fx:id="txtem_id" layoutX="100.0"
 							layoutY="140.0" />
 
-						<Button text="ID체크" fx:id="btnIdCheck" layoutX="110.0" layoutY="160.0" prefHeight="20" prefWidth="60" />
+						<Button text="ID체크" fx:id="btnIdCheck" layoutX="110.0"
+							layoutY="160.0" prefHeight="20" prefWidth="60" />
 
 					</HBox>
 					<HBox>
@@ -80,7 +86,7 @@
 					</HBox>
 					<HBox>
 						<Label text="계 좌 번호  : " layoutX="35.0" layoutY="292.0" />
-						<TextField fx:id="txtem_bank" layoutX="100.0"
+						<TextField fx:id="txtem_account" layoutX="100.0"
 							layoutY="290.0" promptText="'-' 입력가능" />
 					</HBox>
 
@@ -142,21 +148,12 @@
 						layoutY="54.0" />
 
 				</HBox>
-
 				<TableView fx:id="TotalEmployeeTableView" layoutX="10.0"
 					layoutY="80.0" prefHeight="340" prefWidth="1080">
 				</TableView>
 
 			</VBox>
 		</HBox>
-
-
-
-
-
-
-
 	</VBox>
-
 </AnchorPane>
 

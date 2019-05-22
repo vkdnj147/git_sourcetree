@@ -65,40 +65,41 @@ public class TotalEmployeeTabController implements Initializable {
 	@FXML
 	private TableView<EmployeeVO> TotalEmployeeTableView = new TableView<>();
 	@FXML
-	private ComboBox<String> cbx_searchList;//검색 분류
+	private ComboBox<String> cbx_searchList;// 검색 분류
 	@FXML
-	private TextField txtSearchWord;//검색단어
+	private TextField txtSearchWord;// 검색단어
 	@FXML
-	private Button btnSearch;//검색 버튼
+	private Button btnSearch;// 검색 버튼
 	@FXML
-	private Button btnTotal;//전체 버튼
+	private Button btnTotal;// 전체 버튼
 	@FXML
-	private Label lblCount;//총 직원수 세는 카운트
-	
-	ObservableList<EmployeeVO> EmployeeDataList = FXCollections.observableArrayList();// 직원 정보를 저장
+	private Label lblCount;// 총 직원수 세는 카운트
+
+	ObservableList<EmployeeVO> employeeDataList = FXCollections.observableArrayList();// 직원 정보를 저장
 	ObservableList<EmployeeVO> selectEmployee = null;// 직원등록 테이블에서 선택한 정보 저장
 	String EmployeeNumber = "";
-    ComboBox<EmployeeVO> EmployeeTableView;
+	ComboBox<EmployeeVO> EmployeeTableView;
 	private Object eDAO;
 	private EmployeeVO selectedEmployee;
-	 Object selectedEmployeeIndex;
+	Object selectedEmployeeIndex;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			// 직원등록 초기화
-			btnEmployeeInsert.setDisable(true);
-			btnEmployeeUpdate.setDisable(true);
-			btnEmployeeInit.setDisable(true);
+			btnEmployeeInsert.setDisable(false);//직원등록 버튼
+			btnEmployeeUpdate.setDisable(true);//직원 수정 버튼
+			btnEmployeeInit.setDisable(true);//직원 초기화 버튼
 			TotalEmployeeTableView.setEditable(false);
-			
+			txtem_passwd.setEditable(false);// 비번 비활성화
+
 			// 사원번호 수정금지
-			txtem_no.setEditable(false);
-			
+			txtem_no.setEditable(true);
+
 			// 콤보박스에 값을 지정하는것
 			cbx_rank.setItems(FXCollections.observableArrayList("직원", "파트"));
 			cbx_whether.setItems(FXCollections.observableArrayList("재직중", "퇴사"));
-			
+
 			// 직원 테이블 뷰 컬럼이름 설정
 			TableColumn colEmployeeNo = new TableColumn("사원번호");
 			colEmployeeNo.setPrefWidth(70);
@@ -160,14 +161,13 @@ public class TotalEmployeeTabController implements Initializable {
 			colEmployeeWhether.setStyle("-fx-allignment: CENTER");
 			colEmployeeWhether.setCellValueFactory(new PropertyValueFactory<>("em_whether"));
 
-			
-			TotalEmployeeTableView.setItems(EmployeeDataList);
-			TotalEmployeeTableView.getColumns().addAll(colEmployeeNo, colEmployeeRank, colEmployeeName,
-					colEmployeeId, colEmployeePasswd, colEmployeePhone, colEmployeeAddress, colEmployeeBank,
-					colEmployeeAccount, colEmployeeEntry, colEmployeeLeaveday, colEmployeeWhether);
+			TotalEmployeeTableView.setItems(employeeDataList);
+			TotalEmployeeTableView.getColumns().addAll(colEmployeeNo, colEmployeeRank, colEmployeeName, colEmployeeId,
+					colEmployeePasswd, colEmployeePhone, colEmployeeAddress, colEmployeeBank, colEmployeeAccount,
+					colEmployeeEntry, colEmployeeLeaveday, colEmployeeWhether);
 
 			// 직원 전체 목록
-			EmployeeTotalList();
+			employeeTotalList();
 
 			// 핸들러 이벤트 등록
 			btnEmployeeInsert.setOnAction(event -> handlerbtnEmployeeInsertAction(event)); // 직원 등록버튼
@@ -181,23 +181,24 @@ public class TotalEmployeeTabController implements Initializable {
 		}
 
 	}
-	
-	//직원 정보 수정
+
+	// 직원 정보 수정
 	public void handlerbtnEmployeeUpdateAction(ActionEvent event) {
 		try {
 			boolean sucess;
-			
+
 			EmployeeDAO eDao = new EmployeeDAO();
-			//등록한 직원의 정부 수정
-			//이름,번호,주소,은행명,계좌번호
-			
-			sucess = eDao.getEmployeeUpdate(selectedEmployee, txtem_name.getText().trim(), txtem_phone.getText().trim(), 
-					txtem_address.getText().trim(), txtem_bank.getText().trim(), txtem_account.getText().trim(), EmployeeNumber, EmployeeNumber);
-			
-			if(sucess) {
-				EmployeeDataList.removeAll(EmployeeDataList);
-				EmployeeTotalList();
-				
+			// 등록한 직원의 정부 수정
+			// 이름,번호,주소,은행명,계좌번호
+
+			sucess = eDao.getEmployeeUpdate(selectedEmployee, txtem_name.getText().trim(), txtem_phone.getText().trim(),
+					txtem_address.getText().trim(), txtem_bank.getText().trim(), txtem_account.getText().trim(),
+					EmployeeNumber, EmployeeNumber);
+
+			if (sucess) {
+				//EmployeeDataList.removeAll(employeeDataList);
+				employeeTotalList();
+
 				txtem_no.clear();
 				txtem_name.clear();
 				txtem_id.clear();
@@ -208,39 +209,37 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_account.clear();
 				txtem_entry.clear();
 				txtem_leaveday.clear();
-				
-				
+
 				txtem_no.setDisable(true);
 				txtem_name.setDisable(true);
 				txtem_id.setDisable(true);
-				
+
 				btnIdCheck.setDisable(false);
 				cbx_Employee.setDisable(false);
 				cbx_rank.setDisable(false);
 				cbx_whether.setDisable(true);
-				
+
 				btnEmployeeUpdate.setDisable(true);
 				btnEmployeeInit.setDisable(true);
 				btnEmployeeInsert.setDisable(true);
-				
+
 			}
-					
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	public void handlerEmployeeTableViewAction(MouseEvent event) {
-		if(event.getClickCount() == 2) {
+		if (event.getClickCount() == 2) {
 			try {
 				selectedEmployee = TotalEmployeeTableView.getSelectionModel().getSelectedItem();
-				//주석 해제 하고 방법을 찾아야 한다
-				
-				  selectedEmployeeIndex = ((List<EmployeeVO>) TotalEmployeeTableView).get(0).getEm_no();
-				
+				// 주석 해제 하고 방법을 찾아야 한다
+
+				// selectedEmployeeIndex = ((List<EmployeeVO>)
+				// TotalEmployeeTableView).get(0).getEm_no();
+
 				String selectedem_no = selectEmployee.get(0).getEm_no();
 				String selectedem_rank = selectEmployee.get(0).getEm_rank();
 				String selectedem_name = selectEmployee.get(0).getEm_name();
@@ -253,7 +252,7 @@ public class TotalEmployeeTabController implements Initializable {
 				String selectedem_entry = selectEmployee.get(0).getEm_entry();
 				String selectedem_leaveday = selectEmployee.get(0).getEm_leaveday();
 				String selectedem_whether = selectEmployee.get(0).getEm_whether();
-				
+
 				txtem_no.setText(selectedem_no);
 				txtem_name.setText(selectedem_name);
 				txtem_id.setText(selectedem_id);
@@ -264,89 +263,92 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_account.setText(selectedem_account);
 				txtem_entry.setText(selectedem_entry);
 				txtem_leaveday.setText(selectedem_leaveday);
-				
+
 				txtem_no.setEditable(false);
 				txtem_name.setEditable(false);
 				txtem_id.setEditable(false);
-				
+
 				btnIdCheck.setDisable(true);
 				cbx_rank.setDisable(false);
-				cbx_whether.setDisable(true);//재직 여부
-				
+				cbx_whether.setDisable(true);// 재직 여부
+
 				btnEmployeeUpdate.setDisable(false);
 				btnEmployeeInit.setDisable(false);
 				btnEmployeeInsert.setDisable(true);
-				
-			}catch (Exception e) {
+
+			} catch (Exception e) {
 				e.printStackTrace();
 				// TODO: handle exception
 			}
 		}
 	}
 
-	//직원 전체 목록
-	public void EmployeeTotalList() throws Exception{
-		
-		EmployeeDataList.remove(EmployeeDataList);
-		//객체 생성
+	// 직원 전체 목록
+	public void employeeTotalList() throws Exception {//앞에는 소문자~!
+
+		//EmployeeDataList.remove(employeeDataList);
+		// 객체 생성
 		EmployeeDAO eDao = new EmployeeDAO();
-		EmployeeVO eVo =null;//값을 다 받아야 한다
-		
-		ArrayList<String>title;
-		ArrayList<EmployeeVO>list;
-		
-		title =eDao.getEmployeeColumnName();
-		int columnCount = title.size();
-		
+		EmployeeVO eVo = null;// 값을 다 받아야 한다
+
+		ArrayList<EmployeeVO> list;
+
+
 		list = eDao.getEmployeeTotalList();
 		int rowCount = list.size();
-		
-		for(int index =0; index <rowCount; index++) {
-			eVo  = list.get(index);
-			EmployeeDataList.add(eVo);
+
+		for (int index = 0; index < rowCount; index++) {
+			eVo = list.get(index);
+			employeeDataList.add(eVo);
 		}
 	}
-	//아이디 중복 체크 핸들러
+
+	// 아이디 중복 체크 핸들러
 	public void handlerbtnIdCheckAction(ActionEvent event) {
 		btnEmployeeInsert.setDisable(false);
 		btnIdCheck.setDisable(true);
-		EmployeeDAO eDao =null;
-		String searchId ="";
+		EmployeeDAO eDao = null;
+		String searchId = "";
 		boolean searchResult = true;
-		
+
 		try {
 			searchId = txtem_id.getText().trim();
-			eDao =new EmployeeDAO();
-			searchResult = (boolean)eDao.getEmployeeIdCheck(searchId);
-			
-			if(!searchResult && !searchId.equals("")) {
+			eDao = new EmployeeDAO();
+			searchResult = (boolean) eDao.getEmployeeIdOverlap(searchId);
+
+			if (!searchResult && !searchId.equals("")) {
 				txtem_id.setDisable(true);
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("아이디 중복검사");
-				alert.setHeaderText(searchId +"를 사용할수 있습니다 !");
+				alert.setHeaderText(searchId + "를 사용할수 있습니다 !");
 				alert.setContentText("패스워드를 입력하세요");
 				alert.showAndWait();
+				
+				
+				
+				txtem_passwd.setEditable(true);// 수정가능
+
 				btnEmployeeInsert.setDisable(false);
-				btnIdCheck.setDisable(false);//아이디 체크 활성화
-			}else if(searchId.equals("")) {
+				btnIdCheck.setDisable(false);// 아이디 체크 활성화
+			} else if (searchId.equals("")) {
 				btnEmployeeInsert.setDisable(true);
-				btnIdCheck.setDisable(false);//아이디 체크 활성화
+				btnIdCheck.setDisable(false);// 아이디 체크 활성화
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("아이디 중복검사");
 				alert.setHeaderText("아이디를 입력하시오!");
 				alert.setContentText("등록할 아이디를 입력하세요");
 				alert.showAndWait();
-			}else {
+			} else {
 				btnEmployeeInsert.setDisable(true);
-				btnIdCheck.setDisable(false);//아이디 체크 활성화
+				btnIdCheck.setDisable(false);// 아이디 체크 활성화
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("아이디 중복검사");
-				alert.setHeaderText(searchId +"를 사용할 수 없습니다!");
+				alert.setHeaderText(searchId + "를 사용할 수 없습니다!");
 				alert.setContentText("다른 아이디를 입력해주세요");
 				alert.showAndWait();
 				txtem_id.requestFocus();
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("아이디 중복 검사 오류");
 			alert.setHeaderText("아이디 중복 검사에 오류가 발생하였습니다!");
@@ -358,18 +360,26 @@ public class TotalEmployeeTabController implements Initializable {
 	// 직원등록 이벤트 핸들러
 	public void handlerbtnEmployeeInsertAction(ActionEvent event) {
 		try {
-			EmployeeDataList.remove(EmployeeDataList);
+			//EmployeeDataList.remove(EmployeeDataList);
 			EmployeeVO evo = null;
 			EmployeeDAO edao = null;
 
-			evo = new EmployeeVO(txtem_no.getText().trim(), txtem_name.getText().trim(), txtem_id.getText().trim(),
+			
+			String rank = cbx_rank.getSelectionModel().getSelectedItem();//콤보박스에서 선택한 아이템을 가져온다
+			String whether = cbx_whether.getSelectionModel().getSelectedItem();
+			
+			//입력된 모든 직원의 정보를 가져온다
+			evo = new EmployeeVO(txtem_no.getText().trim(), rank, txtem_name.getText().trim(), txtem_id.getText().trim(),
 					txtem_passwd.getText().trim(), txtem_phone.getText().trim(), txtem_address.getText().trim(),
-					txtem_bank.getText().trim(), txtem_account.getText().trim(), EmployeeNumber, EmployeeNumber, EmployeeNumber, EmployeeNumber);
+					txtem_bank.getText().trim(), txtem_account.getText().trim(), txtem_entry.getText().trim(), txtem_leaveday.getText().trim(), whether);
+			
+			
 			edao = new EmployeeDAO();
+			edao.getEmployeeInsert(evo);
 			// 날짜는 추가 수정이 들어가야함
 
 			if (edao != null) {
-				EmployeeTotalList();
+				employeeTotalList();
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("근무자 입력");
@@ -378,6 +388,7 @@ public class TotalEmployeeTabController implements Initializable {
 				alert.showAndWait();
 
 				txtem_id.setDisable(false);// 아이디 활성화 시켜주는거
+				txtem_no.setDisable(false);// 사원번호 직접입력을 위해 활성화
 
 				txtem_no.clear();
 				txtem_name.clear();
@@ -387,6 +398,10 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_address.clear();
 				txtem_bank.clear();
 				txtem_account.clear();
+
+				btnEmployeeInsert.setDisable(false);
+				btnEmployeeUpdate.setDisable(false);
+				btnEmployeeInit.setDisable(false);
 			}
 
 		} catch (Exception e) {
@@ -401,8 +416,8 @@ public class TotalEmployeeTabController implements Initializable {
 	// 직원 정보 초기화
 	public void handlerbtnEmployeeInitAction(ActionEvent event) {
 		try {
-			EmployeeDataList.removeAll(EmployeeDataList);
-			EmployeeTotalList();
+			//EmployeeDataList.removeAll(EmployeeDataList);
+			employeeTotalList();
 
 			// 안에 있는 텍스트를 모두 비우라는 메소드
 			txtem_no.clear();
