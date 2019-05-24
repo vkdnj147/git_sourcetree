@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Cell?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.TextField?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+	prefHeight="600" prefWidth="900"
+	fx:controller="controller.TotalSaleController">
+	<VBox>
+		<VBox>
+			<padding>
+				<Insets top="10" right="5" bottom="20" left="10" />
+			</padding>
+			<Label text="today 매출 목록" layoutX="30.0" layoutY="30.0" />
+			<spacing>10</spacing>
+			<Separator prefWidth="300"></Separator>
+			<HBox>
+				<Label layoutX="450.0" layoutY="54.0" />
+				<Label fx:id="lblCount" text="" layoutX="450.0" layoutY="54.0" />
+				<TableView fx:id="TodaySaleTableView" layoutX="10.0"
+					layoutY="80.0" prefHeight="240" prefWidth="653">
+				</TableView>
+			</HBox>
+
+		</VBox>
+		<VBox>
+			<VBox>
+
+				<padding>
+					<Insets top="10" right="5" bottom="20" left="10" />
+				</padding>
+				<Label text="전체 매출 목록" layoutX="50.0" layoutY="30.0" />
+				<spacing>10</spacing>
+				<Separator prefWidth="300"></Separator>
+				<HBox>
+					<ComboBox fx:id="cbx_searchList" layoutX="50.0"
+						layoutY="50.0" promptText="검색 분류 선택" />
+					<TextField fx:id="txtSearchWord" layoutX="50.0"
+						layoutY="50.0" promptText="검색어" />
+
+					<Button fx:id="btnSearch" text="검색" layoutX="50.0"
+						layoutY="50.0" />
+					<Button fx:id="btnTotal" text="전체" layoutX="70.0"
+						layoutY="50.0" />
+
+					<Label layoutX="450.0" layoutY="54.0" />
+					<Label fx:id="lblCount" text="" layoutX="450.0"
+						layoutY="54.0" />
+
+
+					<Label text=" 예약 날짜 : " />
+					<DatePicker fx:id="dpDate"></DatePicker>
+
+				</HBox>
+				<TableView fx:id="TotalSaleTableView" layoutX="10.0"
+					layoutY="80.0" prefHeight="250" prefWidth="653">
+				</TableView>
+			</VBox>
+		</VBox>
+	</VBox>
+</AnchorPane>

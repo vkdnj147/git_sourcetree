@@ -11,10 +11,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.control.TextField?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
    prefHeight="600" prefWidth="900"
-   fx:controller="controller.ReservationController">
+   fx:controller="controller.MainViewController">
    <HBox>
       <VBox>
          <padding>
@@ -38,45 +39,68 @@
             <Separator prefWidth="200"></Separator>
          </VBox>
 
-         <HBox> <!-- 전체 묶음 창 -->
 
-            <spacing>8</spacing>
-            <Label text=" 예약 날짜  " />
+         <spacing>8</spacing>
+         <Label text=" 예약 날짜  " />
 
-            <DatePicker fx:id="dpDate"></DatePicker>
+         <DatePicker fx:id="dpDate"></DatePicker>
 
-            <!-- 예약 시간 , 이용하는 방탈출 테마 이름 콤보박스로 만들기 -->
-            <Label text="예약 시간 : " />
-            <ComboBox fx:id="cbx_time" layoutX="20.0" layoutY="50.0"
-               promptText="시간 선택" />
-
-            <Label text=" 테 마 : " />
-            <ComboBox fx:id="cbx_t_Theme" layoutX="20.0" layoutY="50.0"
-               promptText="테마 선택" />
-
-
-
-
-         </HBox>
 
          <HBox>
             <children>
+
+
                <VBox>
                   <padding>
-                     <Insets top="20" right="10" bottom="10" left="10" />
+                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
                   <spacing>15</spacing>
                   <children>
 
-                     <Label text="이    름 : " />
-                     <TextField fx:id="txtc_Name" promptText="20자이내" />
+                     <HBox> <!-- 전체 묶음 창 -->
 
-                     <HBox>
-                        <Label text="인 원  : " />
-                        <ComboBox fx:id="cbx_c_Team" layoutX="50.0"
-                           layoutY="100.0" promptText="인원 수" />
+                        <spacing>10</spacing>
+
+                        <!-- 예약 시간 , 이용하는 방탈출 테마 이름 콤보박스로 만들기 -->
+                        <Label text="예 약 시 간 : " />
+                        <ComboBox fx:id="cbx_time" layoutX="20.0"
+                           layoutY="50.0" promptText="시간 선택" />
+
+                        <Label text=" 테   마 : " />
+                        <ComboBox fx:id="cbx_t_Theme" layoutX="20.0"
+                           layoutY="50.0" promptText="테마 선택" />
+
 
                      </HBox>
+
+
+                     <HBox>
+
+                        <spacing>10</spacing>
+                        <HBox>
+                           <Label text="예 약 번 호 : " />
+                           <TextField fx:id="txtr_No" prefWidth="135"
+                              promptText="겹치지 않게" />
+                        </HBox>
+
+                        <HBox>
+                           <Label text="이   름 : " />
+                           <TextField fx:id="txtc_Name" prefWidth="120"
+                              promptText="20자이내" />
+                        </HBox>
+
+
+                        <HBox>
+                           <Label text="인 원  : " />
+                           <ComboBox fx:id="cbx_c_Team" layoutX="50.0"
+                              layoutY="100.0" promptText="인원 수" />
+
+                        </HBox>
+
+
+                     </HBox>
+
+
 
                      <Label text="핸 드 폰 : " />
                      <TextField fx:id="txtc_Phone" promptText="'-' 빼고 입력" />
@@ -194,7 +218,7 @@
                      <Label fx:id="lblCount" text="" layoutX="450.0"
                         layoutY="54.0" />
                   </HBox>
-                  <TableView fx:id="TotalReservationTableView"
+                  <TableView fx:id="reservationTodayTableView"
                      layoutX="10.0" layoutY="80.0" prefHeight="240" prefWidth="653">
                   </TableView>
                </VBox>
@@ -220,7 +244,7 @@
                         <Label fx:id="lblCount" text="" layoutX="450.0"
                            layoutY="54.0" />
                      </HBox>
-                     <TableView fx:id="TotalReservationTableView"
+                     <TableView fx:id="reservationTableView"
                         layoutX="10.0" layoutY="80.0" prefHeight="250" prefWidth="653">
                      </TableView>
                   </VBox>
