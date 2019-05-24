@@ -118,7 +118,7 @@
 							layoutX="35.0" layoutY="350.0" />
 						<Button fx:id="btnEmployeeUpdate" text="직원 정보 수정"
 							layoutX="105.0" layoutY="350.0" />
-						<Button fx:id="btnEmployeeInit" text="취소" layoutX="200.0"
+						<Button fx:id="btnEmployeeInit" text=" 초기화" layoutX="200.0"
 							layoutY="350.0" />
 					</HBox>
 				</children>
@@ -148,7 +148,7 @@
 						layoutY="54.0" />
 
 				</HBox>
-				<TableView fx:id="TotalEmployeeTableView" layoutX="10.0"
+				<TableView fx:id="totalEmployeeTableView" layoutX="10.0"
 					layoutY="80.0" prefHeight="340" prefWidth="1080">
 				</TableView>
 

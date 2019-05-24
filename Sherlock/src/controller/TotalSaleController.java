@@ -49,7 +49,7 @@ public class TotalSaleController implements Initializable {
 	@FXML
 	TableView<SaleVO> TodaySaleTableView = new TableView<>();// today매출 테이블 인스턴스화
 
-	ObservableList<SaleVO> TotalSaleDataList = FXCollections.observableArrayList();// 매출 정보를 저장
+	static ObservableList<SaleVO> TotalSaleDataList = FXCollections.observableArrayList();// 매출 정보를 저장
 
 	SaleVO sVo = new SaleVO();
 	CustomerVO cVo = new CustomerVO();
@@ -118,7 +118,7 @@ public class TotalSaleController implements Initializable {
 		}
 	}
 
-	private void TotalSaleList() throws Exception {
+	static void TotalSaleList() throws Exception {
 		SaleDAO sDao = new SaleDAO();
 		// 값을 다 받아와야만 불러 올 수 있게 해야 한다
 		SaleVO rVo = null;
@@ -131,7 +131,7 @@ public class TotalSaleController implements Initializable {
 
 		for (int index = 0; index < rowCount; index++) {
 			rVo = list.get(index);
-			TotalSaleDataList.add(sVo);
+			TotalSaleDataList.add(rVo);
 		}
 
 	}

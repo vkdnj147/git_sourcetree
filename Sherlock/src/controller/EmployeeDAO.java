@@ -91,7 +91,6 @@ public class EmployeeDAO {
 	 * (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch
 	 * (SQLException se) { } } return serialNumber; }
 	 */
-	
 	// 데이터베읻스에서 직원 테이블 컬럼의 갯수
 	public ArrayList<String> getEmployeeColumnName() throws Exception {
 		ArrayList<String> columnName = new ArrayList<String>(); // 이 안에 직원의 정보를 넣는다
@@ -201,38 +200,47 @@ public class EmployeeDAO {
 
 		return EmployeeJoinUpdateSucess;
 	}
+	
 
 	//직원 수정
-	public boolean getEmployeeUpdate(EmployeeVO selectedEmployee, String em_name, String em_phone, String em_entry, String em_bank,
-			String em_account, String em_address, String em_leaveday) throws Exception {
-		    String sql = "update employee set em_name=?, em_phone=?, em_entry=?"
-		            + ", em_address=?, em_bank=? , em_account, em_leaveday where no=?"; //형식
+	public boolean getEmployeeUpdate(String em_no, String em_name, String em_id, String em_passwd,
+			String em_phone, String em_address, String em_bank, String em_account, String em_entry, String em_leaveday, String em_whether ) throws Exception {
+		   
+		
+		String sql = "update employee set em_no=?, em_name=?, em_id =?, em_passwd=?, em_phone=?, em_address=?, "
+		    		+ "em_bank=? , em_account=?, em_entry=?, em_leaveday=? , em_whether = ?  where em_no=? "; //형식
 		     
 		      Connection con = null;
 		      PreparedStatement pstmt = null;
-		      boolean studentUpdateSucess = false;
+		      boolean employeeUpdateSucess = false;
 		      
 		      try {
 		         con = DBUtil.getConnection();
 		         
 		         pstmt = con.prepareStatement(sql);
-		         pstmt.setString(1, em_name);
-		         pstmt.setString(2, em_phone);
-		         pstmt.setString(3, em_address);
-		         pstmt.setString(4, em_bank);
-		         pstmt.setString(5, em_account);
-		         pstmt.setString(6, em_entry);
-		         pstmt.setString(6, em_leaveday);
+		         pstmt.setString(1, em_no);
+		         pstmt.setString(2, em_name);
+		         pstmt.setString(3, em_id);
+		         pstmt.setString(4, em_passwd);
+		         pstmt.setString(5, em_phone);
+		         pstmt.setString(6, em_address);
+		         pstmt.setString(7, em_bank);
+		         pstmt.setString(8, em_account);
+		         pstmt.setString(9, em_entry);
+		         pstmt.setString(10, em_leaveday);
+		         pstmt.setString(11, em_whether);
+		         pstmt.setString(12, em_no);
+		         
 		         
 		         int i = pstmt.executeUpdate();
 		         
 		         if(i==1) {
 		            Alert alert = new Alert(AlertType.INFORMATION);
 		            alert.setTitle("학생 정보 수정");
-		            alert.setHeaderText(em_name + " 학생 정보 수정 완료.");
+		            alert.setHeaderText(em_no + " 학생 정보 수정 완료.");
 		            alert.setContentText("학생 정보 수정 성공!!");
 		            alert.showAndWait();
-		            studentUpdateSucess = true;
+		            employeeUpdateSucess = true;
 		         }else {
 		            Alert alert = new Alert(AlertType.WARNING);
 		            alert.setTitle("학생 정보 수정");
@@ -253,7 +261,7 @@ public class EmployeeDAO {
 		         }catch (SQLException se) {
 		         }
 		      }
-		      return studentUpdateSucess;
+		      return employeeUpdateSucess;
 		   }
 	
 
@@ -292,7 +300,7 @@ public class EmployeeDAO {
 	      }
 	      return idOverlapResult;
 	   }
-	}
 
+	}
 	// 등록된 직원의 정보 삭제의 기능은 넣지 않았기 때문에 기능을 넣지 않았습니다.
 
