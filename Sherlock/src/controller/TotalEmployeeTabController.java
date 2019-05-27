@@ -77,11 +77,17 @@ public class TotalEmployeeTabController implements Initializable {
 	private Label lblCount;// 총 직원수 세는 카운트
 
 	private ObservableList<EmployeeVO> employeeDataList = FXCollections.observableArrayList();// 직원 정보를 저장
+
 	ObservableList<EmployeeVO> selectEmployee = null;// 직원등록 테이블에서 선택한 정보 저장
+
 	String EmployeeNumber = "";
+
 	ComboBox<EmployeeVO> EmployeeTableView;
+
 	private Object eDAO;
+
 	private EmployeeVO selectedEmployee;
+
 	Object selectedEmployeeIndex;
 
 	@Override
@@ -200,28 +206,101 @@ public class TotalEmployeeTabController implements Initializable {
 
 	// 직원 전체 목록
 	public void employeeTotalList() throws Exception {// 앞에는 소문자~
-		employeeDataList.removeAll(employeeDataList);
-		// 객체 생성
-		EmployeeDAO eDao = new EmployeeDAO();
+		try {
+			employeeDataList.removeAll(employeeDataList);
+			// 객체 생성
+			EmployeeDAO eDao = new EmployeeDAO();
+
+			EmployeeVO eVo = null;
+			ArrayList<String> title;
+			ArrayList<EmployeeVO> searchList;
+
+			title = eDao.getEmployeeColumnName();
+			int columnCount = title.size();
+
+			searchList = eDao.getEmployeeTotalList();
+			// searchList = eDao.getEmployeeNameSearchList(em_name);
+
+			int rowCount = searchList.size();
+			// System.out.println(rowCount);
+			lblCount.setText("총원 : " + rowCount + " 명");
+
+			for (int index = 0; index < rowCount; index++) {
+
+				eVo = searchList.get(index);
+				employeeDataList.add(eVo);
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
+	// 검색버튼
+	public void handlerBtnSearchAction(ActionEvent event) {
+		ArrayList<EmployeeVO> searchList = new ArrayList<EmployeeVO>();
 
 		EmployeeVO eVo = null;
-		ArrayList<String> title;
-		ArrayList<EmployeeVO> searchList;
+		EmployeeDAO eDao = null;
 
-		title = eDao.getEmployeeColumnName();
-		int columnCount = title.size();
+		String searchName = "";
+		boolean searchResult = false;
 
-		searchList = eDao.getEmployeeTotalList();
-		// searchList = eDao.getEmployeeNameSearchList(em_name);
+		try {
+			searchName = txtSearchWord.getText().trim();
+			eDao = new EmployeeDAO();
+			searchList = eDao.getEmployeeNameSearchList(searchName);
 
-		int rowCount = searchList.size();
-		//System.out.println(rowCount);
-		//lblCount.setText("총원 : " + rowCount + " 명");
+			int rowCount = searchList.size();
+			lblCount.setText("검색 : " + rowCount + " 명");
 
-		for (int index = 0; index < rowCount; index++) {
+			for (int index = 0; index < rowCount; index++) {
 
-			eVo = searchList.get(index);
-			employeeDataList.add(eVo);
+				eVo = searchList.get(index);
+				employeeDataList.add(eVo);
+			}
+
+			if (searchName.equals("")) {
+				searchResult = true;
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("직원 정보 입력");
+				alert.setHeaderText("직원 이름을 입력하시오.");
+				alert.setContentText("다음에는 주의하세요!");
+				alert.showAndWait();
+			}
+
+			if (searchList != null) {
+				// int rowCount = searchList.size();
+				txtSearchWord.clear();
+				employeeDataList.removeAll(employeeDataList);
+				for (int index = 0; index < rowCount; index++) {
+					eVo = searchList.get(index);
+					employeeDataList.add(eVo);
+					searchResult = true;
+				}
+			}
+			if (!searchResult) {
+				txtSearchWord.clear();
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("직원 정보 검색");
+				alert.setHeaderText(searchName + " 직원이 리스트에 없습니다.");
+				alert.setContentText("다시 검색하세요!");
+				alert.showAndWait();
+				txtSearchWord.clear();
+				employeeDataList.removeAll(employeeDataList);
+				// int rowCount = searchList.size();
+				lblCount.setText("검색 : " + rowCount + " 명");
+				for (int index = 0; index < rowCount; index++) {
+					eVo = searchList.get(index);
+					employeeDataList.add(eVo);
+				}
+
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("직원 정보 검색 오류");
+			alert.setHeaderText("직원 정보 검색에 오류가 발생했습니다.");
+			alert.setContentText("다시 하세요!");
+			alert.showAndWait();
 		}
 	}
 
@@ -596,76 +675,4 @@ public class TotalEmployeeTabController implements Initializable {
 		}
 	}
 
-	// 검색버튼
-	public void handlerBtnSearchAction(ActionEvent event) {
-		ArrayList<EmployeeVO> searchList = new ArrayList<EmployeeVO>();
-
-		// String search = "";
-		// search = searchList.getSelectionModel().getSelectedItem();
-
-		EmployeeVO eVo = null;
-		EmployeeDAO eDao = null;
-
-		String searchName = "";
-		boolean searchResult = false;
-
-		try {
-			searchName = txtSearchWord.getText().trim();
-			eDao = new EmployeeDAO();
-			searchList = eDao.getEmployeeNameSearchList(searchName);
-
-			int rowCount = searchList.size();
-			System.out.println(rowCount);
-			lblCount.setText("총원 : " + rowCount + " 명");
-
-			for (int index = 0; index < rowCount; index++) {
-
-				eVo = searchList.get(index);
-				employeeDataList.add(eVo);
-			}
-
-			if (searchName.equals("")) {
-				searchResult = true;
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("직원 정보 입력");
-				alert.setHeaderText("직원 이름을 입력하시오.");
-				alert.setContentText("다음에는 주의하세요!");
-				alert.showAndWait();
-			}
-
-			if (searchList != null) {
-				//int rowCount = searchList.size();
-				txtSearchWord.clear();
-				employeeDataList.removeAll(employeeDataList);
-				for (int index = 0; index < rowCount; index++) {
-					eVo = searchList.get(index);
-					employeeDataList.add(eVo);
-					searchResult = true;
-				}
-			}
-			if (!searchResult) {
-				txtSearchWord.clear();
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("직원 정보 검색");
-				alert.setHeaderText(searchName + " 직원이 리스트에 없습니다.");
-				alert.setContentText("다시 검색하세요!");
-				alert.showAndWait();
-				txtSearchWord.clear();
-				employeeDataList.removeAll(employeeDataList);
-				//int rowCount = searchList.size();
-				lblCount.setText("검색 : " + rowCount + " 명");
-				for (int index = 0; index < rowCount; index++) {
-					eVo = searchList.get(index);
-					employeeDataList.add(eVo);
-				}
-
-			}
-		} catch (Exception e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("직원 정보 검색 오류");
-			alert.setHeaderText("직원 정보 검색에 오류가 발생했습니다.");
-			alert.setContentText("다시 하세요!");
-			alert.showAndWait();
-		}
-	}
 }
