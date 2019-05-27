@@ -28,7 +28,7 @@ public class MainViewTabController implements Initializable {
    private Tab mainView;
    @FXML
    private MainViewController mainViewController;// 참조변수명 부여 방법:include 시 명시한 id+"controller"
-    
+
    // 직원 관리
    @FXML
    private Tab totalEmployee;
@@ -52,7 +52,7 @@ public class MainViewTabController implements Initializable {
 
    @Override
    public void initialize(URL location, ResourceBundle resources) {
-      
+
       try {
          mainViewTabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
             @Override
@@ -60,19 +60,21 @@ public class MainViewTabController implements Initializable {
                if (newValue == mainView) {
 
                   try {
-                     MainViewController.resvervationList();
+                     MainViewController r = new MainViewController();
+                     r.resvervationList();
                   } catch (Exception e) {
                      e.printStackTrace();
-						}
-		               } else if (newValue == totalEmployee) {
+                  }
+               } else if (newValue == totalEmployee) {
                   try {
-                     TotalEmployeeTabController.employeeTotalList();
+                     TotalEmployeeTabController t = new TotalEmployeeTabController();
+                     t.employeeTotalList();
                   } catch (Exception e) {
                      e.printStackTrace();
                   }
                } else if (newValue == totalSale) {
                   try {
-                     // TotalSaleTabController.TotalSaleTotalList();
+                     
                   } catch (Exception e) {
                      e.printStackTrace();
                   }

@@ -25,51 +25,53 @@
 
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/"
-	fx:controller="controller.MainViewTabController" prefHeight="900.0"
-	prefWidth="1600.0">
-	<top>
-		<VBox>
-			<children>
-				<MenuBar>
-					<menus>
-						<Menu text="관리">
-							<items>
-								<MenuItem text="로그아웃" fx:id="menuLogout">
-								</MenuItem>
-								<MenuItem text="종료" fx:id="menuExit">
-								</MenuItem>
-							</items>
-						</Menu>
-					</menus>
-					<Menu text="도움말">
-						<items>
-							<MenuItem text="프로그램 정보" fx:id="menuInfo">
-							</MenuItem>
-						</items>
-					</Menu>
-				</MenuBar>
-			</children>
-		</VBox>
-	</top>
-	<center>
-		<TabPane fx:id="mainViewTabPane">
-			<tabs>
-				<Tab text="방탈출 관리 현황 " fx:id="mainView">
-					<content>
-						<fx:include fx:id="MainView" source="MainView.fxml" />
-					</content>
-				</Tab>
-				<Tab text="직원 관리" fx:id="totalEmployee">
-					<content>
-						<fx:include fx:id="TotalEmployee"
-							source="TotalEmployee.fxml" />
-					</content>
-				</Tab>
-				<Tab text="매출 현황" fx:id="totalSale">
-
-				</Tab>
-			</tabs>
-		</TabPane>
-	</center>
+   fx:controller="controller.MainViewTabController" prefHeight="900.0"
+   prefWidth="1600.0">
+   <top>
+      <VBox>
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu text="관리">
+                     <items>
+                        <MenuItem text="로그아웃" fx:id="menuLogout">
+                        </MenuItem>
+                        <MenuItem text="종료" fx:id="menuExit">
+                        </MenuItem>
+                     </items>
+                  </Menu>
+               </menus>
+               <Menu text="도움말">
+                  <items>
+                     <MenuItem text="프로그램 정보" fx:id="menuInfo">
+                     </MenuItem>
+                  </items>
+               </Menu>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="mainViewTabPane">
+         <tabs>
+            <Tab text="방탈출 관리 현황 " fx:id="mainView">
+               <content>
+                  <fx:include fx:id="MainView" source="MainView.fxml" />
+               </content>
+            </Tab>
+            <Tab text="직원 관리" fx:id="totalEmployee">
+               <content>
+                  <fx:include fx:id="TotalEmployee"
+                     source="TotalEmployee.fxml" />
+               </content>
+            </Tab>
+            <Tab text="매출 현황" fx:id="SaleView">
+               <content>
+                  <fx:include fx:id="SaleView"
+                     source="SaleView.fxml" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
 </BorderPane>
-
