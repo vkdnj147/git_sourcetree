@@ -133,10 +133,10 @@
 				<HBox>
 					<spacing>10</spacing>
 
-					<ComboBox fx:id="cbx_searchList" layoutX="50.0"
-						layoutY="50.0" promptText="검색 분류 선택" />
+					<!-- <ComboBox fx:id="cbx_searchList" layoutX="50.0"
+						layoutY="50.0" promptText="검색 분류 선택" /> -->
 					<TextField fx:id="txtSearchWord" layoutX="175.0"
-						layoutY="50.0" promptText="검색어" />
+						layoutY="50.0" promptText="성명" />
 
 					<Button fx:id="btnSearch" text="검색" layoutX="320.0"
 						layoutY="50.0" />

@@ -301,6 +301,53 @@ public class EmployeeDAO {
 	      return idOverlapResult;
 	   }
 
+	public ArrayList<EmployeeVO> getEmployeeNameSearchList(String em_name)throws Exception {
+		ArrayList<EmployeeVO> list = new ArrayList<>();
+		String sql = "select * from employee where em_name like ? order by em_no desc" ;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		EmployeeVO eVo = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + em_name + "%");
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				eVo = new EmployeeVO();
+				eVo.setEm_no(rs.getString("em_no"));
+				eVo.setEm_rank(rs.getString("em_rank"));
+				eVo.setEm_name(rs.getString("em_name"));
+				eVo.setEm_id(rs.getString("em_id"));
+				eVo.setEm_passwd(rs.getString("em_passwd"));
+				eVo.setEm_phone(rs.getString("em_phone"));
+				eVo.setEm_address(rs.getString("em_address"));
+				eVo.setEm_bank(rs.getString("em_bank"));
+				eVo.setEm_account(rs.getString("em_account"));
+				eVo.setEm_entry(rs.getString("em_entry"));
+				eVo.setEm_leaveday(rs.getString("em_leaveday"));
+				eVo.setEm_whether(rs.getString("em_whether"));
+				list.add(eVo);
+			}
+		} catch (SQLException se) {
+			System.out.println(se);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+		return list;
 	}
+	}
+
 	// 등록된 직원의 정보 삭제의 기능은 넣지 않았기 때문에 기능을 넣지 않았습니다.
 

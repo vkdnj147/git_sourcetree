@@ -66,8 +66,7 @@ public class TotalEmployeeTabController implements Initializable {
 	private Button btnEmployeeTotalList;// 직원 전체 목롱
 	@FXML
 	private TableView<EmployeeVO> totalEmployeeTableView = new TableView<>();// 테이블뷰 필드 선언
-	@FXML
-	private ComboBox<String> cbx_searchList;// 검색 분류
+
 	@FXML
 	private TextField txtSearchWord;// 검색단어
 	@FXML
@@ -160,12 +159,14 @@ public class TotalEmployeeTabController implements Initializable {
 			employeeTotalList();
 
 			// 핸들러 이벤트 등록
-			cbx_searchList.setItems(FXCollections.observableArrayList("핸드폰", "이름"));
+			// cbx_searchList.setItems(FXCollections.observableArrayList("이름"));
 			btnEmployeeInsert.setOnAction(event -> handlerbtnEmployeeInsertAction(event)); // 직원 등록버튼
 			btnEmployeeUpdate.setOnAction(event -> handlerbtnEmployeeUpdateAction(event)); // 직원 수정 버튼
 			btnEmployeeInit.setOnAction(event -> handlerbtnEmployeeInitAction(event)); // 직원 초기화
 			btnIdCheck.setOnAction(event -> handlerbtnIdCheckAction(event)); // 아이디체크
 			totalEmployeeTableView.setOnMouseClicked(event -> handlerEmployeeTableViewAction(event));// 테이블뷰 클릭 이벤트
+			btnSearch.setOnAction(event -> handlerBtnSearchAction(event));// 검색 버튼
+			btnTotal.setOnAction(event -> handlerBtnTotalAction(event));// 전체 버튼
 			// 전체 목록 이벤트 아직 없음 추가 될 예정
 
 			// 엔터키 이벤트
@@ -184,25 +185,42 @@ public class TotalEmployeeTabController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	// 전체 버튼 이벤트
+	public void handlerBtnTotalAction(ActionEvent event) {
+		try {
+			employeeDataList.removeAll(employeeDataList);
+			employeeTotalList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	// 직원 전체 목록
-	public void employeeTotalList() throws Exception {// 앞에는 소문자~!
-
-		// employeeDataList.remove(employeeDataList);
+	public void employeeTotalList() throws Exception {// 앞에는 소문자~
+		employeeDataList.removeAll(employeeDataList);
 		// 객체 생성
 		EmployeeDAO eDao = new EmployeeDAO();
-		EmployeeVO eVo = null;// 값을 다 받아야 한다
 
-		ArrayList<EmployeeVO> list;
+		EmployeeVO eVo = null;
+		ArrayList<String> title;
+		ArrayList<EmployeeVO> searchList;
 
-		list = eDao.getEmployeeTotalList();
-		int rowCount = list.size();
+		title = eDao.getEmployeeColumnName();
+		int columnCount = title.size();
+
+		searchList = eDao.getEmployeeTotalList();
+		// searchList = eDao.getEmployeeNameSearchList(em_name);
+
+		int rowCount = searchList.size();
+		//System.out.println(rowCount);
+		//lblCount.setText("총원 : " + rowCount + " 명");
 
 		for (int index = 0; index < rowCount; index++) {
-			eVo = list.get(index);
 
+			eVo = searchList.get(index);
 			employeeDataList.add(eVo);
 		}
 	}
@@ -271,7 +289,8 @@ public class TotalEmployeeTabController implements Initializable {
 			sucess = eDao.getEmployeeUpdate(txtem_no.getText().trim(), txtem_name.getText().trim(),
 					txtem_id.getText().trim(), txtem_passwd.getText().trim(), txtem_phone.getText().trim(),
 					txtem_address.getText().trim(), txtem_bank.getText().trim(), txtem_account.getText().trim(),
-					txtem_entry.getText().trim(), txtem_leaveday.getText().trim() , cbx_whether.getSelectionModel().getSelectedItem());
+					txtem_entry.getText().trim(), txtem_leaveday.getText().trim(),
+					cbx_whether.getSelectionModel().getSelectedItem());
 
 			if (sucess) {
 				employeeDataList.removeAll(employeeDataList);
@@ -329,7 +348,7 @@ public class TotalEmployeeTabController implements Initializable {
 				String selectedem_leaveday = selectedEmployee.getEm_leaveday();
 				String selectedem_whether = selectedEmployee.getEm_whether();
 
-				//선택한 값만 가져오는 것
+				// 선택한 값만 가져오는 것
 				txtem_no.setText(selectedem_no);
 				txtem_name.setText(selectedem_name);
 				txtem_id.setText(selectedem_id);
@@ -339,13 +358,13 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_bank.setText(selectedem_bank);
 				txtem_account.setText(selectedem_account);
 				txtem_entry.setText(selectedem_entry);
-				
+
 				cbx_whether.setValue(selectedem_whether);
-				
-				if(selectedem_leaveday.equals(null)) {
+
+				if (selectedem_leaveday.equals(null)) {
 					txtem_leaveday.setText(selectedem_leaveday);
 				}
-				
+
 				txtem_no.setEditable(false);
 				txtem_name.setEditable(false);
 				txtem_id.setEditable(false);
@@ -424,7 +443,7 @@ public class TotalEmployeeTabController implements Initializable {
 	// 직원 정보 초기화
 	public void handlerbtnEmployeeInitAction(ActionEvent event) {
 		try {
-			 employeeDataList.removeAll(employeeDataList);
+			employeeDataList.removeAll(employeeDataList);
 			employeeTotalList();
 
 			// 안에 있는 텍스트를 모두 비우라는 메소드
@@ -533,6 +552,8 @@ public class TotalEmployeeTabController implements Initializable {
 
 	}
 
+	// 엔터키 이벤트
+
 	public void handlerTxtem_passwdKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_phone.requestFocus();
@@ -572,6 +593,79 @@ public class TotalEmployeeTabController implements Initializable {
 	public void handlerTxtem_leavedayKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			btnEmployeeInsert.requestFocus();
+		}
+	}
+
+	// 검색버튼
+	public void handlerBtnSearchAction(ActionEvent event) {
+		ArrayList<EmployeeVO> searchList = new ArrayList<EmployeeVO>();
+
+		// String search = "";
+		// search = searchList.getSelectionModel().getSelectedItem();
+
+		EmployeeVO eVo = null;
+		EmployeeDAO eDao = null;
+
+		String searchName = "";
+		boolean searchResult = false;
+
+		try {
+			searchName = txtSearchWord.getText().trim();
+			eDao = new EmployeeDAO();
+			searchList = eDao.getEmployeeNameSearchList(searchName);
+
+			int rowCount = searchList.size();
+			System.out.println(rowCount);
+			lblCount.setText("총원 : " + rowCount + " 명");
+
+			for (int index = 0; index < rowCount; index++) {
+
+				eVo = searchList.get(index);
+				employeeDataList.add(eVo);
+			}
+
+			if (searchName.equals("")) {
+				searchResult = true;
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("직원 정보 입력");
+				alert.setHeaderText("직원 이름을 입력하시오.");
+				alert.setContentText("다음에는 주의하세요!");
+				alert.showAndWait();
+			}
+
+			if (searchList != null) {
+				//int rowCount = searchList.size();
+				txtSearchWord.clear();
+				employeeDataList.removeAll(employeeDataList);
+				for (int index = 0; index < rowCount; index++) {
+					eVo = searchList.get(index);
+					employeeDataList.add(eVo);
+					searchResult = true;
+				}
+			}
+			if (!searchResult) {
+				txtSearchWord.clear();
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("직원 정보 검색");
+				alert.setHeaderText(searchName + " 직원이 리스트에 없습니다.");
+				alert.setContentText("다시 검색하세요!");
+				alert.showAndWait();
+				txtSearchWord.clear();
+				employeeDataList.removeAll(employeeDataList);
+				//int rowCount = searchList.size();
+				lblCount.setText("검색 : " + rowCount + " 명");
+				for (int index = 0; index < rowCount; index++) {
+					eVo = searchList.get(index);
+					employeeDataList.add(eVo);
+				}
+
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("직원 정보 검색 오류");
+			alert.setHeaderText("직원 정보 검색에 오류가 발생했습니다.");
+			alert.setContentText("다시 하세요!");
+			alert.showAndWait();
 		}
 	}
 }
