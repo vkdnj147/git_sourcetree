@@ -110,18 +110,26 @@ public class TraineeController implements Initializable {
 				colTDate.setCellValueFactory(new PropertyValueFactory<>("t_date"));
 				traineeTableView.setItems(traineeDataList);
 				traineeTableView.getColumns().addAll(colNo, colSdNum, colLNum, colTSection, colTDate);
-// 수강 전체 목록
+				
+				
+				// 수강 전체 목록
 				traineeTotalList();
-// 메뉴 이벤트 등록
+
+				
+				// 메뉴 이벤트 등록
 				menuExit.setOnAction(event -> handlerMenuExitAction(event));
 				menuLogout.setOnAction(event -> handlerMenuLogoutAction(event));
 				menuInfo.setOnAction(event -> handlerMenuInfoAction(event));
-// 수강 과목 선택 이벤트
+
+				
+				// 수강 과목 선택 이벤트
 				rbMajor.setOnAction(event -> handlerRbMajorAction(event));
 				rbMinor.setOnAction(event -> handlerRbMinorAction(event));
 				rbCulture.setOnAction(event -> handlerRbCultureAction(event));
 				cbx_subjectName.setOnAction(event -> handlerCbx_subjectNameAction(event));
-// 수강 등록, 삭제 이벤트 등록
+
+				
+				// 수강 등록, 삭제 이벤트 등록
 				btnTraineeInsert.setOnAction(event -> handlerBtnTraineeInsertActoion(event));
 				btnTraineeCancel.setOnAction(event -> handlerBtnTraineeCancelActoion(event));
 				btnTraineeExit.setOnAction(event -> handlerBtnTraineeExitActoion(event));
@@ -132,7 +140,8 @@ public class TraineeController implements Initializable {
 		}
 	}
 
-//수강 과목 선택 이벤트 핸들러
+
+	//수강 과목 선택 이벤트 핸들러
 	public void handlerRbCultureAction(ActionEvent event) {
 		cbx_subjectName.setItems(FXCollections.observableArrayList("국어", "수학", "영어", "역사"));
 		t_section = rbCulture.getText();
@@ -153,7 +162,8 @@ public class TraineeController implements Initializable {
 		selectLessonNameToLessonNum();
 	}
 
-//수강 신청한 과목명의 과목 번호
+
+	//수강 신청한 과목명의 과목 번호
 	public void selectLessonNameToLessonNum() {
 		try {
 			TraineeDAO tDao = new TraineeDAO();
@@ -165,6 +175,7 @@ public class TraineeController implements Initializable {
 		}
 	}
 
+	//과목명 추가 입력 메소드
 	public void handlerBtnTraineeInsertActoion(ActionEvent event) {
 		try {
 			traineeDataList.removeAll(traineeDataList);
@@ -197,7 +208,9 @@ public class TraineeController implements Initializable {
 		}
 	}
 
-// 수강 신청 취소
+
+	
+	// 수강 신청 취소
 	public void handlerBtnTraineeCancelActoion(ActionEvent event) {
 		try {
 			boolean sucess;
@@ -221,7 +234,8 @@ public class TraineeController implements Initializable {
 		}
 	}
 
-// 메뉴 이벤트 핸들러
+
+	// 메뉴 이벤트 핸들러
 	public void handlerMenuLogoutAction(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
@@ -257,7 +271,8 @@ public class TraineeController implements Initializable {
 		Platform.exit();
 	}
 
-// 수강 테이블뷰 더블클릭 선택 이벤트 핸들러
+
+	// 수강 테이블뷰 더블클릭 선택 이벤트 핸들러
 	public void handlerTraineeTableViewActoion(MouseEvent event) {
 		if (event.getClickCount() == 2) {
 			try {
@@ -273,7 +288,8 @@ public class TraineeController implements Initializable {
 		}
 	}
 
-// 수강 전체 리스트
+
+	// 수강 전체 리스트
 	public void traineeTotalList() throws Exception {
 		TraineeDAO tDao = new TraineeDAO();
 		TraineeVO tVo = null;

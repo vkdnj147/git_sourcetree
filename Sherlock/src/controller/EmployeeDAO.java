@@ -73,24 +73,7 @@ public class EmployeeDAO {
 		return list;
 	}
 
-	// 등록한 직원의 일련번호
-	/*
-	 * public String getEmployeeCount(String em_no) throws Exception { String sql =
-	 * "select em_no from Emplyee";
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * String serialNumber = "";
-	 * 
-	 * try { con = DBUtil.getConnection(); pstmt = con.prepareStatement(sql);
-	 * pstmt.setString(1, em_no); rs = pstmt.executeQuery();
-	 * 
-	 * if (rs.next()) { serialNumber = rs.getString("EmployeeCount"); } } catch
-	 * (SQLException se) { System.out.println(se); } catch (Exception e) {
-	 * System.out.println(e); } finally { try { if (rs != null) rs.close(); if
-	 * (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch
-	 * (SQLException se) { } } return serialNumber; }
-	 */
+
 	// 데이터베읻스에서 직원 테이블 컬럼의 갯수
 	public ArrayList<String> getEmployeeColumnName() throws Exception {
 		ArrayList<String> columnName = new ArrayList<String>(); // 이 안에 직원의 정보를 넣는다
@@ -236,16 +219,16 @@ public class EmployeeDAO {
 		         
 		         if(i==1) {
 		            Alert alert = new Alert(AlertType.INFORMATION);
-		            alert.setTitle("학생 정보 수정");
-		            alert.setHeaderText(em_no + " 학생 정보 수정 완료.");
-		            alert.setContentText("학생 정보 수정 성공!!");
+		            alert.setTitle("직원 정보 수정");
+		            alert.setHeaderText(em_no + " 직원 정보 수정 완료.");
+		            alert.setContentText("직원 정보 수정 성공!!");
 		            alert.showAndWait();
 		            employeeUpdateSucess = true;
 		         }else {
 		            Alert alert = new Alert(AlertType.WARNING);
-		            alert.setTitle("학생 정보 수정");
-		            alert.setHeaderText("학생 정보 수정 실패.");
-		            alert.setContentText("학생 정보 수정 실패!!");
+		            alert.setTitle("직원 정보 수정");
+		            alert.setHeaderText("직원 정보 수정 실패.");
+		            alert.setContentText("직원 정보 수정 실패!!");
 		            alert.showAndWait();
 		         }
 		      }catch(SQLException e) {
