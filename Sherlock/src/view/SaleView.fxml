@@ -27,9 +27,16 @@
 			<HBox>
 				<Label layoutX="450.0" layoutY="54.0" />
 				<Label fx:id="lblCount" text="" layoutX="450.0" layoutY="54.0" />
-				<TableView fx:id="TodaySaleTableView" layoutX="10.0"
+				<TableView fx:id="todaySaleTableView" layoutX="10.0"
 					layoutY="80.0" prefHeight="240" prefWidth="653">
 				</TableView>
+			</HBox>
+			<HBox>
+				<Label text="총매출액: " layoutX="45.0" layoutY="455.0" />
+				<TextField layoutX="100.0" layoutY="450.0"
+					fx:id="txtDaytotal" prefWidth="150.0" />
+				<Label text="원" layoutX="252.0" layoutY="455.0" />
+
 			</HBox>
 
 		</VBox>
@@ -43,13 +50,16 @@
 				<spacing>10</spacing>
 				<Separator prefWidth="300"></Separator>
 				<HBox>
-					<ComboBox fx:id="cbx_searchList" layoutX="50.0"
-						layoutY="50.0" promptText="검색 분류 선택" />
-					<TextField fx:id="txtSearchWord" layoutX="50.0"
-						layoutY="50.0" promptText="검색어" />
+					<!-- 기간조회 -->
+					<Label layoutX="320.0" layoutY="85.0" text="기간 :" />
+					<DatePicker layoutX="355.0" layoutY="85.0"
+						fx:id="dpStart" prefWidth="125.0" />
+					<Label text="~" layoutX="485.0" layoutY="85.0" />
+					<DatePicker layoutX="500.0" layoutY="85.0" fx:id="dpEnd"
+						prefWidth="125.0" />
+					<Button layoutX="630.0" layoutY="85.0" fx:id="btnSearch"
+						text="조회" />
 
-					<Button fx:id="btnSearch" text="검색" layoutX="50.0"
-						layoutY="50.0" />
 					<Button fx:id="btnTotal" text="전체" layoutX="70.0"
 						layoutY="50.0" />
 
@@ -58,14 +68,21 @@
 						layoutY="54.0" />
 
 
-					<Label text=" 예약 날짜 : " />
-					<DatePicker fx:id="dpDate"></DatePicker>
+					<!-- <Label text=" 예약 날짜 : " /> <DatePicker fx:id="dpDate"></DatePicker> -->
 
 				</HBox>
-				<TableView fx:id="TotalSaleTableView" layoutX="10.0"
+				<TableView fx:id="totalSaleTableView" layoutX="10.0"
 					layoutY="80.0" prefHeight="250" prefWidth="653">
 				</TableView>
+				
 			</VBox>
+			<HBox>
+				<Label text="총매출액: " layoutX="45.0" layoutY="455.0" />
+				<TextField layoutX="100.0" layoutY="450.0"
+					fx:id="txtDaytotal1" prefWidth="150.0" />
+				<Label text="원" layoutX="252.0" layoutY="455.0" />
+
+			</HBox>
 		</VBox>
 	</VBox>
 </AnchorPane>
