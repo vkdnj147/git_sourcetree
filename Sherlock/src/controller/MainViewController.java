@@ -432,6 +432,7 @@ public class MainViewController implements Initializable {
       String searchName = "";
       boolean searchResult = false;
 
+      //공백제외하고 값을 찾는다
       searchName = txtSearchWord.getText().trim();
 
       try {
