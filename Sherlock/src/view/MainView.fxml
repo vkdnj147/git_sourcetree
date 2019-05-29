@@ -14,243 +14,243 @@
 <?import javafx.scene.control.TextField?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-   prefHeight="600" prefWidth="900"
-   fx:controller="controller.MainViewController">
-   <HBox>
-      <VBox>
-         <padding>
-            <Insets top="50" right="40" bottom="20" left="10" />
-         </padding>
-         <spacing>5</spacing>
-         <ImageView pickOnBounds="true" preserveRatio="true"
-            fx:id="iconImg">
-            <image>
-               <Image url="@/image/reservationlogo.png" />
-            </image>
+	prefHeight="600" prefWidth="900"
+	fx:controller="controller.MainViewController">
+	<HBox>
+		<VBox>
+			<padding>
+				<Insets top="50" right="40" bottom="20" left="10" />
+			</padding>
+			<spacing>5</spacing>
+			<ImageView pickOnBounds="true" preserveRatio="true"
+				fx:id="iconImg">
+				<image>
+					<Image url="@/image/reservationlogo.png" />
+				</image>
 
-         </ImageView>
-         <VBox alignment="CENTER">
-            <padding>
-               <Insets top="30" bottom="20" />
-            </padding>
+			</ImageView>
+			<VBox alignment="CENTER">
+				<padding>
+					<Insets top="30" bottom="20" />
+				</padding>
 
-            <Label text="| 전 체 예 약 관 리  |" />
-            <spacing>10</spacing>
-            <Separator prefWidth="200"></Separator>
-         </VBox>
-
-
-         <spacing>8</spacing>
-         <Label text=" 예약 날짜  " />
-
-         <DatePicker fx:id="dpDate"></DatePicker>
+				<Label text="| 전 체 예 약 관 리  |" />
+				<spacing>10</spacing>
+				<Separator prefWidth="200"></Separator>
+			</VBox>
 
 
-         <HBox>
-            <children>
+			<spacing>8</spacing>
+			<Label text=" 예약 날짜  " />
+
+			<DatePicker fx:id="dpDate"></DatePicker>
 
 
-               <VBox>
-                  <padding>
-                     <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
-                  <spacing>15</spacing>
-                  <children>
-
-                     <HBox> <!-- 전체 묶음 창 -->
-
-                        <spacing>10</spacing>
-
-                        <!-- 예약 시간 , 이용하는 방탈출 테마 이름 콤보박스로 만들기 -->
-                        <Label text="예 약 시 간 : " />
-                        <ComboBox fx:id="cbx_time" layoutX="20.0"
-                           layoutY="50.0" promptText="시간 선택" />
-
-                        <Label text=" 테   마 : " />
-                        <ComboBox fx:id="cbx_t_Theme" layoutX="20.0"
-                           layoutY="50.0" promptText="테마 선택" />
+			<HBox>
+				<children>
 
 
-                     </HBox>
+					<VBox>
+						<padding>
+							<Insets top="10" right="10" bottom="10" left="10" />
+						</padding>
+						<spacing>15</spacing>
+						<children>
+
+							<HBox> <!-- 전체 묶음 창 -->
+
+								<spacing>10</spacing>
+
+								<!-- 예약 시간 , 이용하는 방탈출 테마 이름 콤보박스로 만들기 -->
+								<Label text="예 약 시 간 : " />
+								<ComboBox fx:id="cbx_time" layoutX="20.0"
+									layoutY="50.0" promptText="시간 선택" />
+
+								<Label text=" 테   마 : " />
+								<ComboBox fx:id="cbx_t_Theme" layoutX="20.0"
+									layoutY="50.0" promptText="테마 선택" />
 
 
-                     <HBox>
-
-                        <spacing>10</spacing>
-                        <HBox>
-                           <Label text="예 약 번 호 : " />
-                           <TextField fx:id="txtr_No" prefWidth="135"
-                              promptText="겹치지 않게" />
-                        </HBox>
-
-                        <HBox>
-                           <Label text="이   름 : " />
-                           <TextField fx:id="txtc_Name" prefWidth="120"
-                              promptText="20자이내" />
-                        </HBox>
+							</HBox>
 
 
-                        <HBox>
-                           <Label text="인 원  : " />
-                           <ComboBox fx:id="cbx_c_Team" layoutX="50.0"
-                              layoutY="100.0" promptText="인원 수" />
+							<HBox>
 
-                        </HBox>
+								<spacing>10</spacing>
+								<HBox>
+									<Label text="예 약 번 호 : " />
+									<TextField fx:id="txtr_No" prefWidth="135"
+										promptText="자동으로 입력됩니다" />
+								</HBox>
+
+								<HBox>
+									<Label text="이   름 : " />
+									<TextField fx:id="txtc_Name" prefWidth="120"
+										promptText="20자이내" />
+								</HBox>
 
 
-                     </HBox>
+								<HBox>
+									<Label text="인 원  : " />
+									<ComboBox fx:id="cbx_c_Team" layoutX="50.0"
+										layoutY="100.0" promptText="인원 수" />
+
+								</HBox>
 
 
-
-                     <Label text="핸 드 폰 : " />
-                     <TextField fx:id="txtc_Phone" promptText="'-' 빼고 입력" />
-
-                     <Label text="나 이 : " />
-                     <TextField fx:id="txtc_Age" promptText="미취학 아동 이용 불가" />
-
-                     <Label text="금 액  : " />
-                     <TextField fx:id="txtr_Price" promptText="1인 3만5천원" />
+							</HBox>
 
 
 
-                     <HBox>
+							<Label text="핸 드 폰 : " />
+							<TextField fx:id="txtc_Phone" promptText="'-' 빼고 입력" />
 
-                        <spacing>10</spacing>
+							<Label text="나 이 : " />
+							<TextField fx:id="txtc_Age" promptText="미취학 아동 이용 불가" />
 
-                        <Label text="결제 방법 선택 : " />
-                        <ComboBox fx:id="cbx_r_Payment" layoutX="20.0"
-                           layoutY="50.0" promptText="결제 방법" />
-
-
-                     </HBox>
-
-                     <Separator prefHeight="20" prefWidth="400"></Separator>
+							<Label text="금 액  : " />
+							<TextField fx:id="txtr_Price" promptText="1인 3만5천원" />
 
 
-                     <HBox>
 
-                        <spacing>10</spacing>
+							<HBox>
 
-                        <Label text="결제 완료 여부 : " />
-                        <ComboBox fx:id="cbx_r_Pay" layoutX="40.0"
-                           layoutY="70.0" promptText="결제 여부" />
+								<spacing>10</spacing>
 
-
-                        <Label text="탈 출 여 부 : " />
-                        <ComboBox fx:id="cbx_escape" layoutX="20.0"
-                           layoutY="50.0" promptText="탈 출 여 부" />
+								<Label text="결제 방법 선택 : " />
+								<ComboBox fx:id="cbx_r_Payment" layoutX="20.0"
+									layoutY="50.0" promptText="결제 방법" />
 
 
-                        <Label text="힌 트 : " />
-                        <ComboBox fx:id="cbxHint" layoutX="50.0"
-                           layoutY="650.0" promptText="힌트 사용" />
+							</HBox>
 
-                     </HBox>
-
-                     <Separator prefHeight="30" prefWidth="400"></Separator>
-
-                     <HBox alignment="CENTER">
-
-                        <padding>
-                           <Insets top="20" right="10" bottom="10" left="10" />
-                        </padding>
-                        <spacing>30</spacing>
+							<Separator prefHeight="20" prefWidth="400"></Separator>
 
 
-                        <Button fx:id="btnJoin" text="등록" layoutX="150.0"
-                           layoutY="750.0" />
+							<HBox>
 
-                        <Button fx:id="btnCorrect" text="수정" layoutX="250.0"
-                           layoutY="750.0" />
+								<spacing>10</spacing>
 
-                        <Button fx:id="btnOk" text="확인" layoutX="350.0"
-                           layoutY="750.0" />
-                     </HBox>
+								<Label text="결제 완료 여부 : " />
+								<ComboBox fx:id="cbx_r_Pay" layoutX="40.0"
+									layoutY="70.0" promptText="결제 여부" />
 
-                  </children>
-               </VBox>
 
-            </children>
-         </HBox>
-      </VBox>
-      <VBox>
-         <VBox alignment="CENTER">
-            <padding>
-               <Insets top="30" bottom="20" />
-            </padding>
+								<Label text="탈 출 여 부 : " />
+								<ComboBox fx:id="cbx_escape" layoutX="20.0"
+									layoutY="50.0" promptText="탈 출 여 부" />
 
-            <Label text="| 전 체 이 용 자 관 리  |" />
-            <spacing>10</spacing>
-            <Separator prefWidth="200"></Separator>
-            <VBox>
 
-               <padding>
-                  <Insets top="0" right="10" bottom="0" left="500" />
-               </padding>
-               <spacing>10</spacing>
-               <ImageView pickOnBounds="true" preserveRatio="true"
-                  fx:id="iconImg">
-                  <image>
-                     <Image url="@/image/minilogo.png" />
-                  </image>
+								<Label text="힌 트 : " />
+								<ComboBox fx:id="cbxHint" layoutX="50.0"
+									layoutY="650.0" promptText="힌트 사용" />
 
-               </ImageView>
-            </VBox>
-            <VBox>
-               <VBox>
-                  <padding>
-                     <Insets top="0" right="5" bottom="20" left="10" />
-                  </padding>
-                  <Label text="today 이용자 목록" layoutX="30.0" layoutY="30.0" />
-                  <spacing>10</spacing>
-                  <HBox>
-                     <ComboBox fx:id="cbx_searchList" layoutX="30.0"
-                        layoutY="50.0" promptText="검색 분류 선택" />
-                     <TextField fx:id="txtSearchWord" layoutX="30.0"
-                        layoutY="50.0" promptText="검색어" />
+							</HBox>
 
-                     <Button fx:id="btnSearch" text="검색" layoutX="30.0"
-                        layoutY="50.0" />
-                     <Button fx:id="btnTotal" text="전체" layoutX="50.0"
-                        layoutY="50.0" />
+							<Separator prefHeight="30" prefWidth="400"></Separator>
 
-                     <Label layoutX="450.0" layoutY="54.0" />
-                     <Label fx:id="lblCount" text="" layoutX="450.0"
-                        layoutY="54.0" />
-                  </HBox>
-                  <TableView fx:id="reservationTodayTableView"
-                     layoutX="10.0" layoutY="80.0" prefHeight="240" prefWidth="653">
-                  </TableView>
-               </VBox>
-               <VBox>
-                  <VBox>
-                     <padding>
-                        <Insets top="10" right="5" bottom="20" left="10" />
-                     </padding>
-                     <Label text="전체 이용자 목록" layoutX="50.0" layoutY="30.0" />
-                     <spacing>10</spacing>
-                     <HBox>
-                        <ComboBox fx:id="cbx_searchList" layoutX="50.0"
-                           layoutY="50.0" promptText="검색 분류 선택" />
-                        <TextField fx:id="txtSearchWord" layoutX="50.0"
-                           layoutY="50.0" promptText="검색어" />
+							<HBox alignment="CENTER">
 
-                        <Button fx:id="btnSearch" text="검색" layoutX="50.0"
-                           layoutY="50.0" />
-                        <Button fx:id="btnTotal" text="전체" layoutX="70.0"
-                           layoutY="50.0" />
+								<padding>
+									<Insets top="20" right="10" bottom="10" left="10" />
+								</padding>
+								<spacing>30</spacing>
 
-                        <Label layoutX="450.0" layoutY="54.0" />
-                        <Label fx:id="lblCount" text="" layoutX="450.0"
-                           layoutY="54.0" />
-                     </HBox>
-                     <TableView fx:id="reservationTableView"
-                        layoutX="10.0" layoutY="80.0" prefHeight="250" prefWidth="653">
-                     </TableView>
-                  </VBox>
-               </VBox>
-            </VBox>
-         </VBox>
-      </VBox>
-   </HBox>
+
+								<Button fx:id="btnJoin" text="등록" layoutX="150.0"
+									layoutY="750.0" />
+
+								<Button fx:id="btnCorrect" text="수정" layoutX="250.0"
+									layoutY="750.0" />
+
+								<Button fx:id="btnOk" text="확인" layoutX="350.0"
+									layoutY="750.0" />
+							</HBox>
+
+						</children>
+					</VBox>
+
+				</children>
+			</HBox>
+		</VBox>
+		<VBox>
+			<VBox alignment="CENTER">
+				<padding>
+					<Insets top="30" bottom="20" />
+				</padding>
+
+				<Label text="| 전 체 이 용 자 관 리  |" />
+				<spacing>10</spacing>
+				<Separator prefWidth="200"></Separator>
+				<VBox>
+
+					<padding>
+						<Insets top="0" right="10" bottom="0" left="500" />
+					</padding>
+					<spacing>10</spacing>
+					<ImageView pickOnBounds="true" preserveRatio="true"
+						fx:id="iconImg">
+						<image>
+							<Image url="@/image/minilogo.png" />
+						</image>
+
+					</ImageView>
+				</VBox>
+				<VBox>
+					<VBox>
+						<padding>
+							<Insets top="0" right="5" bottom="20" left="10" />
+						</padding>
+						<Label text="today 이용자 목록" layoutX="30.0" layoutY="30.0" />
+						<spacing>10</spacing>
+						<HBox>
+								<spacing>10</spacing>
+						
+							<TextField fx:id="txt_todaySearchWord" layoutX="30.0"
+								layoutY="50.0" promptText="성 명" />
+
+							<Button fx:id="btnSearch2" text="검 색" layoutX="30.0"
+								layoutY="50.0" />
+							<Button fx:id="btnTotal2" text="전 체" layoutX="50.0"
+								layoutY="50.0" />
+
+							<Label layoutX="450.0" layoutY="54.0" />
+							<Label fx:id="lblCount" text="" layoutX="450.0"
+								layoutY="54.0" />
+						</HBox>
+						<TableView fx:id="reservationTodayTableView"
+							layoutX="10.0" layoutY="80.0" prefHeight="240" prefWidth="653">
+						</TableView>
+					</VBox>
+					<VBox>
+						<VBox>
+							<padding>
+								<Insets top="10" right="5" bottom="20" left="10" />
+							</padding>
+							<Label text="전체 이용자 목록" layoutX="50.0" layoutY="30.0" />
+							<spacing>10</spacing>
+							<HBox>
+								<spacing>10</spacing>
+							
+								<TextField fx:id="txtSearchWord" layoutX="50.0"
+									layoutY="50.0" promptText="성 명" />
+
+								<Button fx:id="btnSearch" text="검 색" layoutX="50.0"
+									layoutY="50.0" />
+								<Button fx:id="btnTotal" text="전 체" layoutX="70.0"
+									layoutY="50.0" />
+
+								<Label layoutX="450.0" layoutY="54.0" />
+								<Label fx:id="lblCount" text="" layoutX="450.0"
+									layoutY="54.0" />
+							</HBox>
+							<TableView fx:id="reservationTableView"
+								layoutX="10.0" layoutY="80.0" prefHeight="250" prefWidth="653">
+							</TableView>
+						</VBox>
+					</VBox>
+				</VBox>
+			</VBox>
+		</VBox>
+	</HBox>
 </AnchorPane>
