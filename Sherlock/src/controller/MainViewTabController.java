@@ -39,7 +39,7 @@ public class MainViewTabController implements Initializable {
    @FXML
    private Tab totalSale;
 
-   // @FXML private TotalSaleTabController TotalSaleTabController;
+   @FXML private TotalSaleController totalSaleController;
 
    @FXML
    private MenuItem menuExit;
@@ -74,7 +74,8 @@ public class MainViewTabController implements Initializable {
                   }
                } else if (newValue == totalSale) {
                   try {
-                     
+                	  TotalSaleController s = new TotalSaleController();
+                      s.totalSaleList();
                   } catch (Exception e) {
                      e.printStackTrace();
                   }
