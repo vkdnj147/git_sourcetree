@@ -102,7 +102,7 @@ public class TotalSaleController implements Initializable {
 			}
 			
 		});
-		txtDaytotal.setText(sDao.getDaytotal() + ""); // 금일 총매출액을 가져온다.
+		//txtDaytotal.setText(rDao.getDaytotal() + ""); // 금일 총매출액을 가져온다.
 
 		try {
 			TableColumn colSaleC_name1 = new TableColumn("이 름");
@@ -302,7 +302,7 @@ public class TotalSaleController implements Initializable {
 	   public void totalList() {
 
 	      txtDaytotal.clear();
-	      txtDaytotal.setText(sDao.getDaytotal() + ""); // 기간 조회한 날짜의 총매출액을 가져온다.
+	     // txtDaytotal.setText(sDate.getDaytotal() + ""); // 기간 조회한 날짜의 총매출액을 가져온다.
 	      
 	      data2.removeAll(data2);
 
