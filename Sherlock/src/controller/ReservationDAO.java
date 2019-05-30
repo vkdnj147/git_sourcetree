@@ -227,14 +227,12 @@ public class ReservationDAO {
 
 	}
 
+	// 예약된 사람들의 명단을 받아 테이블 뷰에 뿌리기 위한 DAO
 	public ArrayList<ReservationVO> getReservationTodayList() {
 
 		ArrayList<ReservationVO> list = new ArrayList<>();
 
-		// sql문 작성
 		// 고객 번호 , 이름, 핸드폰 번호, 테마이름, 탈출여부를 불러와야하는 것
-		// 객체 저장
-		// String sql = "select * from reservation";
 
 		String sql = "select * from reservation where r_reserveddate = to_char( sysdate, 'YYYY-MM-DD')";
 
@@ -286,6 +284,7 @@ public class ReservationDAO {
 
 	}
 
+	// 수정을 위해서 만들어둔 메소드
 	public boolean getReservationCorrect(String txtr_No, String dpDate, String cbx_time, String cbx_t_Theme,
 			String txtc_Name, String cbx_c_Team, String txtc_Phone, String txtc_Age, String txtr_Price,
 			String cbx_r_Payment, String cbx_r_Pay, String cbx_escape, String cbxHint) throws Exception {
@@ -301,10 +300,6 @@ public class ReservationDAO {
 
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
-
-			// System.out.println(dpDate);
-			// System.out.println(cbx_time);
-			// System.out.println(cbx);
 
 			pstmt.setString(1, dpDate); // 예약날짜
 			pstmt.setString(2, cbx_time); // 예약시간
@@ -461,6 +456,79 @@ public class ReservationDAO {
 			}
 		}
 		return list;
+	}
+
+	// 당일 총매출액을 조회하기 위해서 필요한 DAO
+	public int gettodayt_price() {
+
+		String sql = "select sum (to_number(t_price)) as todaytotal FROM reservation where r_reserveddate = to_char(SYSDATE, 'YYYY-MM-DD' )";
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int t_price = 0;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			// pstmt.setString(1, o_date);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				t_price = rs.getInt("todaytotal"); // 컬럼명이 들어가야한다
+			}
+		} catch (SQLException se) {
+			System.out.println(se);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+		return t_price;
+	}
+
+	//총매출액을 조회하기 위해서 필요한 DAO
+	public int getTotalt_price() {
+
+		String sql = "select sum(to_number(t_price)) as total from reservation" ;
+				
+			
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int t_price = 0;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			// pstmt.setString(1, o_date);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				t_price = rs.getInt("total"); // 컬럼명이 들어가야한다
+			}
+		} catch (SQLException se) {
+			System.out.println(se);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+		return t_price;
 	}
 
 }

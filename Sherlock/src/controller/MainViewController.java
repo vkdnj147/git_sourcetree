@@ -71,7 +71,9 @@ public class MainViewController implements Initializable {
 	@FXML
 	TextField txtr_No; // 고객번호
 	@FXML
-	TextField txt_todaySearchWord; //오늘 검색!
+	TextField txt_todaySearchWord; // 오늘 검색!
+
+
 	@FXML
 	Button btnJoin;// 정보 등록버튼
 	@FXML
@@ -83,14 +85,22 @@ public class MainViewController implements Initializable {
 	@FXML
 	Button btnSearch;// 검색 버튼
 	@FXML
-	Button btnSearch2; //당일 이용자 검색버튼 
-
+	Button btnSearch2; // 당일 이용자 검색버튼
 	@FXML
 	Button btnTotal;// 전체 버튼
 	@FXML
 	Button btnTotal2; // today 전체 버튼
+	
+	
 	@FXML
-	Label lblCount;// 카운트
+	Label lblCount;// 검색했을시 나오는 전체 인원 수 (total)
+	@FXML
+	Label lblCount1; // 검색했을시 나오는 전체 인원 수 (today)
+	@FXML
+	Label lbl_todaytotal; // 오늘날짜의 총매출액
+	@FXML
+	Label lbl_totalsale; //전체 매출
+
 	@FXML
 	private Label lblIconImg; // 아이콘 이미지
 	@FXML
@@ -122,6 +132,7 @@ public class MainViewController implements Initializable {
 
 	// VO의 정보를 불러오기 위해서
 	ReservationVO selectedReservation;
+	ReservationDAO rDao = new ReservationDAO();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -134,6 +145,12 @@ public class MainViewController implements Initializable {
 			txtr_No.setEditable(false); // 무조건 변경 불가
 
 			dpDate.setValue(LocalDate.now());
+			
+			//당일 매출을 가져오는 메소드 
+			lbl_todaytotal.setText(rDao.gettodayt_price()+"");
+			//전체 매출을 가져오는 메소드
+			lbl_totalsale.setText(rDao.getTotalt_price()+"");
+
 
 			TableColumn colReservationR_no = new TableColumn("NO");
 			colReservationR_no.setPrefWidth(50); // 크기 설정
@@ -285,7 +302,7 @@ public class MainViewController implements Initializable {
 			// 버튼 이벤트
 			btnJoin.setOnAction(event -> handlerbtnJoinAction(event)); // 등록 버튼 이벤트->예약자 정보가 등록된다
 			btnCorrect.setOnAction(event -> handlerbtnCorrectAction(event)); // 수정 버튼 이벤트->누르면 수정창이 뜬다
-			btnOk.setOnAction(event -> handlerBtnOkAction(event)); // 확인 버튼 이벤트->예약창에서 확인을 누르면 메인창으로 넘어간다
+			btnOk.setOnAction(event -> handlerBtnOkAction(event)); // 창 초기화
 			cbx_c_Team.setOnAction(event -> handlercbx_c_TeamAction(event)); // 인원 선택시 가격 자동으로 설정
 			reservationTableView.setOnMouseClicked(event -> handlerreservationTableViewAction(event));// 테이블뷰 클릭 이벤트
 			// 예약코드 이벤트 (일)
@@ -303,12 +320,15 @@ public class MainViewController implements Initializable {
 			btnTotal.setOnAction(event -> handlerbtnTotalAction(event));
 			btnTotal2.setOnAction(event -> handlerbtnTotal2Action(event));
 
+			// 오늘 하루 매출액 버튼을 누르면 금일 매출이 조회되게 할 수 있는 람다식 버튼 이벤트
+			//btnTodaytotalsale.setOnAction(event -> handlerbtnTodaytotalsaleAction(event));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
+	
 
 	// 테마이름 콤보박스를 누르면 자동으로 예약 번호에 값이 추가 되게 나오게 만드는 메소드
 	private void handlercbx_t_ThemeAction(ActionEvent event) {
@@ -318,7 +338,7 @@ public class MainViewController implements Initializable {
 		theme_name = cbx_t_Theme.getSelectionModel().getSelectedItem();
 
 		if (theme_name.equals("스릴러")) {
-			reservationCode += "30";
+			reservationCode += "30"; // 입력값
 		}
 		if (theme_name.equals("살인사건")) {
 			reservationCode += "31";
@@ -425,7 +445,7 @@ public class MainViewController implements Initializable {
 			reservationDataList.removeAll(reservationDataList);
 
 			ReservationVO rvo = null;
-			ReservationDAO cdao = null;
+			ReservationDAO rdao = null;
 
 			// rvo에서 받아와야하는 값들을 넣어준다.
 			// dpDate는 저장할때는 dp.getValue.toString으로 받기
@@ -438,10 +458,10 @@ public class MainViewController implements Initializable {
 					cbx_r_Pay.getSelectionModel().getSelectedItem(), cbx_escape.getSelectionModel().getSelectedItem(),
 					cbxHint.getSelectionModel().getSelectedItem());
 
-			cdao = new ReservationDAO();
-			cdao.getReservationInsert(rvo);
+			rdao = new ReservationDAO();
+			rdao.getReservationInsert(rvo);
 
-			if (cdao != null) {
+			if (rdao != null) {
 				resvervationList();
 
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -634,10 +654,10 @@ public class MainViewController implements Initializable {
 		}
 
 	}
-	
-	//오늘 이용하는 이용자 검색 버튼 이벤트 (today)
+
+	// 오늘 이용하는 이용자 검색 버튼 이벤트 (today)
 	private void handlerBtnSearch2Action(ActionEvent event) {
-		
+
 		ArrayList<ReservationVO> todaysearchList = new ArrayList<ReservationVO>();
 
 		ReservationVO rVo = null;
@@ -645,71 +665,72 @@ public class MainViewController implements Initializable {
 
 		String todaysearchName = "";
 		boolean searchResult = false;
-		
+
 		try {
-	         todaysearchName = txt_todaySearchWord.getText().trim();
-	         
-	         rDao = new ReservationDAO();
-	         
-	         todaysearchList = rDao.getReservationNametodaySearchList(todaysearchName);
-	         
-	         int rowCount = todaysearchList.size();
-	         System.out.println(rowCount);
-	         lblCount.setText("검색 : " + rowCount + " 명");
-	         for (int index = 0; index < rowCount; index++) {
+			todaysearchName = txt_todaySearchWord.getText().trim();
 
-	            rVo = todaysearchList.get(index);
-	            reservationTodayDataList.add(rVo);
-	         }
+			rDao = new ReservationDAO();
 
-	         if (todaysearchName.equals("")) {
-	            searchResult = true;
-	            Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("이용자 정보 입력");
-	            alert.setHeaderText("이용자의 이름을 입력하시오.");
-	            alert.setContentText("일치하는 정보가 없습니다.");
-	            alert.showAndWait();
-	         }
+			todaysearchList = rDao.getReservationNametodaySearchList(todaysearchName);
 
-	         if (todaysearchList != null) {
-	            
-	            txtSearchWord.clear();
-	            reservationTodayDataList.removeAll(reservationTodayDataList);
-	          
-	            for (int index = 0; index < rowCount; index++) {
-	               rVo = todaysearchList.get(index);
-	               reservationTodayDataList.add(rVo); //그날 정보 가져오기
-	               searchResult = true;
-	            }
-	         }
-	         if (!searchResult) {
-	            txtSearchWord.clear();
-	            Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("이용자 정보 검색");
-	            alert.setHeaderText(todaysearchName + " 이용자 이름과 일치하는 정보가 리스트에 없습니다.");
-	            alert.setContentText("다시 입력해주시길 바랍니다.");
-	            alert.showAndWait();
-	            txtSearchWord.clear();
-	            reservationTodayDataList.removeAll(reservationTodayDataList);
-	            
-	            int rowCount1 = todaysearchList.size();
-	            lblCount.setText("검색 : " + rowCount1 + " 명");
-	            for (int index = 0; index < rowCount1; index++) {
-	               rVo = todaysearchList.get(index);
-	               reservationTodayDataList.add(rVo);
-	            }
+			int rowCount = todaysearchList.size();
+			System.out.println(rowCount);
+			lblCount1.setText("검색 : " + rowCount + " 명");
+			for (int index = 0; index < rowCount; index++) {
 
-	         }
-	      } catch (Exception e) {
-	         Alert alert = new Alert(AlertType.WARNING);
-	         alert.setTitle("이용자 정보 검색 오류");
-	         alert.setHeaderText("이용자 정보 검색에 오류가 발생했습니다.");
-	         alert.setContentText("예약자 명단에  존재하지 않습니다.");
-	         alert.showAndWait();
-	      }
-	   }
+				rVo = todaysearchList.get(index);
+				reservationTodayDataList.add(rVo);
+			}
 
-	//total 검색 버튼 이벤트
+			if (todaysearchName.equals("")) {
+				searchResult = true;
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("이용자 정보 입력");
+				alert.setHeaderText("이용자의 이름을 입력하시오.");
+				alert.setContentText("일치하는 정보가 없습니다.");
+				alert.showAndWait();
+			}
+
+			if (todaysearchList != null) {
+
+				txtSearchWord.clear();
+				reservationTodayDataList.removeAll(reservationTodayDataList);
+
+				for (int index = 0; index < rowCount; index++) {
+					rVo = todaysearchList.get(index);
+					reservationTodayDataList.add(rVo); // 그날 정보 가져오기
+					searchResult = true;
+				}
+			}
+			if (!searchResult) {
+				txtSearchWord.clear();
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("이용자 정보 검색");
+				alert.setHeaderText(todaysearchName + " 이용자 이름과 일치하는 정보가 리스트에 없습니다.");
+				alert.setContentText("다시 입력해주시길 바랍니다.");
+				alert.showAndWait();
+				txtSearchWord.clear();
+				reservationTodayDataList.removeAll(reservationTodayDataList);
+
+				int rowCount1 = todaysearchList.size();
+				// 메인 뷰에 있는 라벨카운트와 연결 !
+				lblCount1.setText("검색 : " + rowCount1 + " 명");
+				for (int index = 0; index < rowCount1; index++) {
+					rVo = todaysearchList.get(index);
+					reservationTodayDataList.add(rVo);
+				}
+
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("이용자 정보 검색 오류");
+			alert.setHeaderText("이용자 정보 검색에 오류가 발생했습니다.");
+			alert.setContentText("예약자 명단에  존재하지 않습니다.");
+			alert.showAndWait();
+		}
+	}
+
+	// total 검색 버튼 이벤트
 	public void handlerBtnSearchAction(ActionEvent event) {
 
 		ArrayList<ReservationVO> searchList = new ArrayList<ReservationVO>();
@@ -719,65 +740,65 @@ public class MainViewController implements Initializable {
 
 		String searchName = "";
 		boolean searchResult = false;
-		
+
 		try {
-	         searchName = txtSearchWord.getText().trim();
-	         rDao = new ReservationDAO();
-	         searchList = rDao.getReservationNameSearchList(searchName);
+			searchName = txtSearchWord.getText().trim();
+			rDao = new ReservationDAO();
+			searchList = rDao.getReservationNameSearchList(searchName);
 
-	         int rowCount = searchList.size();
-	         lblCount.setText("검색 : " + rowCount + " 명");
+			int rowCount = searchList.size();
+			lblCount.setText("검색 : " + rowCount + " 명");
 
-	         for (int index = 0; index < rowCount; index++) {
+			for (int index = 0; index < rowCount; index++) {
 
-	            rVo = searchList.get(index);
-	            reservationDataList.add(rVo);
-	         }
+				rVo = searchList.get(index);
+				reservationDataList.add(rVo);
+			}
 
-	         if (searchName.equals("")) {
-	            searchResult = true;
-	            Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("이용자 정보 입력");
-	            alert.setHeaderText("이용자의 이름을 입력하시오.");
-	            alert.setContentText("일치하는 정보가 없습니다.");
-	            alert.showAndWait();
-	         }
+			if (searchName.equals("")) {
+				searchResult = true;
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("이용자 정보 입력");
+				alert.setHeaderText("이용자의 이름을 입력하시오.");
+				alert.setContentText("일치하는 정보가 없습니다.");
+				alert.showAndWait();
+			}
 
-	         if (searchList != null) {
-	            // int rowCount = searchList.size();
-	            txtSearchWord.clear();
-	            reservationDataList.removeAll(reservationDataList);
-	            for (int index = 0; index < rowCount; index++) {
-	               rVo = searchList.get(index);
-	               reservationDataList.add(rVo);
-	               searchResult = true;
-	            }
-	         }
-	         if (!searchResult) {
-	            txtSearchWord.clear();
-	            Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("이용자 정보 검색");
-	            alert.setHeaderText(searchName + " 이용자 이름과 일치하는 정보가 리스트에 없습니다.");
-	            alert.setContentText("다시 입력해주시길 바랍니다.");
-	            alert.showAndWait();
-	            txtSearchWord.clear();
-	            reservationDataList.removeAll(reservationDataList);
-	            // int rowCount = searchList.size();
-	            lblCount.setText("검색 : " + rowCount + " 명");
-	            for (int index = 0; index < rowCount; index++) {
-	               rVo = searchList.get(index);
-	               reservationDataList.add(rVo);
-	            }
+			if (searchList != null) {
+				// int rowCount = searchList.size();
+				txtSearchWord.clear();
+				reservationDataList.removeAll(reservationDataList);
+				for (int index = 0; index < rowCount; index++) {
+					rVo = searchList.get(index);
+					reservationDataList.add(rVo);
+					searchResult = true;
+				}
+			}
+			if (!searchResult) {
+				txtSearchWord.clear();
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("이용자 정보 검색");
+				alert.setHeaderText(searchName + " 이용자 이름과 일치하는 정보가 리스트에 없습니다.");
+				alert.setContentText("다시 입력해주시길 바랍니다.");
+				alert.showAndWait();
+				txtSearchWord.clear();
+				reservationDataList.removeAll(reservationDataList);
+				// int rowCount = searchList.size();
+				lblCount.setText("검색 : " + rowCount + " 명");
+				for (int index = 0; index < rowCount; index++) {
+					rVo = searchList.get(index);
+					reservationDataList.add(rVo);
+				}
 
-	         }
-	      } catch (Exception e) {
-	         Alert alert = new Alert(AlertType.WARNING);
-	         alert.setTitle("이용자 정보 검색 오류");
-	         alert.setHeaderText("이용자 정보 검색에 오류가 발생했습니다.");
-	         alert.setContentText("예약자 명단에  존재하지 않습니다.");
-	         alert.showAndWait();
-	      }
-	   }
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("이용자 정보 검색 오류");
+			alert.setHeaderText("이용자 정보 검색에 오류가 발생했습니다.");
+			alert.setContentText("예약자 명단에  존재하지 않습니다.");
+			alert.showAndWait();
+		}
+	}
 
 	// 전체 고객 리스트 조회하기 위함
 	public void TotalReservationList() throws Exception {
