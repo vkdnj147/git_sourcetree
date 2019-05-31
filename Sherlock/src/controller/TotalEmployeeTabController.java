@@ -80,15 +80,15 @@ public class TotalEmployeeTabController implements Initializable {
 
 	ObservableList<EmployeeVO> selectEmployee = null;// 직원등록 테이블에서 선택한 정보 저장
 
-	String EmployeeNumber = "";
+	String EmployeeNumber = ""; //직원 번호 변수 선언
 
 	ComboBox<EmployeeVO> EmployeeTableView;
 
-	private Object eDAO;
+	private Object eDAO;//edao를 private 객체화 시킨다
 
-	private EmployeeVO selectedEmployee;
+	private EmployeeVO selectedEmployee;//직원vo 의 선택된 직원을 메소드화 시킨다.
 
-	Object selectedEmployeeIndex;
+	Object selectedEmployeeIndex; //선택된 직원 인덱스를 객체화 시킨다
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -156,16 +156,16 @@ public class TotalEmployeeTabController implements Initializable {
 			colEmployeeWhether.setPrefWidth(80);
 			colEmployeeWhether.setCellValueFactory(new PropertyValueFactory<>("em_whether"));
 
-			totalEmployeeTableView.setItems(employeeDataList);
+			totalEmployeeTableView.setItems(employeeDataList);//데이터 리스트에서 선택된 값을 테이블뷰에 가져온다
 			totalEmployeeTableView.getColumns().addAll(colEmployeeNo, colEmployeeRank, colEmployeeName, colEmployeeId,
 					colEmployeePasswd, colEmployeePhone, colEmployeeAddress, colEmployeeBank, colEmployeeAccount,
-					colEmployeeEntry, colEmployeeLeaveday, colEmployeeWhether);
+					colEmployeeEntry, colEmployeeLeaveday, colEmployeeWhether);//직원 테이블뷰의 컬럼의 모든걸 가져온다.
 
 			// 직원 전체 목록
 			employeeTotalList();
 
 			// 핸들러 이벤트 등록
-			// cbx_searchList.setItems(FXCollections.observableArrayList("이름"));
+			
 			btnEmployeeInsert.setOnAction(event -> handlerbtnEmployeeInsertAction(event)); // 직원 등록버튼
 			btnEmployeeUpdate.setOnAction(event -> handlerbtnEmployeeUpdateAction(event)); // 직원 수정 버튼
 			btnEmployeeInit.setOnAction(event -> handlerbtnEmployeeInitAction(event)); // 직원 초기화
@@ -173,7 +173,7 @@ public class TotalEmployeeTabController implements Initializable {
 			totalEmployeeTableView.setOnMouseClicked(event -> handlerEmployeeTableViewAction(event));// 테이블뷰 클릭 이벤트
 			btnSearch.setOnAction(event -> handlerBtnSearchAction(event));// 검색 버튼
 			btnTotal.setOnAction(event -> handlerBtnTotalAction(event));// 전체 버튼
-			// 전체 목록 이벤트 아직 없음 추가 될 예정
+			
 
 			// 엔터키 이벤트
 			// 키 이벤트 등록
@@ -187,13 +187,13 @@ public class TotalEmployeeTabController implements Initializable {
 			txtem_bank.setOnKeyPressed(event -> handlerTxtem_bankKeyPressed(event));
 			txtem_account.setOnKeyPressed(event -> handlerTxtem_accountKeyPressed(event));
 			txtem_entry.setOnKeyPressed(event -> handlerTxtem_entryKeyPressed(event));
-			txtem_leaveday.setOnKeyPressed(event -> handlerTxtem_leavedayKeyPressed(event));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	// 전체 버튼 이벤트
+	// 전체 버튼 이벤트 전체 버튼을 누르면 다시 모든 정보가 나오는 테이블뷰로 바뀐다
 	public void handlerBtnTotalAction(ActionEvent event) {
 		try {
 			employeeDataList.removeAll(employeeDataList);
@@ -204,7 +204,7 @@ public class TotalEmployeeTabController implements Initializable {
 
 	}
 
-	// 직원 전체 목록
+	// 직원 전체 목록 테이블뷰에 등록된 직원 전체를 보여준다
 	public void employeeTotalList() throws Exception {// 앞에는 소문자~
 		try {
 			employeeDataList.removeAll(employeeDataList);
@@ -219,11 +219,10 @@ public class TotalEmployeeTabController implements Initializable {
 			int columnCount = title.size();
 
 			searchList = eDao.getEmployeeTotalList();
-			// searchList = eDao.getEmployeeNameSearchList(em_name);
 
 			int rowCount = searchList.size();
-			// System.out.println(rowCount);
-			lblCount.setText("총원 : " + rowCount + " 명");
+			
+			lblCount.setText("총원 : " + rowCount + " 명");//등록된 직원 수를 나타낸다.
 
 			for (int index = 0; index < rowCount; index++) {
 
@@ -235,14 +234,14 @@ public class TotalEmployeeTabController implements Initializable {
 		}
 	}
 
-	// 검색버튼
+	// 검색버튼 검색버튼을 누르면 검색한 단어에 해당하는 값이 나온다
 	public void handlerBtnSearchAction(ActionEvent event) {
 		ArrayList<EmployeeVO> searchList = new ArrayList<EmployeeVO>();
 
 		EmployeeVO eVo = null;
 		EmployeeDAO eDao = null;
 
-		String searchName = "";
+		String searchName = "";//검색이름 변수 선언
 		boolean searchResult = false;
 
 		try {
@@ -251,7 +250,7 @@ public class TotalEmployeeTabController implements Initializable {
 			searchList = eDao.getEmployeeNameSearchList(searchName);
 
 			int rowCount = searchList.size();
-			lblCount.setText("검색 : " + rowCount + " 명");
+			lblCount.setText("검색 : " + rowCount + " 명");//검색된 인원의 수를 보여준다.
 
 			for (int index = 0; index < rowCount; index++) {
 
@@ -269,7 +268,6 @@ public class TotalEmployeeTabController implements Initializable {
 			}
 
 			if (searchList != null) {
-				// int rowCount = searchList.size();
 				txtSearchWord.clear();
 				employeeDataList.removeAll(employeeDataList);
 				for (int index = 0; index < rowCount; index++) {
@@ -369,11 +367,13 @@ public class TotalEmployeeTabController implements Initializable {
 					txtem_id.getText().trim(), txtem_passwd.getText().trim(), txtem_phone.getText().trim(),
 					txtem_address.getText().trim(), txtem_bank.getText().trim(), txtem_account.getText().trim(),
 					txtem_entry.getText().trim(), txtem_leaveday.getText().trim(),
-					cbx_whether.getSelectionModel().getSelectedItem());
+					cbx_whether.getSelectionModel().getSelectedItem());//텍스트 필드 수정 가능하게 값을 가져온다
 
 			if (sucess) {
 				employeeDataList.removeAll(employeeDataList);
+				
 				employeeTotalList();
+				
 				// 입력된 정보 초기화
 				txtem_no.clear();
 				txtem_name.clear();
@@ -385,6 +385,8 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_account.clear();
 				txtem_entry.clear();
 				txtem_leaveday.clear();
+				
+				
 				// 번호 이름 아이디는 비활성화
 				txtem_no.setDisable(true);
 				txtem_name.setDisable(true);
@@ -394,6 +396,7 @@ public class TotalEmployeeTabController implements Initializable {
 				cbx_rank.setDisable(false);// 직급 활성화
 				cbx_whether.setDisable(false);// 재직여부 활성화
 
+				//수정이 성공적으로 되면 버튼 비활성화
 				btnEmployeeUpdate.setDisable(true);
 				btnEmployeeInit.setDisable(true);
 				btnEmployeeInsert.setDisable(true);
@@ -401,19 +404,22 @@ public class TotalEmployeeTabController implements Initializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 		}
 	}
 
+	
+	//테이블뷰 더블클릭 이벤트
 	public void handlerEmployeeTableViewAction(MouseEvent event) {
-		if (event.getClickCount() == 2) {
+		if (event.getClickCount() == 2) {//클릭 카운더가 2와 같을시
 			try {
-				selectedEmployee = totalEmployeeTableView.getSelectionModel().getSelectedItem();
-				// 주석 해제 하고 방법을 찾아야 한다
+				selectedEmployee = totalEmployeeTableView.getSelectionModel().getSelectedItem();//테이블뷰에서 선택된 값만 선택하여 가져온다
+			
 
-				selectedEmployeeIndex = Integer.parseInt(selectedEmployee.getEm_no());
+				selectedEmployeeIndex = Integer.parseInt(selectedEmployee.getEm_no());//직원 번호를 int 로 형변환하여 가져온다
 
+				//선택한 정보를 가져온다
 				String selectedem_no = selectedEmployee.getEm_no();
 				String selectedem_rank = selectedEmployee.getEm_rank();
 				String selectedem_name = selectedEmployee.getEm_name();
@@ -427,7 +433,7 @@ public class TotalEmployeeTabController implements Initializable {
 				String selectedem_leaveday = selectedEmployee.getEm_leaveday();
 				String selectedem_whether = selectedEmployee.getEm_whether();
 
-				// 선택한 값만 가져오는 것
+				// 입력한 값으로 설정한다.
 				txtem_no.setText(selectedem_no);
 				txtem_name.setText(selectedem_name);
 				txtem_id.setText(selectedem_id);
@@ -441,24 +447,23 @@ public class TotalEmployeeTabController implements Initializable {
 				cbx_whether.setValue(selectedem_whether);
 
 				if (selectedem_leaveday.equals(null)) {
-					txtem_leaveday.setText(selectedem_leaveday);
+					txtem_leaveday.setText(selectedem_leaveday);//퇴사일은 나중에 입력해야 함으로 null과 비교하여 같으면 null 값이 들어간다.
 				}
 
-				txtem_no.setEditable(false);
-				txtem_name.setEditable(false);
-				txtem_id.setEditable(false);
+				txtem_no.setEditable(false);//직원 번호 수정불가
+				txtem_name.setEditable(false);//이름 수정불가
+				txtem_id.setEditable(false);//아이디 수정불가
 
-				btnIdCheck.setDisable(true);
-				cbx_rank.setDisable(true);
-				cbx_whether.setDisable(false);// 재직 여부
+				btnIdCheck.setDisable(true);//비활성화
+				cbx_rank.setDisable(true);//비활성화
+				cbx_whether.setDisable(false);// 재직 여부 활성화
 
-				btnEmployeeUpdate.setDisable(false);
-				btnEmployeeInit.setDisable(false);
-				btnEmployeeInsert.setDisable(true);
-
+				btnEmployeeUpdate.setDisable(false);//수정버튼 활성화
+				btnEmployeeInit.setDisable(false);//초기화 버튼 활성화
+				btnEmployeeInsert.setDisable(true);//등록버튼 비활성화
 			} catch (Exception e) {
 				e.printStackTrace();
-				// TODO: handle exception
+				
 			}
 		}
 	}
@@ -471,7 +476,7 @@ public class TotalEmployeeTabController implements Initializable {
 			EmployeeDAO edao = null;
 
 			String rank = cbx_rank.getSelectionModel().getSelectedItem();// 콤보박스에서 선택한 아이템을 가져온다
-			String whether = cbx_whether.getSelectionModel().getSelectedItem();
+			String whether = cbx_whether.getSelectionModel().getSelectedItem();//재직여부에서 선택한 아이템을 가져온다
 
 			// 입력된 모든 직원의 정보를 가져온다
 			evo = new EmployeeVO(txtem_no.getText().trim(), rank, txtem_name.getText().trim(),
@@ -479,11 +484,11 @@ public class TotalEmployeeTabController implements Initializable {
 					txtem_address.getText().trim(), txtem_bank.getText().trim(), txtem_account.getText().trim(),
 					txtem_entry.getText().trim(), txtem_leaveday.getText().trim(), whether);
 
-			edao = new EmployeeDAO();
-			edao.getEmployeeInsert(evo);
+			edao = new EmployeeDAO();//e DAO인스턴스화
+			edao.getEmployeeInsert(evo);//등록된EVO 정보를 가져와 E DAO 에 넣는다
 			// 날짜는 추가 수정이 들어가야함
 
-			if (edao != null) {
+			if (edao != null) { //직원 DAO와 비교했을때 같지 않으면 등록 완료
 				employeeTotalList();
 
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -495,6 +500,7 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_id.setDisable(false);// 아이디 활성화 시켜주는거
 				txtem_no.setDisable(false);// 사원번호 직접입력을 위해 활성화
 
+				//등록 완료가 되면 입력된 값은 초기화가 된다
 				txtem_no.clear();
 				txtem_name.clear();
 				txtem_id.clear();
@@ -504,9 +510,11 @@ public class TotalEmployeeTabController implements Initializable {
 				txtem_bank.clear();
 				txtem_account.clear();
 
+				//버튼 활성화
 				btnEmployeeInsert.setDisable(false);
 				btnEmployeeUpdate.setDisable(false);
 				btnEmployeeInit.setDisable(false);
+				//등록할때 퇴사일은 입력이 안되므로 비활성화 시킨다
 				txtem_leaveday.setDisable(true);
 			}
 
@@ -523,7 +531,7 @@ public class TotalEmployeeTabController implements Initializable {
 	public void handlerbtnEmployeeInitAction(ActionEvent event) {
 		try {
 			employeeDataList.removeAll(employeeDataList);
-			employeeTotalList();
+			employeeTotalList();//직원 전체 리스트를 가져온다
 
 			// 안에 있는 텍스트를 모두 비우라는 메소드
 			txtem_no.clear();
@@ -537,14 +545,16 @@ public class TotalEmployeeTabController implements Initializable {
 			txtem_entry.clear();
 			txtem_leaveday.clear();
 
-			txtem_no.setEditable(true);
-			txtem_name.setEditable(true);
-			txtem_id.setEditable(true);
+			//재입력을 해야함으로 다 활성화 되게 한다
+			txtem_no.setEditable(true);//직원번호 수정가능
+			txtem_name.setEditable(true);//이름 수정가능
+			txtem_id.setEditable(true);//아이디 수정가능
 
-			btnIdCheck.setDisable(false);
-			cbx_rank.setDisable(false);
-			cbx_whether.setDisable(false);
+			btnIdCheck.setDisable(false);//아이디 중복체크 활성화
+			cbx_rank.setDisable(false);//직급 활성화
+			cbx_whether.setDisable(false);//재직여부 활성화
 
+			//등록 버튼만 활성화 시킨다
 			btnEmployeeUpdate.setDisable(true);
 			btnEmployeeInsert.setDisable(true);
 			btnEmployeeInit.setDisable(true);
@@ -555,30 +565,31 @@ public class TotalEmployeeTabController implements Initializable {
 	}
 
 	// 키 이벤트(점수입력창에서 엔터 누르면 그 다음 텍스트필드로 이동)
+	//직원 번호에서 이름으로 넘어간다
 	public void handlerTxtem_noKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_name.requestFocus();
 		}
 	}
-
+	//직원 이름에서 직원 아이디로 넘어간다
 	public void handlerTxtem_nameKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_id.requestFocus();
 		}
 	}
-
+	//직원 아이디에서 중복체크로 넘어간다
 	public void handlerTxtem_idKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			btnIdCheck.requestFocus();
 		}
 	}
 
-	// 아이디 중복검사 엔터로 적용
+	// 아이디 중복검사 엔터로 적용시켜서 다음 패스워드로 넘어간다
 	public void handlerBtnIdCheckKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_passwd.requestFocus();
 			// 아이디 중복 체크 핸들러
-			// public void handlerbtnIdCheckAction(ActionEvent event) {
+			
 			btnEmployeeInsert.setDisable(false);
 			btnIdCheck.setDisable(true);
 			EmployeeDAO eDao = null;
@@ -632,31 +643,31 @@ public class TotalEmployeeTabController implements Initializable {
 	}
 
 	// 엔터키 이벤트
-
+ //직원 패스워드에서 직원 폰 입력으로 넘어간다
 	public void handlerTxtem_passwdKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_phone.requestFocus();
 		}
 	}
-
+	//직원 폰입력에서 주소 입력으로 넘어간다
 	public void handlerTxtem_phoneKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_address.requestFocus();
 		}
 	}
-
+	//직원 주소 입력에서 은행 입력으로 넘어간다
 	public void handlerTxtem_addressKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_bank.requestFocus();
 		}
 	}
-
+	//직원 은행입력에서 계좌번호 입력으로 넘어간다
 	public void handlerTxtem_bankKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_account.requestFocus();
 		}
 	}
-
+	//계좌입력에서 입사일로 넘어간다
 	public void handlerTxtem_accountKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			txtem_entry.requestFocus();
@@ -665,13 +676,14 @@ public class TotalEmployeeTabController implements Initializable {
 
 	public void handlerTxtem_entryKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
-			txtem_leaveday.requestFocus();
+			btnEmployeeInsert.requestFocus();
 		}
 	}
 
-	public void handlerTxtem_leavedayKeyPressed(KeyEvent event) {
+	public void handlerBtnEmployeeInsertKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			btnEmployeeInsert.requestFocus();
+			//퇴사일은 수정때 입력하므로 등록할때 입력할 필요가 없어서 따로 만들지 않음
 		}
 	}
 

@@ -17,7 +17,7 @@ public class EmployeeDAO {
 	private static final boolean EmployeeJoinUpdateSucess = false;
 
 	// 로그인을 한 사람들이라면 모두 볼 수 있다
-	// 등록 된 직원들의 전체 목록
+	// 등록 된 직원들의 전체 목록을 가져온다
 
 	public ArrayList<EmployeeVO> getEmployeeTotalList() throws Exception {
 
@@ -37,7 +37,7 @@ public class EmployeeDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			// 사원번호, 직급, 이름, 재직*퇴사여부
+			//사원 번호 , 직급 , 이름, 아이디, 비밀번호, 핸드폰 번호, 주소, 은행명, 계좌번호, 입사일, 퇴사일, 재직여부 를 가져온다
 			while (rs.next()) {
 				eVo = new EmployeeVO();
 				eVo.setEm_no(rs.getString("em_no"));
@@ -74,7 +74,7 @@ public class EmployeeDAO {
 	}
 
 
-	// 데이터베읻스에서 직원 테이블 컬럼의 갯수
+	// 데이터베이스에서 직원 테이블 컬럼의 갯수를 가져와 보여준다
 	public ArrayList<String> getEmployeeColumnName() throws Exception {
 		ArrayList<String> columnName = new ArrayList<String>(); // 이 안에 직원의 정보를 넣는다
 
@@ -117,8 +117,8 @@ public class EmployeeDAO {
 	}
 
 	// 등록한 직원의 정보 등록
-	// 이름, 번호, 주소 , 은행명, 계좌번호
-
+	//사원 번호 , 직급 , 이름, 아이디, 비밀번호, 핸드폰 번호, 주소, 은행명, 계좌번호, 입사일, 퇴사일, 재직여부 를 등록시킨다
+    //새로등록된 직원의 정보를 db에 입력한다
 	public boolean getEmployeeInsert(EmployeeVO eVo)
 			throws Exception {
 
@@ -181,17 +181,17 @@ public class EmployeeDAO {
 			}
 		}
 
-		return EmployeeJoinUpdateSucess;
+		return EmployeeJoinUpdateSucess;//성공한 결과를 반환한다
 	}
 	
 
-	//직원 수정
+	//직원 수정 쿼리문 DB에 입력된 정보를 새로 다시 수정한다
 	public boolean getEmployeeUpdate(String em_no, String em_name, String em_id, String em_passwd,
 			String em_phone, String em_address, String em_bank, String em_account, String em_entry, String em_leaveday, String em_whether ) throws Exception {
 		   
 		
 		String sql = "update employee set em_no=?, em_name=?, em_id =?, em_passwd=?, em_phone=?, em_address=?, "
-		    		+ "em_bank=? , em_account=?, em_entry=?, em_leaveday=? , em_whether = ?  where em_no=? "; //형식
+		    		+ "em_bank=? , em_account=?, em_entry=?, em_leaveday=? , em_whether = ?  where em_no=? "; //수정 형식
 		     
 		      Connection con = null;
 		      PreparedStatement pstmt = null;
@@ -249,7 +249,7 @@ public class EmployeeDAO {
 	
 
 
-	//아이디 중복체크
+	//아이디 중복체크 DB에 입력된 아이디와 비교하여 가져온다
 	public boolean getEmployeeIdOverlap(String searchId) {
 		 String sql = "select * from employee where em_id = ?";
 	      Connection con = null;
@@ -284,6 +284,7 @@ public class EmployeeDAO {
 	      return idOverlapResult;
 	   }
 
+	//직원 이름 검색하는 쿼리문 비슷한 이름이 있을시에만 정보를 다 가져온다
 	public ArrayList<EmployeeVO> getEmployeeNameSearchList(String em_name)throws Exception {
 		ArrayList<EmployeeVO> list = new ArrayList<>();
 		String sql = "select * from employee where em_name like ? order by em_no desc" ;

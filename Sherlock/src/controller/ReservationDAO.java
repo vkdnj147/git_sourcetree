@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import model.CustomerVO;
 import model.EmployeeVO;
 import model.ReservationVO;
-import model.TotalReservationVO;
 
 public class ReservationDAO {
 

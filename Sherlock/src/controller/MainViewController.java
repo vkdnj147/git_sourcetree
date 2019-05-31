@@ -35,7 +35,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.CustomerVO;
 import model.ReservationVO;
-import model.TotalReservationVO;
 
 public class MainViewController implements Initializable {
 
@@ -228,7 +227,7 @@ public class MainViewController implements Initializable {
 			colReservationR_reserveddate1.setPrefWidth(50); // 크기 설정
 			colReservationR_reserveddate1.setCellValueFactory(new PropertyValueFactory<>("r_reserveddate"));
 
-			// 예약날짜
+			// 예약시간
 			TableColumn colReservationR_reservedtime1 = new TableColumn("예 약 시 간");
 			colReservationR_reservedtime1.setPrefWidth(50); // 크기 설정
 			colReservationR_reservedtime1.setCellValueFactory(new PropertyValueFactory<>("r_reservedtime"));
