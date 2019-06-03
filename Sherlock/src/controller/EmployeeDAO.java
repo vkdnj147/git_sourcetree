@@ -172,7 +172,7 @@ public class EmployeeDAO {
 					pstmt.close();
 				if (con != null)
 					con.close();
-			} catch (SQLException se) {
+			} catch (SQLException e) {
 
 			}
 		}
