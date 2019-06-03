@@ -66,12 +66,9 @@ public class MainViewController implements Initializable {
 	@FXML
 	TextField txtr_Price;// 금액
 	@FXML
-	TextField txtr_recode;// 탈출기록
-	@FXML
 	TextField txtr_No; // 고객번호
 	@FXML
 	TextField txt_todaySearchWord; // 오늘 검색!
-
 
 	@FXML
 	Button btnJoin;// 정보 등록버튼
@@ -89,8 +86,7 @@ public class MainViewController implements Initializable {
 	Button btnTotal;// 전체 버튼
 	@FXML
 	Button btnTotal2; // today 전체 버튼
-	
-	
+
 	@FXML
 	Label lblCount;// 검색했을시 나오는 전체 인원 수 (total)
 	@FXML
@@ -98,7 +94,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	Label lbl_todaytotal; // 오늘날짜의 총매출액
 	@FXML
-	Label lbl_totalsale; //전체 매출
+	Label lbl_totalsale; // 전체 매출
 
 	@FXML
 	private Label lblIconImg; // 아이콘 이미지
@@ -144,12 +140,11 @@ public class MainViewController implements Initializable {
 			txtr_No.setEditable(false); // 무조건 변경 불가
 
 			dpDate.setValue(LocalDate.now());
-			
-			//당일 매출을 가져오는 메소드 
-			lbl_todaytotal.setText(rDao.gettodayt_price()+"");
-			//전체 매출을 가져오는 메소드
-			lbl_totalsale.setText(rDao.getTotalt_price()+"");
 
+			// 당일 매출을 가져오는 메소드
+			lbl_todaytotal.setText(rDao.gettodayt_price() + "");
+			// 전체 매출을 가져오는 메소드
+			lbl_totalsale.setText(rDao.getTotalt_price() + "");
 
 			TableColumn colReservationR_no = new TableColumn("NO");
 			colReservationR_no.setPrefWidth(50); // 크기 설정
@@ -320,14 +315,13 @@ public class MainViewController implements Initializable {
 			btnTotal2.setOnAction(event -> handlerbtnTotal2Action(event));
 
 			// 오늘 하루 매출액 버튼을 누르면 금일 매출이 조회되게 할 수 있는 람다식 버튼 이벤트
-			//btnTodaytotalsale.setOnAction(event -> handlerbtnTodaytotalsaleAction(event));
+			// btnTodaytotalsale.setOnAction(event ->
+			// handlerbtnTodaytotalsaleAction(event));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 	// 테마이름 콤보박스를 누르면 자동으로 예약 번호에 값이 추가 되게 나오게 만드는 메소드
 	private void handlercbx_t_ThemeAction(ActionEvent event) {
@@ -474,7 +468,7 @@ public class MainViewController implements Initializable {
 				txtc_Phone.clear();
 				txtc_Age.clear();
 				txtr_Price.clear();
-				txtr_recode.clear();
+
 				txtc_Name.requestFocus();
 				cbx_t_Theme.setDisable(false);
 				cbx_time.setDisable(false);
@@ -482,6 +476,7 @@ public class MainViewController implements Initializable {
 			}
 
 		} catch (Exception e) {
+
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("예약 정보 입력");
 			alert.setHeaderText("예약 정보를 정확히 입력하시오.");
@@ -564,7 +559,6 @@ public class MainViewController implements Initializable {
 				txtc_Phone.clear();
 				txtc_Age.clear();
 				txtr_Price.clear();
-				txtr_recode.clear();
 
 				btnCorrect.setDisable(true);
 				btnCancel.setDisable(true);

@@ -316,7 +316,7 @@ public class ReservationDAO {
 
 			int i = pstmt.executeUpdate();
 
-			if (i == 1) {
+			if (i == 0) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("예약 정보 수정");
 				alert.setHeaderText(txtc_Name + " 예약 정보 수정 완료.");
